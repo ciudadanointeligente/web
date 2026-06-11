@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumb?: { label: string; href?: string }[];
+}
+
+const { title, description = '', breadcrumb = [] } = Astro.props;
+---
+
+<section class="bg-primary text-text-inverse relative overflow-hidden">
+  <div class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
+    <!-- Breadcrumb -->
+    {
+      breadcrumb.length > 0 && (
+        <nav aria-label="Breadcrumb" class="mb-4">
+          <ol class="flex flex-wrap items-center gap-1 list-none m-0 p-0 font-sans text-caption font-medium">
+            {breadcrumb.map((item, index) => {
+              const isLast = index === breadcrumb.length - 1;
+              return (
+                <li class="flex items-center">
+                  {index > 0 && <span class="mx-1 text-secondary">/</span>}
+                  {isLast || !item.href ? (
+                    <span class="bg-accent-green text-neutral-dark px-2 py-0.5 rounded-sm">{item.label}</span>
+                  ) : (
+                    <a href={item.href} class="text-text-inverse no-underline hover:text-secondary transition-colors duration-fast">
+                      {item.label}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </nav>
+      )
+    }
+
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <h1 class="font-sans font-black text-hero-lg md:text-[5rem] leading-headings uppercase tracking-tight">
+        {title}
+      </h1>
+      {
+        description && (
+          <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-xl md:pt-4 text-text-inverse/90">
+            {description}
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>

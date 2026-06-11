@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Contacto | Ciudadanía Inteligente"
+  description="¿Quieres sumarte, colaborar o escribirnos? Aquí tienes todas las formas de ponerte en contacto con Ciudadanía Inteligente."
+>
+  <Navbar />
+
+  <main>
+    <PageHero
+      title="Contacto"
+      description="¿Quieres sumarte, colaborar o escribirnos? Aquí tienes todas las formas de ponerte en contacto con Ciudadanía Inteligente."
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Contacto' },
+      ]}
+    />
+
+    <!-- Contact CTA -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[800px] mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-black text-h2 text-text-primary uppercase tracking-tight mb-4">
+          ¿Quieres sumarte, colaborar o escribirnos?
+        </h2>
+        <p class="font-sans text-body text-text-body leading-body mb-12">
+          Aquí tienes todas las formas de ponerte en contacto con Ciudadanía Inteligente:
+        </p>
+      </div>
+    </section>
+
+    <!-- Volunteer -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <a
+              href="#"
+              class="inline-block font-sans text-body font-bold text-text-inverse bg-accent-magenta rounded-md px-6 py-3 no-underline hover:bg-primary transition-all duration-fast"
+            >
+              Voluntariado y pasantías
+            </a>
+          </div>
+          <div>
+            <p class="font-sans text-body text-text-body leading-body mb-4">
+              Sé parte de nuestro equipo y aporta a la transformación democrática desde adentro.
+            </p>
+            <a
+              href="#"
+              class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
+            >
+              POSTULA AQUÍ
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Write Us -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[800px] mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-bold text-h3 text-accent-magenta mb-4">
+          Escríbenos
+        </h2>
+        <p class="font-sans text-body text-text-body leading-body mb-2">
+          ¿Tienes dudas, propuestas o ideas para colaborar?
+        </p>
+        <p class="font-sans text-body text-text-body leading-body">
+          Escríbenos a <a href="mailto:info@ciudadaniai.org" class="text-text-primary font-bold no-underline hover:text-accent-magenta transition-colors">info@ciudadaniai.org</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

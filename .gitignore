@@ -1,7 +1,10 @@
 # build output
 dist/
+
 # generated types
 .astro/
+.design-system/
+.vscode/
 
 # dependencies
 node_modules/
@@ -11,7 +14,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
 
 # environment variables
 .env

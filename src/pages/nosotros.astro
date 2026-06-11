@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Nosotros | Ciudadanía Inteligente"
+  description="Somos una organización latinoamericana sin fines de lucro. Impulsamos cambios concretos para fortalecer la democracia."
+>
+  <Navbar />
+
+  <main>
+    <PageHero
+      title="Nosotros"
+      description="Más de 15 años haciendo de la democracia una experiencia compartida, justa y transformadora"
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Nosotros' },
+      ]}
+    />
+
+    <!-- About Text -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[800px] mx-auto px-6 relative text-center">
+        <p class="font-sans text-body text-text-body leading-body">
+          Somos una organización latinoamericana sin fines de lucro. Impulsamos cambios concretos: <span class="text-accent-magenta font-bold">formamos ciudadanía, acompañamos gobiernos locales, desarrollamos herramientas digitales, construimos alianzas diversas e investigamos amenazas a la democracia</span> para proponer soluciones que descentralicen el poder y activen la participación.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+          Nuestros
+        </h2>
+        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-10">
+          Valores
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          {['Colaboración', 'Transparencia', 'Participación', 'Información', 'Democracia Ambiental', 'Enfoque regional', 'Innovación'].map((value) => (
+            <span class="font-sans text-body font-medium text-text-primary bg-bg-cream border border-primary/20 rounded-pill px-5 py-2">
+              {value}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-accent-magenta text-text-inverse rounded-lg p-8">
+            <h3 class="font-sans font-bold text-h5 uppercase tracking-wide mb-4">Nuestra Misión</h3>
+            <p class="font-sans text-body leading-body">
+              Trabajamos para transformar la política a través de la acción colectiva, la información accesible, el trabajo territorial y la colaboración con actores diversos.
+            </p>
+          </div>
+          <div class="bg-primary text-text-inverse rounded-lg p-8">
+            <h3 class="font-sans font-bold text-h5 uppercase tracking-wide mb-4">Nuestra Visión</h3>
+            <p class="font-sans text-body leading-body">
+              Trabajamos por lograr una región con ciudadanía informada y organizada, sociedad civil fuerte, instituciones abiertas, y una política que proteja la vida en común y la sostenibilidad del planeta.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+          Nuestro
+        </h2>
+        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-4">
+          Directorio
+        </p>
+        <p class="font-sans text-body text-text-body leading-body text-center max-w-2xl mx-auto mb-10">
+          Nuestro directorio está conformado por personas con amplia experiencia en democracia, derechos humanos y sociedad civil, que orientan estratégicamente nuestro trabajo.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {[
+            { name: 'Julieta Suárez Cao', role: 'Vicepresidenta' },
+            { name: 'Álvaro Ramírez', role: 'Director' },
+            { name: 'Lucía Dammert', role: 'Directora' },
+          ].map((person) => (
+            <div class="text-center">
+              <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
+                <span class="text-text-inverse/40 text-sm">Foto</span>
+              </div>
+              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.name}</h3>
+              <p class="font-sans text-caption text-text-body">{person.role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Team -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+          Nuestro
+        </h2>
+        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-4">
+          Equipo Ejecutivo
+        </p>
+        <p class="font-sans text-body text-text-body leading-body text-center max-w-2xl mx-auto mb-10">
+          Un equipo multidisciplinario de profesionales y activistas comprometidos con la transformación democrática desde el territorio, la investigación y la incidencia política.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {[
+            { name: 'Colombina Schaeffer', role: 'Directora Ejecutiva Subrogante' },
+            { name: 'Vanessa González', role: 'Coordinadora General' },
+            { name: 'Verónica Maldonado', role: 'Coordinadora de Administración y Finanzas' },
+            { name: 'Gabriela Cabañas', role: 'Coordinadora de proyectos e Investigación' },
+            { name: 'Gabriela Luna Barraza', role: 'Coordinadora de proyectos e Investigación' },
+            { name: 'Francisca Valenzuela', role: 'Coordinadora de comunicaciones' },
+            { name: 'Abel Escobar', role: 'Coordinador Laboratorio de Diseño, Desarrollo y Experiencia' },
+            { name: 'Felipe Perry', role: 'Desarrollador' },
+            { name: 'Josefina Correa Pérez', role: 'Consultora de Incidencia' },
+          ].map((person) => (
+            <div class="text-center">
+              <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
+                <span class="text-text-inverse/40 text-sm">Foto</span>
+              </div>
+              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.name}</h3>
+              <p class="font-sans text-caption text-text-body">{person.role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  bgColor?: 'primary' | 'secondary' | 'default' | 'neutral-dark';
+}
+
+const {
+  title,
+  subtitle = '',
+  bgColor = 'primary',
+} = Astro.props;
+
+const bgClasses = {
+  primary:       'bg-primary',
+  secondary:     'bg-secondary',
+  default:       'bg-bg-default',
+  'neutral-dark': 'bg-neutral-dark',
+};
+
+const textClasses = {
+  primary:       'text-text-inverse',
+  secondary:     'text-neutral-dark',
+  default:       'text-text-primary',
+  'neutral-dark':  'text-text-inverse',
+};
+
+const subTextClasses = {
+  primary:       'text-text-inverse/80',
+  secondary:     'text-neutral-dark/80',
+  default:       'text-text-body',
+  'neutral-dark':  'text-text-inverse/80',
+};
+---
+
+<section class={`${bgClasses[bgColor]} py-16 md:py-24`}>
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="max-w-3xl">
+      <h1 class={`font-sans font-black text-hero leading-headings ${textClasses[bgColor]}`}>
+        {title}
+      </h1>
+      {
+        subtitle && (
+          <p class={`font-sans text-body md:text-h6 font-regular leading-body mt-4 ${subTextClasses[bgColor]}`}>
+            {subtitle}
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>

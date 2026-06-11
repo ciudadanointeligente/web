@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Transparencia | Ciudadanía Inteligente"
+  description="Creemos que la transparencia fortalece la democracia. Ponemos a disposición información clara sobre cómo nos financiamos y qué resultados logramos."
+>
+  <Navbar />
+
+  <main>
+    <PageHero
+      title="Transparencia"
+      description="Creemos que la transparencia fortalece la democracia. Por eso ponemos a disposición de todas las personas información clara sobre cómo nos financiamos, quiénes apoyan nuestro trabajo y qué resultados logramos cada año."
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Transparencia' },
+      ]}
+    />
+
+    <!-- Financing -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          <div>
+            <a
+              href="#"
+              class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-accent-magenta rounded-pill px-6 py-3 no-underline hover:bg-primary transition-all duration-fast"
+            >
+              ¿Cómo nos financiamos?
+            </a>
+          </div>
+          <div class="md:col-span-2">
+            <p class="font-sans text-body text-text-body leading-body">
+              Nos financiamos principalmente a través de la postulación de proyectos a entidades internacionales y organismos de cooperación. También generamos acciones de cambio a través de alianzas con instituciones públicas y otras organizaciones de sociedad civil.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Annual Reports -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+          Reportes Anuales
+        </h2>
+        <p class="font-sans text-body text-text-body text-center mb-10">
+          Accede a nuestras memorias y otros documentos importantes de nuestra gestión.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide mb-4 bg-bg-cream inline-block px-4 py-2">
+              Memorias
+            </h3>
+            <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2023</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2022</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2021</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2020</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2019</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2018</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2017</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2016</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2015</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2014</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide mb-4 bg-bg-cream inline-block px-4 py-2">
+              Protocolos y funcionamiento
+            </h3>
+            <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Código de conducta</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Manifiesto y Protocolo para Promover la Igualdad de Género</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Protocolo para la Prevención y Abordaje del Acoso Sexual</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Manual de Prevención de Conflictos de Interés</a></li>
+              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Nuestros estatutos</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supporters -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-10">
+          Quiénes apoyan nuestro trabajo
+        </h2>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center">
+          {[
+            { name: 'Unión Europea',                file: 'logo-ue.webp' },
+            { name: 'Packard Foundation',           file: 'logo-packard.webp' },
+            { name: 'Friedrich Ebert Stiftung',     file: 'logo-fes.webp' },
+            { name: 'AECID',                        file: 'logo-aecid.webp' },
+            { name: 'OXFAM',                        file: 'logo-oxfam.webp' },
+            { name: 'Luminate',                     file: 'logo-luminate.webp' },
+            { name: 'Open Society Foundations',     file: 'logo-open-society.webp' },
+            { name: 'IDRC CRDI',                    file: 'logo-idrc.webp' },
+            { name: 'NED',                          file: 'logo-ned.webp' },
+            { name: 'Avina',                        file: 'logo-avina.webp' },
+            { name: 'UNDEF',                        file: 'logo-undef.webp' },
+            { name: 'Karibu Foundation',            file: 'logo-karibu.webp' },
+          ].map((org) => (
+            <div class="flex items-center justify-center h-20 bg-bg-gray rounded-md px-4" title={org.name}>
+              <img
+                src={`/img/${org.file}`}
+                alt={org.name}
+                loading="lazy"
+                class="max-h-12 w-auto max-w-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Transparency -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1000px] mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-6">
+          Transparencia Financiera
+        </h2>
+
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Año</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

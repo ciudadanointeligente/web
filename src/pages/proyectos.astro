@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Proyectos | Ciudadanía Inteligente"
+  description="Impulsamos proyectos que abren caminos para una democracia más justa y participativa."
+>
+  <Navbar />
+
+  <main>
+    <PageHero
+      title="Proyectos"
+      description="Impulsamos proyectos que abren caminos para una democracia más justa y participativa. Lo hacemos con comunidades y organizaciones, combinando innovación, trabajo territorial y colaboración regional."
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Proyectos' },
+      ]}
+    />
+
+    <!-- Projects Grid -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1200px] mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+          Nuestros Proyectos
+        </h2>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Temática</option>
+          </select>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Región</option>
+          </select>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Estatus</option>
+          </select>
+        </div>
+
+        <!-- Projects -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+          <div class="aspect-square bg-neutral-black flex items-center justify-center">
+            <span class="font-sans font-bold text-h3 text-text-inverse tracking-wider">COLECTIVA</span>
+          </div>
+          <div class="aspect-square bg-bg-warm flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-secondary rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span class="text-2xl">🛡️</span>
+              </div>
+              <span class="font-sans font-bold text-h5 text-text-primary">AYUDA<br/>DEFENSORES</span>
+            </div>
+          </div>
+          <div class="aspect-square bg-primary flex items-center justify-center">
+            <span class="font-mono font-bold text-h4 text-accent-green tracking-tight">DemocraciaKit</span>
+          </div>
+          <div class="aspect-square bg-bg-blue-bright flex items-center justify-center">
+            <span class="font-sans font-bold text-h4 text-text-inverse">del <span class="font-black">Dicho</span> al <span class="font-black">Hecho</span></span>
+          </div>
+          <div class="aspect-square bg-primary flex items-center justify-center">
+            <span class="font-mono font-bold text-h4 text-accent-magenta tracking-tight">AbreAlcaldías&lt;</span>
+          </div>
+          <div class="aspect-square bg-accent-green flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-neutral-dark rounded-full mx-auto mb-2 flex items-center justify-center">
+                <span class="text-xl">🌱</span>
+              </div>
+              <span class="font-sans font-bold text-h6 text-neutral-dark">ACCIÓN<br/>CLIMÁTICA</span>
+            </div>
+          </div>
+          <div class="aspect-square bg-bg-default flex items-center justify-center border border-neutral-dark/10">
+            <div class="text-center">
+              <div class="w-12 h-12 border-2 border-neutral-dark mx-auto mb-2 flex items-center justify-center">
+                <span class="font-black text-neutral-dark">LCEN</span>
+              </div>
+              <span class="font-sans font-bold text-h6 text-neutral-dark">LA CONSTITUCIÓN<br/>ES NUESTRA</span>
+            </div>
+          </div>
+          <div class="aspect-square bg-bg-cream flex items-center justify-center">
+            <span class="font-sans font-bold text-h4 text-neutral-dark">chileleaks</span>
+          </div>
+          <div class="aspect-square bg-bg-gray flex items-center justify-center">
+            <span class="font-sans font-black text-h2 text-neutral-dark">TRANSPARENTES</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

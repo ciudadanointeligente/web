@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Novedades | Ciudadanía Inteligente"
+  description="Conoce nuestras investigaciones, manuales, columnas y boletines."
+>
+  <Navbar />
+
+  <main>
+    <PageHero
+      title="Novedades"
+      description="Conoce nuestras investigaciones, manuales, columnas y boletines que analizan y proponen caminos para una democracia más participativa, justa y sostenible."
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Novedades' },
+      ]}
+    />
+
+    <!-- News Grid -->
+    <section class="relative py-16 md:py-20">
+      <div class="max-w-[1200px] mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+          Nuestras Noticias
+        </h2>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
+          <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Producto</option>
+          </select>
+          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+            <option>Temática</option>
+          </select>
+        </div>
+
+        <p class="font-sans text-body text-text-body text-center mb-10">
+          Resultado de búsqueda por: <span class="text-accent-magenta font-bold">Investigaciones</span>
+        </p>
+
+        <!-- News Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: 'Abre Alcaldías - Desconfianza en instituciones públicas', label: '1' },
+            { title: 'Escuela de Activismo Digital - Seguridad digital', label: '' },
+            { title: 'LabCívico - Manual Metodológico', label: '' },
+            { title: 'Policy Brief Hidrógeno Verde', label: '' },
+            { title: 'Libro Abre Alcaldías', label: '' },
+            { title: 'Evento Colectiva México', label: '' },
+            { title: 'Democracia Kit de Abre Alcaldías', label: '' },
+            { title: 'Democracia Ambiental: Donde medio ambiente y democracia se encuentran...', label: '' },
+            { title: 'Hidrógeno Verde - ¿Qué es y cómo se usa?', label: '' },
+          ].map((news) => (
+            <article class="bg-bg-gray rounded-lg overflow-hidden">
+              <div class="aspect-[3/4] bg-neutral-dark flex items-center justify-center relative">
+                <span class="text-text-inverse/30 text-sm">Imagen</span>
+                {news.label && (
+                  <span class="absolute top-3 left-3 bg-primary text-text-inverse font-sans text-caption font-bold w-6 h-6 flex items-center justify-center rounded-sm">
+                    {news.label}
+                  </span>
+                )}
+              </div>
+              <div class="p-5">
+                <h3 class="font-sans font-bold text-small text-text-primary leading-tight mb-4">
+                  {news.title}
+                </h3>
+                <a
+                  href="#"
+                  class="inline-flex items-center gap-2 font-sans text-caption font-bold text-accent-magenta uppercase no-underline border border-accent-magenta rounded-pill px-4 py-2 hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
+                >
+                  DESCARGAR PDF
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter />
+  </main>
+
+  <Footer />
+</Layout>

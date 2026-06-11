@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  variant?: 'default' | 'cream' | 'warm' | 'blue';
+  href?: string;
+  hover?: boolean;
+  class?: string;
+}
+
+const {
+  title,
+  description = '',
+  variant = 'default',
+  href,
+  hover = true,
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  default: 'bg-bg-default',
+  cream:   'bg-bg-cream',
+  warm:    'bg-bg-warm',
+  blue:    'bg-primary text-text-inverse',
+};
+
+const baseClasses = `
+  rounded-lg p-6 md:p-8
+  transition-transform transition-shadow duration-base
+  ${hover ? 'hover:-translate-y-1 hover:shadow-card' : ''}
+  ${variantClasses[variant]}
+  ${className}
+`.trim();
+
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  class={baseClasses}
+  href={href}
+  class:list={[{ 'no-underline block': !!href }]}
+>
+  <h3
+    class={`font-sans text-h5 font-bold leading-headings mb-2 ${variant === 'blue' ? 'text-text-inverse' : 'text-text-primary'}`}
+  >
+    {title}
+  </h3>
+  {
+    description && (
+      <p
+        class={`font-sans text-body font-regular leading-body ${variant === 'blue' ? 'text-text-inverse/90' : 'text-text-body'}`}
+      >
+        {description}
+      </p>
+    )
+  }
+  <slot />
+</Tag>
