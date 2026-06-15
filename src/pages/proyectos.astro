@@ -4,6 +4,11 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const proyectos = (await getCollection('proyectos')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <Layout
@@ -45,48 +50,26 @@ import PageHero from '../components/PageHero.astro';
 
         <!-- Projects -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
-          <div class="aspect-square bg-neutral-black flex items-center justify-center">
-            <span class="font-sans font-bold text-h3 text-text-inverse tracking-wider">COLECTIVA</span>
-          </div>
-          <div class="aspect-square bg-bg-warm flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-16 h-16 bg-secondary rounded-full mx-auto mb-2 flex items-center justify-center">
-                <span class="text-2xl">🛡️</span>
-              </div>
-              <span class="font-sans font-bold text-h5 text-text-primary">AYUDA<br/>DEFENSORES</span>
-            </div>
-          </div>
-          <div class="aspect-square bg-primary flex items-center justify-center">
-            <span class="font-mono font-bold text-h4 text-accent-green tracking-tight">DemocraciaKit</span>
-          </div>
-          <div class="aspect-square bg-bg-blue-bright flex items-center justify-center">
-            <span class="font-sans font-bold text-h4 text-text-inverse">del <span class="font-black">Dicho</span> al <span class="font-black">Hecho</span></span>
-          </div>
-          <div class="aspect-square bg-primary flex items-center justify-center">
-            <span class="font-mono font-bold text-h4 text-accent-magenta tracking-tight">AbreAlcaldías&lt;</span>
-          </div>
-          <div class="aspect-square bg-accent-green flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-12 h-12 bg-neutral-dark rounded-full mx-auto mb-2 flex items-center justify-center">
-                <span class="text-xl">🌱</span>
-              </div>
-              <span class="font-sans font-bold text-h6 text-neutral-dark">ACCIÓN<br/>CLIMÁTICA</span>
-            </div>
-          </div>
-          <div class="aspect-square bg-bg-default flex items-center justify-center border border-neutral-dark/10">
-            <div class="text-center">
-              <div class="w-12 h-12 border-2 border-neutral-dark mx-auto mb-2 flex items-center justify-center">
-                <span class="font-black text-neutral-dark">LCEN</span>
-              </div>
-              <span class="font-sans font-bold text-h6 text-neutral-dark">LA CONSTITUCIÓN<br/>ES NUESTRA</span>
-            </div>
-          </div>
-          <div class="aspect-square bg-bg-cream flex items-center justify-center">
-            <span class="font-sans font-bold text-h4 text-neutral-dark">chileleaks</span>
-          </div>
-          <div class="aspect-square bg-bg-gray flex items-center justify-center">
-            <span class="font-sans font-black text-h2 text-neutral-dark">TRANSPARENTES</span>
-          </div>
+          {proyectos.map((proyecto) => (
+            <a
+              href={proyecto.data.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="aspect-square relative flex items-center justify-center overflow-hidden group no-underline bg-primary"
+            >
+              {proyecto.data.imagen && (
+                <img
+                  src={proyecto.data.imagen}
+                  alt={proyecto.data.nombre}
+                  class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-fast"
+                  loading="lazy"
+                />
+              )}
+              <span class="relative font-sans font-bold text-h4 text-text-inverse text-center px-4 uppercase tracking-wide">
+                {proyecto.data.nombre}
+              </span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

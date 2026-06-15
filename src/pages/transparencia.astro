@@ -4,6 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const memorias = (await getCollection('memorias')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+);
+const documentos = (await getCollection('documentos')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+);
 ---
 
 <Layout
@@ -59,16 +67,21 @@ import PageHero from '../components/PageHero.astro';
               Memorias
             </h3>
             <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2023</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2022</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2021</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2020</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2019</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2018</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2017</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2016</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2015</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Memoria 2014</a></li>
+              {memorias.map((memoria) => {
+                const href = memoria.data.link || memoria.data.descarga || '#';
+                return (
+                  <li>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-text-primary no-underline hover:text-accent-magenta transition-colors"
+                    >
+                      {memoria.data.nombre}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div>
@@ -76,11 +89,21 @@ import PageHero from '../components/PageHero.astro';
               Protocolos y funcionamiento
             </h3>
             <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Código de conducta</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Manifiesto y Protocolo para Promover la Igualdad de Género</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Protocolo para la Prevención y Abordaje del Acoso Sexual</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Manual de Prevención de Conflictos de Interés</a></li>
-              <li><a href="#" class="text-text-primary no-underline hover:text-accent-magenta transition-colors">Nuestros estatutos</a></li>
+              {documentos.map((documento) => {
+                const href = documento.data.link || documento.data.descarga || '#';
+                return (
+                  <li>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-text-primary no-underline hover:text-accent-magenta transition-colors"
+                    >
+                      {documento.data.nombre}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

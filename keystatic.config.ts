@@ -2,10 +2,7 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'cloud',
-  },
-  cloud: {
-    project: 'fciweb/fciweb',
+    kind: 'local',
   },
   collections: {
     posts: collection({

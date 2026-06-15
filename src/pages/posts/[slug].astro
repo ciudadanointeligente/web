@@ -1,0 +1,97 @@
+---
+export const prerender = true;
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const { slug } = Astro.params;
+if (!slug) throw new Error('Slug not found');
+
+let post;
+try {
+  post = await getEntry('posts', slug);
+} catch {
+  const posts = await getCollection('posts');
+  post = posts.find((p) => p.id === slug || p.id === `${slug}.mdoc`);
+}
+
+if (!post) throw new Error(`No post found for slug: ${slug}`);
+
+const { Content } = await render(post);
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.mdoc$/, '') },
+  }));
+}
+---
+
+<Layout title={`${post.data.title} | Ciudadanía Inteligente`}>
+  <Navbar />
+
+  <main class="relative py-16 md:py-24">
+    <article class="max-w-[900px] mx-auto px-6 relative">
+      <!-- Breadcrumb -->
+      <nav class="font-sans text-caption text-text-body mb-6" aria-label="Breadcrumb">
+        <ol class="list-none p-0 inline-flex items-center">
+          <li>
+            <a href="/" class="text-primary hover:underline no-underline">Inicio</a>
+          </li>
+          <li class="mx-2">/</li>
+          <li>
+            <a href="/novedades" class="text-primary hover:underline no-underline">Novedades</a>
+          </li>
+          <li class="mx-2">/</li>
+          <li class="text-text-primary font-medium">
+            {post.data.title.length > 50 ? post.data.title.substring(0, 50) + '...' : post.data.title}
+          </li>
+        </ol>
+      </nav>
+
+      <h1 class="font-sans font-black text-h1 md:text-hero-md text-text-primary uppercase tracking-tight mb-4">
+        {post.data.title}
+      </h1>
+
+      {post.data.subtitle && (
+        <p class="font-sans text-h5 text-text-body leading-body mb-6">{post.data.subtitle}</p>
+      )}
+
+      <div class="flex flex-wrap items-center gap-4 font-sans text-caption text-text-body mb-8">
+        {post.data.author && <span>Por {post.data.author}</span>}
+        {post.data.date && (
+          <span>
+            {post.data.date.toLocaleDateString('es-CL', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </span>
+        )}
+        {post.data.category && (
+          <span class="inline-block bg-secondary/30 px-2 py-0.5 rounded-sm">
+            {post.data.category}
+          </span>
+        )}
+      </div>
+
+      {post.data.imagepost && (
+        <div class="mb-10">
+          <img
+            src={post.data.imagepost}
+            alt={post.data.title}
+            class="w-full h-auto rounded-lg object-cover"
+            loading="eager"
+          />
+        </div>
+      )}
+
+      <div class="max-w-none text-text-body leading-body font-sans space-y-4">
+        <Content />
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

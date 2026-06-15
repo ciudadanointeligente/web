@@ -4,6 +4,14 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+
+const people = (await getCollection('people')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const people2 = (await getCollection('people2')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <Layout
@@ -85,17 +93,22 @@ import PageHero from '../components/PageHero.astro';
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {[
-            { name: 'Julieta Suárez Cao', role: 'Vicepresidenta' },
-            { name: 'Álvaro Ramírez', role: 'Director' },
-            { name: 'Lucía Dammert', role: 'Directora' },
-          ].map((person) => (
+          {people.map((person) => (
             <div class="text-center">
               <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
-                <span class="text-text-inverse/40 text-sm">Foto</span>
+                {person.data.photo ? (
+                  <img
+                    src={person.data.photo}
+                    alt={person.data.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="text-text-inverse/40 text-sm">Foto</span>
+                )}
               </div>
-              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.name}</h3>
-              <p class="font-sans text-caption text-text-body">{person.role}</p>
+              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.data.name}</h3>
+              <p class="font-sans text-caption text-text-body">{person.data.position}</p>
             </div>
           ))}
         </div>
@@ -116,23 +129,22 @@ import PageHero from '../components/PageHero.astro';
         </p>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {[
-            { name: 'Colombina Schaeffer', role: 'Directora Ejecutiva Subrogante' },
-            { name: 'Vanessa González', role: 'Coordinadora General' },
-            { name: 'Verónica Maldonado', role: 'Coordinadora de Administración y Finanzas' },
-            { name: 'Gabriela Cabañas', role: 'Coordinadora de proyectos e Investigación' },
-            { name: 'Gabriela Luna Barraza', role: 'Coordinadora de proyectos e Investigación' },
-            { name: 'Francisca Valenzuela', role: 'Coordinadora de comunicaciones' },
-            { name: 'Abel Escobar', role: 'Coordinador Laboratorio de Diseño, Desarrollo y Experiencia' },
-            { name: 'Felipe Perry', role: 'Desarrollador' },
-            { name: 'Josefina Correa Pérez', role: 'Consultora de Incidencia' },
-          ].map((person) => (
+          {people2.map((person) => (
             <div class="text-center">
               <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
-                <span class="text-text-inverse/40 text-sm">Foto</span>
+                {person.data.photo ? (
+                  <img
+                    src={person.data.photo}
+                    alt={person.data.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="text-text-inverse/40 text-sm">Foto</span>
+                )}
               </div>
-              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.name}</h3>
-              <p class="font-sans text-caption text-text-body">{person.role}</p>
+              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.data.name}</h3>
+              <p class="font-sans text-caption text-text-body">{person.data.position}</p>
             </div>
           ))}
         </div>
