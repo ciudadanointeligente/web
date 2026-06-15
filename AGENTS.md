@@ -219,4 +219,4 @@ Estos archivos no se usan directamente en el build de Astro, pero sirven como do
 
 ---
 
-_Sistema de diseño extraído desde Figma (`Web FCI - Iteración`) el 2026-06-01._
+
