@@ -118,9 +118,30 @@ export default config({
           ],
           defaultValue: 'Actual',
         }),
+        alcance: fields.select({
+          label: 'Alcance',
+          options: [
+            { label: 'Regional', value: 'Regional' },
+            { label: 'Local', value: 'Local' },
+          ],
+          defaultValue: 'Regional',
+        }),
         home: fields.checkbox({
           label: 'Mostrar en Home',
           description: 'Marcar para mostrar este proyecto en la página de inicio.',
+        }),
+        categorias: fields.multiselect({
+          label: 'Categorías',
+          description: 'Temáticas del proyecto. Seleccionar al menos una.',
+          options: [
+            { label: 'Democracia ambiental', value: 'Democracia ambiental' },
+            { label: 'Participación ciudadana', value: 'Participación ciudadana' },
+            { label: 'Articulación e incidencia', value: 'Articulación e incidencia' },
+            { label: 'Transparencia y rendición de cuentas', value: 'Transparencia y rendición de cuentas' },
+            { label: 'Gobiernos locales', value: 'Gobiernos locales' },
+            { label: 'Innovación y tecnología cívica', value: 'Innovación y tecnología cívica' },
+            { label: 'Educación y Garantías democráticas', value: 'Educación y Garantías democráticas' },
+          ],
         }),
       },
     }),

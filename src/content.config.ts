@@ -46,6 +46,16 @@ const people2 = defineCollection({
   }),
 });
 
+const categoriasProyecto = [
+  "Democracia ambiental",
+  "Participación ciudadana",
+  "Articulación e incidencia",
+  "Transparencia y rendición de cuentas",
+  "Gobiernos locales",
+  "Innovación y tecnología cívica",
+  "Educación y Garantías democráticas",
+] as const;
+
 const proyectos = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/proyectos" }),
   schema: z.object({
@@ -56,7 +66,9 @@ const proyectos = defineCollection({
     link: z.string().url(),
     link2: z.string().url().optional(),
     status: z.enum(["Actual", "Pasado"]),
+    alcance: z.enum(["Regional", "Local"]),
     home: z.boolean().default(false),
+    categorias: z.array(z.enum(categoriasProyecto)).min(1),
   }),
 });
 

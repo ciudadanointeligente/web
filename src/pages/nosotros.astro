@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import PersonCard from '../components/PersonCard.astro';
 
 const people = (await getCollection('people')).sort(
   (a, b) => a.data.order - b.data.order,
@@ -23,7 +24,8 @@ const people2 = (await getCollection('people2')).sort(
   <main>
     <PageHero
       title="Nosotros"
-      description="Más de 15 años haciendo de la democracia una experiencia compartida, justa y transformadora"
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">Más de 15 años haciendo de la democracia</span> <br/>
+      <span class="text-lime-300 text-2xl font-medium font-['Work_Sans']">una experiencia compartida, justa y transformadora</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
         { label: 'Nosotros' },
@@ -32,26 +34,26 @@ const people2 = (await getCollection('people2')).sort(
 
     <!-- About Text -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[800px] mx-auto px-6 relative text-center">
-        <p class="font-sans text-body text-text-body leading-body">
-          Somos una organización latinoamericana sin fines de lucro. Impulsamos cambios concretos: <span class="text-accent-magenta font-bold">formamos ciudadanía, acompañamos gobiernos locales, desarrollamos herramientas digitales, construimos alianzas diversas e investigamos amenazas a la democracia</span> para proponer soluciones que descentralicen el poder y activen la participación.
+      <div class="max-w-200 mx-auto px-6 relative text-center">
+        <p class="font-sans text-xl text-neutral-700 leading-body">
+          Somos una organización latinoamericana sin fines de lucro. Impulsamos cambios concretos: <span class="text-fuchsia-600 font-bold">formamos ciudadanía, acompañamos gobiernos locales, desarrollamos herramientas digitales, construimos alianzas diversas e investigamos amenazas a la democracia</span> para proponer soluciones que descentralicen el poder y activen la participación.
         </p>
       </div>
     </section>
 
     <!-- Values -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+      <div class="max-w-250 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestros
-        </h2>
-        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-10">
-          Valores
         </p>
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-10">
+          Valores
+        </h2>
 
         <div class="flex flex-wrap justify-center gap-3">
           {['Colaboración', 'Transparencia', 'Participación', 'Información', 'Democracia Ambiental', 'Enfoque regional', 'Innovación'].map((value) => (
-            <span class="font-sans text-body font-medium text-text-primary bg-bg-cream border border-primary/20 rounded-pill px-5 py-2">
+            <span class="font-['Work_Sans'] text-blue-600 text-2xl font-medium bg-accent-green min-w-56 h-14 flex items-center justify-center whitespace-nowrap px-4">
               {value}
             </span>
           ))}
@@ -61,17 +63,21 @@ const people2 = (await getCollection('people2')).sort(
 
     <!-- Mission & Vision -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+      <div class="max-w-300 mx-auto px-6 relative">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-accent-magenta text-text-inverse rounded-lg p-8">
-            <h3 class="font-sans font-bold text-h5 uppercase tracking-wide mb-4">Nuestra Misión</h3>
-            <p class="font-sans text-body leading-body">
+          <div class="p-4">
+            <div class="mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 whitespace-nowrap">Nuestra Misión</h3>
+            </div>
+            <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
               Trabajamos para transformar la política a través de la acción colectiva, la información accesible, el trabajo territorial y la colaboración con actores diversos.
             </p>
           </div>
-          <div class="bg-primary text-text-inverse rounded-lg p-8">
-            <h3 class="font-sans font-bold text-h5 uppercase tracking-wide mb-4">Nuestra Visión</h3>
-            <p class="font-sans text-body leading-body">
+          <div class="p-4">
+            <div class="mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 whitespace-nowrap">Nuestra Visión</h3>
+            </div>
+            <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
               Trabajamos por lograr una región con ciudadanía informada y organizada, sociedad civil fuerte, instituciones abiertas, y una política que proteja la vida en común y la sostenibilidad del planeta.
             </p>
           </div>
@@ -81,35 +87,30 @@ const people2 = (await getCollection('people2')).sort(
 
     <!-- Board -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+      <div class="max-w-325 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestro
-        </h2>
-        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-4">
-          Directorio
         </p>
-        <p class="font-sans text-body text-text-body leading-body text-center max-w-2xl mx-auto mb-10">
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
+          Directorio
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-16">
           Nuestro directorio está conformado por personas con amplia experiencia en democracia, derechos humanos y sociedad civil, que orientan estratégicamente nuestro trabajo.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {people.map((person) => (
-            <div class="text-center">
-              <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
-                {person.data.photo ? (
-                  <img
-                    src={person.data.photo}
-                    alt={person.data.name}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-text-inverse/40 text-sm">Foto</span>
-                )}
-              </div>
-              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.data.name}</h3>
-              <p class="font-sans text-caption text-text-body">{person.data.position}</p>
-            </div>
+            <PersonCard
+              name={person.data.name}
+              position={person.data.position}
+              photo={person.data.photo}
+              description={person.data.description}
+              email={person.data.email}
+              twitter={person.data.twitter}
+              linkedin={person.data.linkedin}
+              instagram={person.data.instagram}
+              github={person.data.github}
+            />
           ))}
         </div>
       </div>
@@ -117,35 +118,30 @@ const people2 = (await getCollection('people2')).sort(
 
     <!-- Executive Team -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide text-center mb-2">
+      <div class="max-w-325 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestro
-        </h2>
-        <p class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-4">
-          Equipo Ejecutivo
         </p>
-        <p class="font-sans text-body text-text-body leading-body text-center max-w-2xl mx-auto mb-10">
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
+          Equipo Ejecutivo
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-16">
           Un equipo multidisciplinario de profesionales y activistas comprometidos con la transformación democrática desde el territorio, la investigación y la incidencia política.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {people2.map((person) => (
-            <div class="text-center">
-              <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-neutral-dark mx-auto mb-4 overflow-hidden flex items-center justify-center">
-                {person.data.photo ? (
-                  <img
-                    src={person.data.photo}
-                    alt={person.data.name}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="text-text-inverse/40 text-sm">Foto</span>
-                )}
-              </div>
-              <h3 class="font-sans font-bold text-body text-accent-magenta">{person.data.name}</h3>
-              <p class="font-sans text-caption text-text-body">{person.data.position}</p>
-            </div>
+            <PersonCard
+              name={person.data.name}
+              position={person.data.position}
+              photo={person.data.photo}
+              description={person.data.description}
+              email={person.data.email}
+              twitter={person.data.twitter}
+              linkedin={person.data.linkedin}
+              instagram={person.data.instagram}
+              github={person.data.github}
+            />
           ))}
         </div>
       </div>

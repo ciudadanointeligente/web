@@ -20,7 +20,7 @@ const posts = (await getCollection('posts')).sort(
   <main>
     <PageHero
       title="Novedades"
-      description="Conoce nuestras investigaciones, manuales, columnas y boletines que analizan y proponen caminos para una democracia más participativa, justa y sostenible."
+      description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Conoce nuestras investigaciones, manuales, columnas y boletines</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> que analizan y proponen caminos para una democracia más participativa, justa y sostenible.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
         { label: 'Novedades' },
@@ -29,27 +29,27 @@ const posts = (await getCollection('posts')).sort(
 
     <!-- News Grid -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1200px] mx-auto px-6 relative">
+      <div class="max-w-300 mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
           Nuestras Noticias
         </h2>
 
         <!-- Filters -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
-          <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+          <span class="font-sans text-body font-bold text-black">Filtrar por:</span>
+          <select class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option>Producto</option>
           </select>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+          <select class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option>Temática</option>
           </select>
         </div>
 
         <!-- News Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
-            <article class="bg-bg-gray rounded-lg overflow-hidden">
-              <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="block aspect-[3/4] bg-neutral-dark relative overflow-hidden">
+          {posts.map((post) => (
+            <article class="bg-bg-gray rounded-lg overflow-hidden flex flex-col">
+              <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
                 {post.data.imagepost ? (
                   <img
                     src={post.data.imagepost}
@@ -60,24 +60,18 @@ const posts = (await getCollection('posts')).sort(
                 ) : (
                   <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
                 )}
-                {index === 0 && (
-                  <span class="absolute top-3 left-3 bg-primary text-text-inverse font-sans text-caption font-bold w-6 h-6 flex items-center justify-center rounded-sm">
-                    1
-                  </span>
-                )}
               </a>
-              <div class="p-5">
-                <h3 class="font-sans font-bold text-small text-text-primary leading-tight mb-4">
+              <div class="p-5 flex flex-col grow">
+                <div class="mb-5">
+                  <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
+                    {post.data.category || 'Actualidad'}
+                  </span>
+                </div>
+                <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
                   {post.data.title}
                 </h3>
-                <a
-                  href={`/posts/${post.id.replace(/\.mdoc$/, '')}`}
-                  class="inline-flex items-center gap-2 font-sans text-caption font-bold text-accent-magenta uppercase no-underline border border-accent-magenta rounded-pill px-4 py-2 hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
-                >
+                <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
                   Leer artículo
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                  </svg>
                 </a>
               </div>
             </article>

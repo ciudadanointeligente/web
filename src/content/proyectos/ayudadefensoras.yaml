@@ -1,0 +1,13 @@
+nombre: Ayuda Defensores
+order: 2
+imagen: /images/proyectos/ayudadefensoras/imagen.png
+descripcion: |
+  Para personas que defienden el ambiente y enfrentan riesgos en la región.
+link: https://ayudadefensores.org
+status: Actual
+alcance: Regional
+home: true
+categorias:
+  - Democracia ambiental
+  - Articulación e incidencia
+  - Educación y Garantías democráticas

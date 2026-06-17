@@ -1,9 +1,14 @@
 nombre: Colectiva
-order: 3
+order: 1
 imagen: /images/proyectos/colectiva/imagen.png
 descripcion: >-
   Encuentro para una democracia más participativa y sostenible en América Latina
   y El Caribe
 link: https://colectiva.ciudadaniai.org/
 status: Actual
+alcance: Regional
 home: true
+categorias:
+  - Participación ciudadana
+  - Articulación e incidencia
+  - Innovación y tecnología cívica

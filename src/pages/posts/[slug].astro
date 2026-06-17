@@ -34,17 +34,17 @@ export async function getStaticPaths() {
   <main class="relative py-16 md:py-24">
     <article class="max-w-[900px] mx-auto px-6 relative">
       <!-- Breadcrumb -->
-      <nav class="font-sans text-caption text-text-body mb-6" aria-label="Breadcrumb">
-        <ol class="list-none p-0 inline-flex items-center">
+      <nav class="font-sans text-sm text-text-primary mb-6" aria-label="Breadcrumb">
+        <ol class="list-none p-0 inline-flex flex-wrap items-center gap-1 uppercase bg-sky-300 px-2 py-1">
           <li>
-            <a href="/" class="text-primary hover:underline no-underline">Inicio</a>
+            <a href="/" class="font-medium no-underline hover:underline transition-colors duration-fast">Inicio</a>
           </li>
-          <li class="mx-2">/</li>
+          <li class="mx-1 text-text-primary">/</li>
           <li>
-            <a href="/novedades" class="text-primary hover:underline no-underline">Novedades</a>
+            <a href="/novedades" class="font-medium no-underline hover:underline transition-colors duration-fast">Novedades</a>
           </li>
-          <li class="mx-2">/</li>
-          <li class="text-text-primary font-medium">
+          <li class="mx-1 text-text-primary">/</li>
+          <li class="font-bold">
             {post.data.title.length > 50 ? post.data.title.substring(0, 50) + '...' : post.data.title}
           </li>
         </ol>

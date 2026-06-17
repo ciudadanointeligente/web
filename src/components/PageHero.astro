@@ -14,16 +14,16 @@ const { title, description = '', breadcrumb = [] } = Astro.props;
     {
       breadcrumb.length > 0 && (
         <nav aria-label="Breadcrumb" class="mb-4">
-          <ol class="flex flex-wrap items-center gap-1 list-none m-0 p-0 font-sans text-caption font-medium">
+          <ol class="inline-flex flex-wrap items-center gap-1 list-none m-0 p-0 font-sans text-sm text-text-primary uppercase bg-sky-300 px-2 py-1">
             {breadcrumb.map((item, index) => {
               const isLast = index === breadcrumb.length - 1;
               return (
                 <li class="flex items-center">
-                  {index > 0 && <span class="mx-1 text-secondary">/</span>}
+                  {index > 0 && <span class="mx-1 text-text-primary">/</span>}
                   {isLast || !item.href ? (
-                    <span class="bg-accent-green text-neutral-dark px-2 py-0.5 rounded-sm">{item.label}</span>
+                    <span class="font-bold">{item.label}</span>
                   ) : (
-                    <a href={item.href} class="text-text-inverse no-underline hover:text-secondary transition-colors duration-fast">
+                    <a href={item.href} class="font-medium no-underline hover:underline transition-colors duration-fast">
                       {item.label}
                     </a>
                   )}
@@ -42,7 +42,7 @@ const { title, description = '', breadcrumb = [] } = Astro.props;
       {
         description && (
           <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-xl md:pt-4 text-text-inverse/90">
-            {description}
+            <Fragment set:html={description} />
           </p>
         )
       }

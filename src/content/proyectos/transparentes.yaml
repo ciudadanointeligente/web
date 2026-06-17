@@ -1,9 +1,11 @@
 nombre: Transparentes
-order: 2
+order: 3
 imagen: /images/proyectos/transparentes/imagen.png
-descripcion: >-
-  Plataforma de seguimiento legislativo de Ciudadanía Inteligente y Chile
-  Transparente
-link: https://transparentes.cl/
+descripcion: Seguimiento de las iniciativas legislativas que inciden en la democracia.
+link: https://transparentes.cl
 status: Actual
+alcance: Local
 home: true
+categorias:
+  - Participación ciudadana
+  - Transparencia y rendición de cuentas

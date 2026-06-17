@@ -1,0 +1,148 @@
+---
+interface Props {
+  nombre: string;
+  descripcion: string;
+  imagen: string;
+  link: string;
+  categorias: string[];
+  alcance: string;
+  status: string;
+  order: number;
+}
+
+const { nombre, descripcion, imagen, link, categorias, alcance, status } = Astro.props;
+
+const modalId = `project-modal-${nombre
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')}`;
+---
+
+<!-- project card trigger -->
+<div
+  role="button"
+  tabindex="0"
+  class="aspect-video flex items-center justify-center no-underline group overflow-hidden relative bg-primary cursor-pointer"
+  data-project-card
+  data-categorias={JSON.stringify(categorias)}
+  data-alcance={alcance}
+  data-status={status}
+  onclick={`document.getElementById('${modalId}').showModal()`}
+  onkeydown={`if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); document.getElementById('${modalId}').showModal(); }`}
+  aria-label={`Ver proyecto ${nombre}`}
+>
+  {imagen && (
+    <img
+      src={imagen}
+      alt={nombre}
+      class="absolute inset-0 w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-fast"
+      loading="lazy"
+    />
+  )}
+</div>
+
+<!-- project modal -->
+<dialog
+  id={modalId}
+  class="m-auto max-w-xl w-[calc(100%-2rem)] rounded-2xl shadow-lg p-0 bg-transparent border-none"
+>
+  <div class="bg-white rounded-2xl overflow-hidden relative">
+    <form method="dialog" class="absolute right-3 top-3 z-10">
+      <button
+        type="submit"
+        class="w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-text-inverse transition-colors duration-fast flex items-center justify-center border-none cursor-pointer"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+    </form>
+
+    <div class="flex flex-col">
+      {imagen && (
+        <div class="w-full aspect-video bg-bg-gray flex items-center justify-center overflow-hidden">
+          <img
+            src={imagen}
+            alt={nombre}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <div class="p-6 md:p-8">
+        <h3 class="font-['Work_Sans'] text-primary text-2xl md:text-3xl font-bold mb-3">
+          {nombre}
+        </h3>
+
+        <p class="font-['Work_Sans'] text-text-body text-base leading-body mb-5">
+          {descripcion}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-5">
+          {categorias.map((categoria) => (
+            <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-3 py-1">
+              {categoria}
+            </span>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 mb-6 text-sm font-sans text-text-muted">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-accent-green"></span>
+            {status}
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-secondary"></span>
+            {alcance}
+          </span>
+        </div>
+
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
+        >
+          IR A SITIO WEB
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  dialog {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  dialog[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+
+  dialog::backdrop {
+    background-color: rgba(37, 41, 67, 0);
+    transition: background-color 0.3s ease;
+  }
+
+  dialog[open]::backdrop {
+    background-color: rgba(37, 41, 67, 0.7);
+  }
+
+  @starting-style {
+    dialog[open]::backdrop {
+      background-color: rgba(37, 41, 67, 0);
+    }
+  }
+</style>

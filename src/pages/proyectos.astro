@@ -4,11 +4,22 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
+import ProjectModal from '../components/ProjectModal.astro';
 import { getCollection } from 'astro:content';
 
 const proyectos = (await getCollection('proyectos')).sort(
   (a, b) => a.data.order - b.data.order,
 );
+
+const categorias = Array.from(
+  new Set(proyectos.flatMap((p) => p.data.categorias)),
+).sort();
+
+const regiones = Array.from(
+  new Set(proyectos.map((p) => p.data.alcance)),
+).sort();
+
+const estatusList = ['Actual', 'Pasado'];
 ---
 
 <Layout
@@ -20,7 +31,8 @@ const proyectos = (await getCollection('proyectos')).sort(
   <main>
     <PageHero
       title="Proyectos"
-      description="Impulsamos proyectos que abren caminos para una democracia más justa y participativa. Lo hacemos con comunidades y organizaciones, combinando innovación, trabajo territorial y colaboración regional."
+      description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Impulsamos proyectos que abren caminos para una democracia más justa y participativa.</span><br/>
+      <span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium">Lo hacemos con comunidades y organizaciones, combinando innovación, trabajo territorial y colaboración regional.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
         { label: 'Proyectos' },
@@ -28,7 +40,7 @@ const proyectos = (await getCollection('proyectos')).sort(
     />
 
     <!-- Projects Grid -->
-    <section class="relative py-16 md:py-20">
+    <section id="projects-section" class="relative py-16 md:py-20">
       <div class="max-w-[1200px] mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
           Nuestros Proyectos
@@ -36,43 +48,88 @@ const proyectos = (await getCollection('proyectos')).sort(
 
         <!-- Filters -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
-          <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
-            <option>Temática</option>
+          <span class="text-black text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
+          <select data-filter="tema" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Temática</option>
+            {categorias.map((categoria) => (
+              <option value={categoria}>{categoria}</option>
+            ))}
           </select>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
-            <option>Región</option>
+          <select data-filter="region" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Región</option>
+            {regiones.map((region) => (
+              <option value={region}>{region}</option>
+            ))}
           </select>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
-            <option>Estatus</option>
+          <select data-filter="estatus" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Estatus</option>
+            {estatusList.map((estatus) => (
+              <option value={estatus}>{estatus}</option>
+            ))}
           </select>
         </div>
 
         <!-- Projects -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
           {proyectos.map((proyecto) => (
-            <a
-              href={proyecto.data.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="aspect-square relative flex items-center justify-center overflow-hidden group no-underline bg-primary"
-            >
-              {proyecto.data.imagen && (
-                <img
-                  src={proyecto.data.imagen}
-                  alt={proyecto.data.nombre}
-                  class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-fast"
-                  loading="lazy"
-                />
-              )}
-              <span class="relative font-sans font-bold text-h4 text-text-inverse text-center px-4 uppercase tracking-wide">
-                {proyecto.data.nombre}
-              </span>
-            </a>
+            <ProjectModal
+              nombre={proyecto.data.nombre}
+              descripcion={proyecto.data.descripcion}
+              imagen={proyecto.data.imagen}
+              link={proyecto.data.link}
+              categorias={proyecto.data.categorias}
+              alcance={proyecto.data.alcance}
+              status={proyecto.data.status}
+              order={proyecto.data.order}
+            />
           ))}
         </div>
       </div>
     </section>
+
+    <script is:inline>
+      function initProjectFilters() {
+        const section = document.getElementById('projects-section');
+        if (!section) return;
+
+        const temaSelect = section.querySelector('select[data-filter=tema]');
+        const regionSelect = section.querySelector('select[data-filter=region]');
+        const estatusSelect = section.querySelector('select[data-filter=estatus]');
+        const cards = section.querySelectorAll('[data-project-card]');
+
+        if (!temaSelect || !regionSelect || !estatusSelect) return;
+
+        function filterProjects() {
+          const tema = temaSelect.value;
+          const region = regionSelect.value;
+          const estatus = estatusSelect.value;
+
+          cards.forEach((card) => {
+            const categorias = JSON.parse(card.dataset.categorias || '[]');
+            const cardRegion = card.dataset.alcance;
+            const cardStatus = card.dataset.status;
+
+            const matchTema = !tema || categorias.includes(tema);
+            const matchRegion = !region || cardRegion === region;
+            const matchEstatus = !estatus || cardStatus === estatus;
+
+            card.style.display = matchTema && matchRegion && matchEstatus ? '' : 'none';
+          });
+        }
+
+        temaSelect.addEventListener('change', filterProjects);
+        regionSelect.addEventListener('change', filterProjects);
+        estatusSelect.addEventListener('change', filterProjects);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initProjectFilters);
+      } else {
+        initProjectFilters();
+      }
+
+      document.addEventListener('astro:page-load', initProjectFilters);
+    </script>
 
     <!-- Newsletter -->
     <Newsletter />
