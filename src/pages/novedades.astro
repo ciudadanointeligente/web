@@ -6,79 +6,223 @@ import Newsletter from '../components/Newsletter.astro';
 import PageHero from '../components/PageHero.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('posts')).sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
-);
+const posts = await getCollection('posts');
+const publicaciones = await getCollection('publicaciones');
+
+const tematicas = [
+  'Democracia ambiental',
+  'Participación ciudadana',
+  'Articulación e incidencia',
+  'Transparencia y rendición de cuentas',
+  'Gobiernos locales',
+  'Innovación y tecnología cívica',
+  'Educación y Garantías democráticas',
+];
+
+type Item = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  image?: string;
+  date?: Date;
+  category?: string;
+  tipo: 'Noticia' | 'Publicación';
+  tematica?: string;
+  href: string;
+  external: boolean;
+  downloadUrl?: string;
+};
+
+const items: Item[] = [
+  ...posts.map((post) => ({
+    id: post.id.replace(/\.mdoc$/, ''),
+    title: post.data.title,
+    subtitle: post.data.subtitle,
+    image: post.data.imagepost,
+    date: post.data.date,
+    category: post.data.category,
+    tipo: post.data.tipo,
+    tematica: post.data.tematica,
+    href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
+    external: false,
+  })),
+  ...publicaciones.map((pub) => ({
+    id: pub.id.replace(/\.yaml$/, ''),
+    title: pub.data.nombre,
+    subtitle: pub.data.descripcion,
+    image: pub.data.imagen,
+    date: undefined,
+    category: 'Publicación',
+    tipo: pub.data.tipo,
+    tematica: pub.data.tematica,
+    href: pub.data.link,
+    external: true,
+    downloadUrl: pub.data.descarga,
+  })),
+].sort((a, b) => {
+  if (!a.date && !b.date) return 0;
+  if (!a.date) return 1;
+  if (!b.date) return -1;
+  return b.date.getTime() - a.date.getTime();
+});
 ---
 
 <Layout
-  title="Novedades | Ciudadanía Inteligente"
+  title="Noticias y Publicaciones | Ciudadanía Inteligente"
   description="Conoce nuestras investigaciones, manuales, columnas y boletines."
 >
   <Navbar />
 
   <main>
     <PageHero
-      title="Novedades"
+      title="Noticias y Publicaciones"
       description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Conoce nuestras investigaciones, manuales, columnas y boletines</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> que analizan y proponen caminos para una democracia más participativa, justa y sostenible.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
-        { label: 'Novedades' },
+        { label: 'Noticias y Publicaciones' },
       ]}
     />
 
     <!-- News Grid -->
-    <section class="relative py-16 md:py-20">
+    <section id="news-section" class="relative py-16 md:py-20">
       <div class="max-w-300 mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
-          Nuestras Noticias
+          Noticias y Publicaciones
         </h2>
 
         <!-- Filters -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
-          <span class="font-sans text-body font-bold text-black">Filtrar por:</span>
-          <select class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
-            <option>Producto</option>
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+          <span class="text-black text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
+          <select data-filter="tipo" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Tipo</option>
+            <option value="Noticia">Noticias</option>
+            <option value="Publicación">Publicaciones</option>
           </select>
-          <select class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
-            <option>Temática</option>
+          <select data-filter="tematica" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Temática</option>
+            {tematicas.map((tematica) => (
+              <option value={tematica}>{tematica}</option>
+            ))}
           </select>
         </div>
 
         <!-- News Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <article class="bg-bg-gray rounded-lg overflow-hidden flex flex-col">
-              <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
-                {post.data.imagepost ? (
-                  <img
-                    src={post.data.imagepost}
-                    alt={post.data.title}
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
-                )}
-              </a>
-              <div class="p-5 flex flex-col grow">
-                <div class="mb-5">
-                  <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
-                    {post.data.category || 'Actualidad'}
-                  </span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {items.map((item) =>
+            item.tipo === 'Publicación' ? (
+              <article
+                class="news-card relative flex flex-col w-full h-[520px] md:h-[580px] max-w-[394px] mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
+                data-tipo={item.tipo}
+                data-tematica={item.tematica || ''}
+              >
+                <figure class="pt-4 px-4 flex-shrink-0">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      class="rounded-sm max-h-64 w-auto object-contain"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="w-full h-64 bg-bg-gray flex items-center justify-center rounded-sm">
+                      <span class="text-text-body/40 text-sm">Imagen</span>
+                    </div>
+                  )}
+                </figure>
+                <div class="flex flex-col items-center text-center mt-4 mx-6 mb-2 grow">
+                  <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
+                    {item.title}
+                  </p>
                 </div>
-                <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
-                  {post.data.title}
-                </h3>
-                <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
-                  Leer artículo
+                <a
+                  href={item.downloadUrl || item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 font-['Work_Sans'] text-sm md:text-body text-accent-magenta border border-accent-magenta rounded-md shadow-sm transition-colors duration-fast hover:bg-primary hover:text-text-inverse hover:border-primary"
+                  aria-label="Descargar publicación"
+                >
+                  <span>DESCARGAR PDF</span>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                  </svg>
                 </a>
-              </div>
-            </article>
-          ))}
+              </article>
+            ) : (
+              <article
+                class="news-card bg-bg-gray rounded-lg overflow-hidden flex flex-col"
+                data-tipo={item.tipo}
+                data-tematica={item.tematica || ''}
+              >
+                <a href={item.href} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
+                  )}
+                </a>
+                <div class="p-5 flex flex-col grow">
+                  <div class="mb-5">
+                    <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
+                      {item.tipo}
+                    </span>
+                  </div>
+                  <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
+                    {item.title}
+                  </h3>
+                  <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
+                    Leer artículo
+                  </a>
+                </div>
+              </article>
+            )
+          )}
         </div>
       </div>
     </section>
+
+    <script is:inline>
+      function initNewsFilters() {
+        const section = document.getElementById('news-section');
+        if (!section) return;
+
+        const tipoSelect = section.querySelector('select[data-filter=tipo]');
+        const tematicaSelect = section.querySelector('select[data-filter=tematica]');
+        const cards = section.querySelectorAll('[data-tipo]');
+
+        if (!tipoSelect || !tematicaSelect) return;
+
+        function filterNews() {
+          const tipo = tipoSelect.value;
+          const tematica = tematicaSelect.value;
+
+          cards.forEach((card) => {
+            const cardTipo = card.dataset.tipo;
+            const cardTematica = card.dataset.tematica;
+
+            const matchTipo = !tipo || cardTipo === tipo;
+            const matchTematica = !tematica || cardTematica === tematica;
+
+            card.style.display = matchTipo && matchTematica ? '' : 'none';
+          });
+        }
+
+        tipoSelect.addEventListener('change', filterNews);
+        tematicaSelect.addEventListener('change', filterNews);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initNewsFilters);
+      } else {
+        initNewsFilters();
+      }
+
+      document.addEventListener('astro:page-load', initNewsFilters);
+    </script>
 
     <!-- Newsletter -->
     <Newsletter />

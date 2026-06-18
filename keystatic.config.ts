@@ -1,5 +1,20 @@
 import { config, fields, collection } from '@keystatic/core';
 
+const opcionesTematica = [
+  { label: 'Democracia ambiental', value: 'Democracia ambiental' },
+  { label: 'Participación ciudadana', value: 'Participación ciudadana' },
+  { label: 'Articulación e incidencia', value: 'Articulación e incidencia' },
+  { label: 'Transparencia y rendición de cuentas', value: 'Transparencia y rendición de cuentas' },
+  { label: 'Gobiernos locales', value: 'Gobiernos locales' },
+  { label: 'Innovación y tecnología cívica', value: 'Innovación y tecnología cívica' },
+  { label: 'Educación y Garantías democráticas', value: 'Educación y Garantías democráticas' },
+] as const;
+
+const opcionesTipo = [
+  { label: 'Noticia', value: 'Noticia' },
+  { label: 'Publicación', value: 'Publicación' },
+] as const;
+
 export default config({
   storage: {
     kind: 'local',
@@ -38,6 +53,15 @@ export default config({
         showOnHome: fields.checkbox({
           label: 'Mostrar en Home',
           description: 'Marcar para mostrar esta noticia en el carrusel de la página de inicio.',
+        }),
+        tipo: fields.select({
+          label: 'Tipo',
+          options: opcionesTipo,
+          defaultValue: 'Noticia',
+        }),
+        tematica: fields.select({
+          label: 'Temática',
+          options: opcionesTematica,
         }),
       },
     }),
@@ -167,6 +191,15 @@ export default config({
         showOnHome: fields.checkbox({
           label: 'Mostrar en Home',
           description: 'Marcar para mostrar esta publicación en la sección de publicaciones del home.',
+        }),
+        tipo: fields.select({
+          label: 'Tipo',
+          options: opcionesTipo,
+          defaultValue: 'Publicación',
+        }),
+        tematica: fields.select({
+          label: 'Temática',
+          options: opcionesTematica,
         }),
       },
     }),

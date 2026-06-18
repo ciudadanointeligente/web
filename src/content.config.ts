@@ -1,6 +1,16 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
+const categoriasProyecto = [
+  "Democracia ambiental",
+  "Participación ciudadana",
+  "Articulación e incidencia",
+  "Transparencia y rendición de cuentas",
+  "Gobiernos locales",
+  "Innovación y tecnología cívica",
+  "Educación y Garantías democráticas",
+] as const;
+
 const posts = defineCollection({
   loader: glob({ pattern: "**/*.mdoc", base: "./src/content/posts" }),
   schema: z.object({
@@ -11,6 +21,8 @@ const posts = defineCollection({
     category: z.string().optional(),
     author: z.string().optional(),
     showOnHome: z.boolean().default(false),
+    tipo: z.enum(["Noticia", "Publicación"]).default("Noticia"),
+    tematica: z.enum(categoriasProyecto).optional(),
   }),
 });
 
@@ -46,16 +58,6 @@ const people2 = defineCollection({
   }),
 });
 
-const categoriasProyecto = [
-  "Democracia ambiental",
-  "Participación ciudadana",
-  "Articulación e incidencia",
-  "Transparencia y rendición de cuentas",
-  "Gobiernos locales",
-  "Innovación y tecnología cívica",
-  "Educación y Garantías democráticas",
-] as const;
-
 const proyectos = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/proyectos" }),
   schema: z.object({
@@ -81,6 +83,8 @@ const publicaciones = defineCollection({
     link: z.string().url(),
     descarga: z.string().optional(),
     showOnHome: z.boolean().default(false),
+    tipo: z.enum(["Noticia", "Publicación"]).default("Publicación"),
+    tematica: z.enum(categoriasProyecto).optional(),
   }),
 });
 

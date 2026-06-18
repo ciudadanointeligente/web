@@ -23,7 +23,7 @@ const documentos = (await getCollection('documentos')).sort(
   <main>
     <PageHero
       title="Transparencia"
-      description="Creemos que la transparencia fortalece la democracia. Por eso ponemos a disposición de todas las personas información clara sobre cómo nos financiamos, quiénes apoyan nuestro trabajo y qué resultados logramos cada año."
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">Creemos que la transparencia fortalece la democracia.</span><span class="text-white text-2xl font-medium font-['Work_Sans']"></span> <span class="text-[#96f67d] text-2xl font-medium font-['Work_Sans']">Por eso ponemos a disposición de todas las personas información clara sobre cómo nos financiamos, quiénes apoyan nuestro trabajo y qué resultados logramos cada año.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
         { label: 'Transparencia' },
@@ -33,20 +33,15 @@ const documentos = (await getCollection('documentos')).sort(
     <!-- Financing -->
     <section class="relative py-16 md:py-20">
       <div class="max-w-[1000px] mx-auto px-6 relative">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          <div>
-            <a
-              href="#"
-              class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-accent-magenta rounded-pill px-6 py-3 no-underline hover:bg-primary transition-all duration-fast"
-            >
-              ¿Cómo nos financiamos?
-            </a>
-          </div>
-          <div class="md:col-span-2">
-            <p class="font-sans text-body text-text-body leading-body">
-              Nos financiamos principalmente a través de la postulación de proyectos a entidades internacionales y organismos de cooperación. También generamos acciones de cambio a través de alianzas con instituciones públicas y otras organizaciones de sociedad civil.
-            </p>
-          </div>
+        <div class="flex flex-col md:flex-row gap-6 md:gap-16 items-start">
+          <span
+            class="inline-block flex-shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-nowrap"
+          >
+            ¿Cómo nos financiamos?
+          </span>
+          <p class="flex-1 font-sans text-body text-text-body leading-body">
+            Nos financiamos principalmente a través de la postulación de proyectos a entidades internacionales y organismos de cooperación. También generamos acciones de cambio a través de alianzas con instituciones públicas y otras organizaciones de sociedad civil.
+          </p>
         </div>
       </div>
     </section>
@@ -54,7 +49,7 @@ const documentos = (await getCollection('documentos')).sort(
     <!-- Annual Reports -->
     <section class="relative py-16 md:py-20">
       <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-2">
           Reportes Anuales
         </h2>
         <p class="font-sans text-body text-text-body text-center mb-10">
@@ -63,7 +58,7 @@ const documentos = (await getCollection('documentos')).sort(
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide mb-4 bg-bg-cream inline-block px-4 py-2">
+            <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
               Memorias
             </h3>
             <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
@@ -75,7 +70,7 @@ const documentos = (await getCollection('documentos')).sort(
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-text-primary no-underline hover:text-accent-magenta transition-colors"
+                      class="text-text-primary underline hover:text-accent-magenta transition-colors"
                     >
                       {memoria.data.nombre}
                     </a>
@@ -85,7 +80,7 @@ const documentos = (await getCollection('documentos')).sort(
             </ul>
           </div>
           <div>
-            <h3 class="font-sans font-bold text-h5 text-text-primary uppercase tracking-wide mb-4 bg-bg-cream inline-block px-4 py-2">
+            <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
               Protocolos y funcionamiento
             </h3>
             <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
@@ -97,7 +92,7 @@ const documentos = (await getCollection('documentos')).sort(
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-text-primary no-underline hover:text-accent-magenta transition-colors"
+                      class="text-text-primary underline hover:text-accent-magenta transition-colors"
                     >
                       {documento.data.nombre}
                     </a>
@@ -113,26 +108,26 @@ const documentos = (await getCollection('documentos')).sort(
     <!-- Supporters -->
     <section class="relative py-16 md:py-20">
       <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-10">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-10">
           Quiénes apoyan nuestro trabajo
         </h2>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 items-center">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-10 items-center">
           {[
-            { name: 'Unión Europea',                file: 'logo-ue.webp' },
-            { name: 'Packard Foundation',           file: 'logo-packard.webp' },
-            { name: 'Friedrich Ebert Stiftung',     file: 'logo-fes.webp' },
-            { name: 'AECID',                        file: 'logo-aecid.webp' },
-            { name: 'OXFAM',                        file: 'logo-oxfam.webp' },
-            { name: 'Luminate',                     file: 'logo-luminate.webp' },
-            { name: 'Open Society Foundations',     file: 'logo-open-society.webp' },
-            { name: 'IDRC CRDI',                    file: 'logo-idrc.webp' },
-            { name: 'NED',                          file: 'logo-ned.webp' },
-            { name: 'Avina',                        file: 'logo-avina.webp' },
-            { name: 'UNDEF',                        file: 'logo-undef.webp' },
-            { name: 'Karibu Foundation',            file: 'logo-karibu.webp' },
+            { name: 'Unión Europea', file: 'logo-ue.webp' },
+            { name: 'Packard Foundation', file: 'logo-packard.webp' },
+            { name: 'Friedrich Ebert Stiftung', file: 'logo-fes.webp' },
+            { name: 'UNDEF', file: 'logo-undef.webp' },
+            { name: 'OXFAM', file: 'logo-oxfam.webp' },
+            { name: 'Luminate', file: 'logo-luminate.webp' },
+            { name: 'Open Society Foundations', file: 'logo-open-society.webp' },
+            { name: 'IDRC CRDI', file: 'logo-idrc.webp' },
+            { name: 'NED', file: 'logo-ned.webp' },
+            { name: 'Avina', file: 'logo-avina.webp' },
+            { name: 'AECID', file: 'logo-aecid.webp' },
+            { name: 'Karibu Foundation', file: 'logo-karibu.webp' },
           ].map((org) => (
-            <div class="flex items-center justify-center h-20 bg-bg-gray rounded-md px-4" title={org.name}>
+            <div class="flex items-center justify-center h-16 px-2" title={org.name}>
               <img
                 src={`/img/${org.file}`}
                 alt={org.name}
@@ -148,13 +143,13 @@ const documentos = (await getCollection('documentos')).sort(
     <!-- Financial Transparency -->
     <section class="relative py-16 md:py-20">
       <div class="max-w-[1000px] mx-auto px-6 relative">
-        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-6">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-6">
           Transparencia Financiera
         </h2>
 
         <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
           <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
-          <select class="font-sans text-body bg-bg-cream border border-primary/20 rounded-md px-4 py-2 cursor-pointer">
+          <select class="font-sans text-body font-bold text-text-primary bg-accent-green border-none rounded-md px-4 py-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary">
             <option>Año</option>
           </select>
         </div>
