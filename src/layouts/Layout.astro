@@ -53,15 +53,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://ciudadan
     <slot />
 
     <!-- Alpine.js -->
-    <script type="module">
-    import Alpine from 'alpinejs';
-    window.Alpine = Alpine;
-    Alpine.start();
-
-    document.addEventListener('astro:after-swap', () => {
-      Alpine.destroyTree(document.body);
-      Alpine.initTree(document.body);
-    });
-    </script>
+    <script src="../scripts/alpine-init.js"></script>
   </body>
 </html>
