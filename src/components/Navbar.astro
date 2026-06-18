@@ -16,9 +16,9 @@ const currentPath = Astro.url.pathname;
 
 <header x-data="{ open: false }" class="relative z-50">
   <!-- Barra azul superior -->
-  <div class="bg-primary text-text-inverse h-6">
-    <div class="max-w-350 mx-auto px-6 py-0.5 flex items-center justify-between">
-      <span class="font-sans text-body leading-7 font-normal tracking-wide">
+  <div class="bg-primary text-text-inverse min-h-6 h-auto">
+    <div class="max-w-350 mx-auto px-6 py-1 flex flex-wrap items-center justify-between gap-2">
+      <span class="font-sans text-xs md:text-body leading-tight md:leading-7 font-normal tracking-wide">
         En america latina y el caribe
       </span>
       <div class="flex items-center gap-2 font-sans text-caption font-medium">

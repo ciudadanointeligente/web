@@ -35,13 +35,13 @@ const modalId = `person-modal-${name
 <div
   role="button"
   tabindex="0"
-  class="w-96 h-72 relative mx-auto cursor-pointer"
+  class="w-full max-w-sm h-72 relative mx-auto cursor-pointer"
   onclick={`document.getElementById('${modalId}').showModal()`}
   onkeydown={`if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); document.getElementById('${modalId}').showModal(); }`}
   aria-label={`Ver perfil de ${name}`}
 >
   <div
-    class="absolute bottom-0 left-0 w-96 h-40 bg-white rounded-[28.60px] shadow-card pt-12 pb-4 px-2.5 inline-flex justify-center items-center"
+    class="absolute bottom-0 left-0 w-full h-40 bg-white rounded-[28.60px] shadow-card pt-12 pb-4 px-2.5 inline-flex justify-center items-center"
   >
     <div class="text-center">
       <span class="font-['Work_Sans'] text-fuchsia-600 text-2xl font-normal block">

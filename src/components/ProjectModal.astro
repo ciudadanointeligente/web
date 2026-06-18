@@ -13,11 +13,11 @@ interface Props {
 const { nombre, descripcion, imagen, link, categorias, alcance, status } = Astro.props;
 
 const modalId = `project-modal-${nombre
-  .toLowerCase()
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/^-|-$/g, '')}`;
+.toLowerCase()
+.normalize('NFD')
+.replace(/[\u0300-\u036f]/g, '')
+.replace(/[^a-z0-9]+/g, '-')
+.replace(/^-|-$/g, '')}`;
 ---
 
 <!-- project card trigger -->
@@ -34,12 +34,12 @@ const modalId = `project-modal-${nombre
   aria-label={`Ver proyecto ${nombre}`}
 >
   {imagen && (
-    <img
-      src={imagen}
-      alt={nombre}
-      class="absolute inset-0 w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-fast"
-      loading="lazy"
-    />
+  <img
+    src={imagen}
+    alt={nombre}
+    class="absolute inset-0 w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-fast"
+    loading="lazy"
+  />
   )}
 </div>
 
@@ -59,90 +59,93 @@ const modalId = `project-modal-${nombre
       </button>
     </form>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col p-6 md:p-8">
+      <!-- Badge Proyecto -->
+      <span class="inline-block self-start font-sans text-xl font-medium text-text-primary bg-accent-green px-4 py-1 mb-4">
+        Proyecto
+      </span>
+
       {imagen && (
-        <div class="w-full aspect-video bg-bg-gray flex items-center justify-center overflow-hidden">
-          <img
-            src={imagen}
-            alt={nombre}
-            class="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
+      <div class="w-full aspect-video bg-bg-gray rounded-xl overflow-hidden mb-6">
+        <img
+          src={imagen}
+          alt={nombre}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
       )}
 
-      <div class="p-6 md:p-8">
-        <h3 class="font-['Work_Sans'] text-primary text-2xl md:text-3xl font-bold mb-3">
-          {nombre}
-        </h3>
+      <h3 class="font-['Work_Sans'] text-primary text-2xl md:text-3xl font-bold mb-3">
+        {nombre}
+      </h3>
 
-        <p class="font-['Work_Sans'] text-text-body text-base leading-body mb-5">
-          {descripcion}
-        </p>
+      <p class="font-['Work_Sans'] text-text-body text-base leading-body mb-5">
+        {descripcion}
+      </p>
 
-        <div class="flex flex-wrap gap-2 mb-5">
-          {categorias.map((categoria) => (
-            <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-3 py-1">
-              {categoria}
-            </span>
-          ))}
-        </div>
-
-        <div class="flex flex-wrap items-center gap-4 mb-6 text-sm font-sans text-text-muted">
-          <span class="inline-flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-accent-green"></span>
-            {status}
-          </span>
-          <span class="inline-flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-secondary"></span>
-            {alcance}
-          </span>
-        </div>
-
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
-        >
-          IR A SITIO WEB
-        </a>
+      <div class="flex flex-wrap gap-2 mb-5">
+        {categorias.map((categoria) => (
+        <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-3 py-1">
+          {categoria}
+        </span>
+        ))}
       </div>
+
+      <div class="flex flex-wrap items-center gap-4 mb-6 text-sm font-sans text-text-muted">
+        <span class="inline-flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-accent-green"></span>
+          {status}
+        </span>
+        <span class="inline-flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-secondary"></span>
+          {alcance}
+        </span>
+      </div>
+
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block w-fit font-sans text-xl font-bold uppercase text-text-inverse bg-primary rounded-pill px-6 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
+      >
+        IR A SITIO WEB
+      </a>
     </div>
   </div>
 </dialog>
 
 <style>
-  dialog {
+dialog {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@starting-style {
+  dialog[open] {
     opacity: 0;
     transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
   }
+}
 
-  dialog[open] {
-    opacity: 1;
-    transform: scale(1);
-  }
+dialog::backdrop {
+  background-color: rgba(37, 41, 67, 0);
+  transition: background-color 0.3s ease;
+}
 
-  @starting-style {
-    dialog[open] {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-  }
+dialog[open]::backdrop {
+  background-color: rgba(37, 41, 67, 0.7);
+}
 
-  dialog::backdrop {
-    background-color: rgba(37, 41, 67, 0);
-    transition: background-color 0.3s ease;
-  }
-
+@starting-style {
   dialog[open]::backdrop {
-    background-color: rgba(37, 41, 67, 0.7);
+    background-color: rgba(37, 41, 67, 0);
   }
-
-  @starting-style {
-    dialog[open]::backdrop {
-      background-color: rgba(37, 41, 67, 0);
-    }
-  }
+}
 </style>

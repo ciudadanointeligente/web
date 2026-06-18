@@ -31,15 +31,15 @@ const documentos = (await getCollection('documentos')).sort(
     />
 
     <!-- Financing -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
-        <div class="flex flex-col md:flex-row gap-6 md:gap-16 items-start">
+        <div class="flex flex-col md:flex-row gap-4 md:gap-16 items-start">
           <span
-            class="inline-block shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-nowrap"
+            class="inline-block shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-center"
           >
             ¿Cómo nos financiamos?
           </span>
-          <p class="flex-1 font-sans text-body text-text-body leading-body">
+          <p class="flex-1 font-sans text-xl text-text-body leading-body">
             Nos financiamos principalmente a través de la postulación de proyectos a entidades internacionales y organismos de cooperación. También generamos acciones de cambio a través de alianzas con instituciones públicas y otras organizaciones de sociedad civil.
           </p>
         </div>
@@ -47,12 +47,12 @@ const documentos = (await getCollection('documentos')).sort(
     </section>
 
     <!-- Annual Reports -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
         <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-2">
           Reportes Anuales
         </h2>
-        <p class="font-sans text-body text-text-body text-center mb-10">
+        <p class="font-sans text-xl text-text-body text-center mb-6 md:mb-10">
           Accede a nuestras memorias y otros documentos importantes de nuestra gestión.
         </p>
 
@@ -61,11 +61,14 @@ const documentos = (await getCollection('documentos')).sort(
             <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
               Memorias
             </h3>
-            <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
+            <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
               {memorias.map((memoria) => {
                 const href = memoria.data.link || memoria.data.descarga || '#';
                 return (
-                  <li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
                     <a
                       href={href}
                       target="_blank"
@@ -83,11 +86,14 @@ const documentos = (await getCollection('documentos')).sort(
             <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
               Protocolos y funcionamiento
             </h3>
-            <ul class="list-disc list-inside space-y-2 font-sans text-body text-text-primary">
+            <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
               {documentos.map((documento) => {
                 const href = documento.data.link || documento.data.descarga || '#';
                 return (
-                  <li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
                     <a
                       href={href}
                       target="_blank"
@@ -106,9 +112,9 @@ const documentos = (await getCollection('documentos')).sort(
     </section>
 
     <!-- Supporters -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
-        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-10">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-6 md:mb-10">
           Quiénes apoyan nuestro trabajo
         </h2>
 
@@ -141,13 +147,13 @@ const documentos = (await getCollection('documentos')).sort(
     </section>
 
     <!-- Financial Transparency -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
-        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-6">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-4 md:mb-6">
           Transparencia Financiera
         </h2>
 
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-6 md:mb-10">
           <span class="font-sans text-body font-bold text-text-primary">Filtrar por:</span>
           <select class="font-sans text-body font-bold text-text-primary bg-accent-green border-none rounded-md px-4 py-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary">
             <option>Año</option>

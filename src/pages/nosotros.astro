@@ -33,7 +33,7 @@ const people2 = (await getCollection('people2')).sort(
     />
 
     <!-- About Text -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-200 mx-auto px-6 relative text-center">
         <p class="font-sans text-xl text-neutral-700 leading-body">
           Somos una organización latinoamericana sin fines de lucro. Impulsamos cambios concretos: <span class="text-fuchsia-600 font-bold">formamos ciudadanía, acompañamos gobiernos locales, desarrollamos herramientas digitales, construimos alianzas diversas e investigamos amenazas a la democracia</span> para proponer soluciones que descentralicen el poder y activen la participación.
@@ -42,18 +42,18 @@ const people2 = (await getCollection('people2')).sort(
     </section>
 
     <!-- Values -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
         <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestros
         </p>
-        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-10">
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-6 md:mb-10">
           Valores
         </h2>
 
         <div class="flex flex-wrap justify-center gap-3">
           {['Colaboración', 'Transparencia', 'Participación', 'Información', 'Democracia Ambiental', 'Enfoque regional', 'Innovación'].map((value) => (
-            <span class="font-['Work_Sans'] text-blue-600 text-2xl font-medium bg-accent-green min-w-56 h-14 flex items-center justify-center whitespace-nowrap px-4">
+            <span class="font-['Work_Sans'] text-blue-600 text-xl md:text-2xl font-medium bg-accent-green h-auto min-h-14 flex items-center justify-center text-center px-4 py-2">
               {value}
             </span>
           ))}
@@ -62,20 +62,20 @@ const people2 = (await getCollection('people2')).sort(
     </section>
 
     <!-- Mission & Vision -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-300 mx-auto px-6 relative">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="p-4">
-            <div class="mb-4">
-              <h3 class="font-['Work_Sans'] text-white text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 whitespace-nowrap">Nuestra Misión</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="p-2 md:p-4">
+            <div class="mb-2 md:mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-xl md:text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 text-center">Nuestra Misión</h3>
             </div>
             <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
               Trabajamos para transformar la política a través de la acción colectiva, la información accesible, el trabajo territorial y la colaboración con actores diversos.
             </p>
           </div>
-          <div class="p-4">
-            <div class="mb-4">
-              <h3 class="font-['Work_Sans'] text-white text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 whitespace-nowrap">Nuestra Visión</h3>
+          <div class="p-2 md:p-4">
+            <div class="mb-2 md:mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-xl md:text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 text-center">Nuestra Visión</h3>
             </div>
             <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
               Trabajamos por lograr una región con ciudadanía informada y organizada, sociedad civil fuerte, instituciones abiertas, y una política que proteja la vida en común y la sostenibilidad del planeta.
@@ -86,7 +86,7 @@ const people2 = (await getCollection('people2')).sort(
     </section>
 
     <!-- Board -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-325 mx-auto px-6 relative">
         <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestro
@@ -94,7 +94,7 @@ const people2 = (await getCollection('people2')).sort(
         <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
           Directorio
         </h2>
-        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-16">
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-10 md:mb-16">
           Nuestro directorio está conformado por personas con amplia experiencia en democracia, derechos humanos y sociedad civil, que orientan estratégicamente nuestro trabajo.
         </p>
 
@@ -117,7 +117,7 @@ const people2 = (await getCollection('people2')).sort(
     </section>
 
     <!-- Executive Team -->
-    <section class="relative py-16 md:py-20">
+    <section class="relative py-10 md:py-20">
       <div class="max-w-325 mx-auto px-6 relative">
         <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
           Nuestro
@@ -125,7 +125,7 @@ const people2 = (await getCollection('people2')).sort(
         <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
           Equipo Ejecutivo
         </h2>
-        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-16">
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-10 md:mb-16">
           Un equipo multidisciplinario de profesionales y activistas comprometidos con la transformación democrática desde el territorio, la investigación y la incidencia política.
         </p>
 
