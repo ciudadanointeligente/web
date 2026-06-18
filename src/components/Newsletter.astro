@@ -1,22 +1,49 @@
 ---
+interface Props {
+  decorated?: boolean;
+}
+
+const { decorated = false } = Astro.props;
 ---
 
 <section class="bg-primary text-text-inverse relative overflow-hidden mt-24 md:mt-32">
-  <!-- Fondo decorativo de código -->
-  <!-- <div class="absolute inset-0 opacity-20 overflow-hidden pointer-events-none"> -->
-  <!--   <img -->
-  <!--     src="/img/code-bg.webp" -->
-  <!--     alt="" -->
-  <!--     aria-hidden="true" -->
-  <!--     loading="lazy" -->
-  <!--     width="1600" -->
-  <!--     height="1152" -->
-  <!--     class="absolute -left-10 -bottom-10 w-[150%] max-w-none object-cover" -->
-  <!--   /> -->
-  <!-- </div> -->
+  {
+    decorated && (
+      <>
+        <!-- Trama de código con fade hacia la derecha -->
+        <div
+          class="absolute left-0 top-0 h-full w-[220px] md:w-[300px] opacity-40 pointer-events-none overflow-hidden"
+          style="-webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%);"
+        >
+          <img
+            src="/img/codigo.png"
+            alt=""
+            aria-hidden="true"
+            class="w-full h-full object-cover"
+          />
+        </div>
 
-  <div class="max-w-[1400px] mx-auto px-6 py-8 md:py-12 relative">
-    <div class="max-w-xl mx-auto text-center">
+        <!-- Notebook -->
+        <div class="absolute left-0 bottom-0 w-[280px] md:w-[380px] pointer-events-none hidden md:block z-10">
+          <img
+            src="/img/notebook.png"
+            alt=""
+            aria-hidden="true"
+            class="w-full h-auto object-contain"
+          />
+        </div>
+      </>
+    )
+  }
+
+  <div class="max-w-[1400px] mx-auto px-6 py-8 md:py-12 relative z-20">
+    <div
+      class:list={[
+        'mx-auto text-center',
+        { 'max-w-xl': !decorated },
+        { 'max-w-xl md:max-w-2xl md:ml-[320px] lg:ml-[400px] md:text-left': decorated },
+      ]}
+    >
       <h2 class="font-sans font-bold text-h4 md:text-h3 leading-headings mb-6">
         Súmate a nuestro Newsletter
       </h2>

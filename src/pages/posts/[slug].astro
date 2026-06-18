@@ -32,7 +32,7 @@ export async function getStaticPaths() {
   <Navbar />
 
   <main class="relative py-16 md:py-24">
-    <article class="max-w-[900px] mx-auto px-6 relative">
+    <article class="max-w-[900px] mx-auto px-6 py-8 md:py-12 relative bg-bg-default rounded-lg shadow-sm">
       <!-- Breadcrumb -->
       <nav class="font-sans text-sm text-text-primary mb-6" aria-label="Breadcrumb">
         <ol class="list-none p-0 inline-flex flex-wrap items-center gap-1 uppercase bg-sky-300 px-2 py-1">
@@ -87,7 +87,7 @@ export async function getStaticPaths() {
         </div>
       )}
 
-      <div class="max-w-none text-text-body leading-body font-sans space-y-4">
+      <div class="post-content">
         <Content />
       </div>
     </article>
@@ -95,3 +95,75 @@ export async function getStaticPaths() {
 
   <Footer />
 </Layout>
+
+<style is:global>
+  .post-content {
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: var(--color-text-body);
+  }
+
+  .post-content > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .post-content p {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content h2 {
+    font-size: var(--text-h3);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .post-content h3 {
+    font-size: var(--text-h4);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-content a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .post-content a:hover {
+    color: var(--color-accent-magenta);
+  }
+
+  .post-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 2rem 0;
+  }
+
+  .post-content img {
+    border-radius: var(--radius-lg);
+    margin: 2rem 0;
+  }
+
+  .post-content strong {
+    font-weight: 700;
+    color: var(--color-neutral-dark);
+  }
+</style>

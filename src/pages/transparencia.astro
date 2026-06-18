@@ -32,10 +32,10 @@ const documentos = (await getCollection('documentos')).sort(
 
     <!-- Financing -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+      <div class="max-w-250 mx-auto px-6 relative">
         <div class="flex flex-col md:flex-row gap-6 md:gap-16 items-start">
           <span
-            class="inline-block flex-shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-nowrap"
+            class="inline-block shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-nowrap"
           >
             ¿Cómo nos financiamos?
           </span>
@@ -48,7 +48,7 @@ const documentos = (await getCollection('documentos')).sort(
 
     <!-- Annual Reports -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+      <div class="max-w-250 mx-auto px-6 relative">
         <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-2">
           Reportes Anuales
         </h2>
@@ -107,7 +107,7 @@ const documentos = (await getCollection('documentos')).sort(
 
     <!-- Supporters -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+      <div class="max-w-250 mx-auto px-6 relative">
         <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-10">
           Quiénes apoyan nuestro trabajo
         </h2>
@@ -142,7 +142,7 @@ const documentos = (await getCollection('documentos')).sort(
 
     <!-- Financial Transparency -->
     <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+      <div class="max-w-250 mx-auto px-6 relative">
         <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-6">
           Transparencia Financiera
         </h2>
@@ -157,7 +157,7 @@ const documentos = (await getCollection('documentos')).sort(
     </section>
 
     <!-- Newsletter -->
-    <Newsletter />
+    <Newsletter decorated />
   </main>
 
   <Footer />
