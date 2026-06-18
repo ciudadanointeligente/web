@@ -15,7 +15,7 @@ import PageHero from '../components/PageHero.astro';
   <main>
     <PageHero
       title="Contacto"
-      description="¿Quieres sumarte, colaborar o escribirnos? Aquí tienes todas las formas de ponerte en contacto con Ciudadanía Inteligente."
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">¿Quieres sumarte, colaborar o escribirnos?</span> <span class="text-white text-2xl font-medium font-['Work_Sans']"></span><span class="text-[#96f67d] text-2xl font-medium font-['Work_Sans']">Aquí tienes todas las formas de ponerte en contacto con Ciudadanía Inteligente.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
         { label: 'Contacto' },
@@ -23,9 +23,9 @@ import PageHero from '../components/PageHero.astro';
     />
 
     <!-- Contact CTA -->
-    <section class="relative py-16 md:py-20">
-      <div class="max-w-[800px] mx-auto px-6 relative text-center">
-        <h2 class="font-sans font-black text-h2 text-text-primary uppercase tracking-tight mb-4">
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-200 mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-black text-[40px] text-text-primary uppercase tracking-tight mb-4">
           ¿Quieres sumarte, colaborar o escribirnos?
         </h2>
         <p class="font-sans text-body text-text-body leading-body mb-12">
@@ -35,13 +35,13 @@ import PageHero from '../components/PageHero.astro';
     </section>
 
     <!-- Volunteer -->
-    <section class="relative py-16 md:py-20">
-      <div class="max-w-[1000px] mx-auto px-6 relative">
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-250 mx-auto px-6 relative">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <a
               href="#"
-              class="inline-block font-sans text-body font-bold text-text-inverse bg-accent-magenta rounded-md px-6 py-3 no-underline hover:bg-primary transition-all duration-fast"
+              class="inline-flex items-center justify-center font-sans text-body font-bold leading-none text-text-inverse bg-accent-magenta px-5 py-3 no-underline border-none transition-all duration-fast hover:-translate-y-px hover:bg-primary active:translate-y-0"
             >
               Voluntariado y pasantías
             </a>
@@ -62,8 +62,8 @@ import PageHero from '../components/PageHero.astro';
     </section>
 
     <!-- Write Us -->
-    <section class="relative py-16 md:py-20">
-      <div class="max-w-[800px] mx-auto px-6 relative text-center">
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-200 mx-auto px-6 relative text-center">
         <h2 class="font-sans font-bold text-h3 text-accent-magenta mb-4">
           Escríbenos
         </h2>

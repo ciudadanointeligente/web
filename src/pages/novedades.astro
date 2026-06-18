@@ -86,12 +86,12 @@ const items: Item[] = [
     <!-- News Grid -->
     <section id="news-section" class="relative py-16 md:py-20">
       <div class="max-w-300 mx-auto px-6 relative">
-        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
           Noticias y Publicaciones
         </h2>
 
         <!-- Filters -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
           <span class="text-black text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
           <select data-filter="tipo" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Tipo</option>
@@ -196,6 +196,13 @@ const items: Item[] = [
 
         if (!tipoSelect || !tematicaSelect) return;
 
+        function updateMiddleColumn() {
+          const visibleCards = Array.from(cards).filter((card) => card.style.display !== 'none');
+          visibleCards.forEach((card, index) => {
+            card.classList.toggle('middle-column', index % 3 === 1);
+          });
+        }
+
         function filterNews() {
           const tipo = tipoSelect.value;
           const tematica = tematicaSelect.value;
@@ -206,13 +213,28 @@ const items: Item[] = [
 
             const matchTipo = !tipo || cardTipo === tipo;
             const matchTematica = !tematica || cardTematica === tematica;
+            const shouldShow = matchTipo && matchTematica;
 
-            card.style.display = matchTipo && matchTematica ? '' : 'none';
+            if (shouldShow) {
+              if (card.style.display === 'none') {
+                card.style.display = '';
+                card.classList.add('filter-hidden');
+                void card.offsetWidth;
+                card.classList.remove('filter-hidden');
+              }
+            } else {
+              card.style.display = 'none';
+              card.classList.add('filter-hidden');
+            }
           });
+
+          updateMiddleColumn();
         }
 
         tipoSelect.addEventListener('change', filterNews);
         tematicaSelect.addEventListener('change', filterNews);
+
+        updateMiddleColumn();
       }
 
       if (document.readyState === 'loading') {
@@ -230,3 +252,20 @@ const items: Item[] = [
 
   <Footer />
 </Layout>
+
+<style is:global>
+  #news-section .news-card {
+    transition: opacity 250ms ease, transform 250ms ease;
+  }
+
+  #news-section .news-card.filter-hidden {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  @media (min-width: 768px) {
+    #news-section .news-card.middle-column {
+      margin-top: 2.5rem;
+    }
+  }
+</style>

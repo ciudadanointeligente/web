@@ -42,12 +42,12 @@ const estatusList = ['Actual', 'Pasado'];
     <!-- Projects Grid -->
     <section id="projects-section" class="relative py-16 md:py-20">
       <div class="max-w-[1200px] mx-auto px-6 relative">
-        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
           Nuestros Proyectos
         </h2>
 
         <!-- Filters -->
-        <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
           <span class="text-black text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
           <select data-filter="tema" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Temática</option>
@@ -112,8 +112,19 @@ const estatusList = ['Actual', 'Pasado'];
             const matchTema = !tema || categorias.includes(tema);
             const matchRegion = !region || cardRegion === region;
             const matchEstatus = !estatus || cardStatus === estatus;
+            const shouldShow = matchTema && matchRegion && matchEstatus;
 
-            card.style.display = matchTema && matchRegion && matchEstatus ? '' : 'none';
+            if (shouldShow) {
+              if (card.style.display === 'none') {
+                card.style.display = '';
+                card.classList.add('filter-hidden');
+                void card.offsetWidth;
+                card.classList.remove('filter-hidden');
+              }
+            } else {
+              card.style.display = 'none';
+              card.classList.add('filter-hidden');
+            }
           });
         }
 
@@ -137,3 +148,14 @@ const estatusList = ['Actual', 'Pasado'];
 
   <Footer />
 </Layout>
+
+<style is:global>
+  #projects-section [data-project-card] {
+    transition: opacity 250ms ease, transform 250ms ease;
+  }
+
+  #projects-section [data-project-card].filter-hidden {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+</style>
