@@ -41,7 +41,7 @@ const { title, description = '', breadcrumb = [] } = Astro.props;
       </h1>
       {
         description && (
-          <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-xl md:pt-4 text-text-inverse line-clamp-3">
+          <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-3xl md:pt-4 text-text-inverse">
             <Fragment set:html={description} />
           </p>
         )
