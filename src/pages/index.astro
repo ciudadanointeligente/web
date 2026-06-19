@@ -28,14 +28,14 @@ const homePosts = allPosts
     <!-- Hero Section -->
     <section class="relative overflow-hidden pt-24 md:pt-36 pb-20 md:pb-72">
       <div class="max-w-350 mx-auto px-6 relative">
-        <div class="max-w-4xl mx-auto text-center">
-          <p class="font-sans font-bold text-h6 md:text-h5 lg:text-h4 text-text-primary mb-2">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+          <p class="font-sans font-bold text-h6 md:text-h5 lg:text-[3rem] text-text-primary mb-2">
             Hacemos de la
           </p>
-          <h1 class="font-sans font-black text-[3rem] md:text-[6rem] lg:text-[8rem] leading-[0.9] text-text-primary uppercase tracking-tight">
+          <h1 class="font-sans font-black text-[3rem] md:text-[6rem] lg:text-[12rem] leading-[0.9] text-text-primary uppercase tracking-tight">
             Democracia
           </h1>
-          <p class="font-sans font-bold text-h6 md:text-h5 lg:text-h4 text-text-primary leading-headings mt-2">
+          <p class="font-sans font-bold text-h6 md:text-h5 lg:text-[3rem] text-text-primary leading-headings mt-2 md:text-nowrap">
             una experiencia compartida, justa y transformadora
           </p>
         </div>
@@ -43,7 +43,39 @@ const homePosts = allPosts
     </section>
 
     <!-- About Section (Blue) -->
-    <section class="bg-primary text-text-inverse relative overflow-hidden md:h-175">
+    <section class="bg-primary text-text-inverse relative md:h-175">
+      <!-- Corner/border images -->
+      <img
+        src="/img/manobordeizquierda.webp"
+        alt=""
+        aria-hidden="true"
+        class="absolute top-0 left-0 -translate-y-1/2 w-32 md:w-48 lg:w-60 pointer-events-none"
+      />
+      <img
+        src="/img/manossobrebarraazulmapa.webp"
+        alt=""
+        aria-hidden="true"
+        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-70 md:w-125 lg:w-192.5 h-21.25 md:h-37.5 lg:h-57.5 pointer-events-none"
+      />
+      <img
+        src="/img/manobordederecho.webp"
+        alt=""
+        aria-hidden="true"
+        class="absolute top-0 right-0 -translate-y-1/2 w-28 md:w-44 lg:w-56 pointer-events-none"
+      />
+      <img
+        src="/img/justiciabordeizquierdo.webp"
+        alt=""
+        aria-hidden="true"
+        class="absolute bottom-0 left-0 translate-y-1/2 w-32 md:w-48 lg:w-60 pointer-events-none"
+      />
+      <img
+        src="/img/piezabordederecho.webp"
+        alt=""
+        aria-hidden="true"
+        class="absolute bottom-0 right-0 translate-y-1/2 w-32 md:w-48 lg:w-60 pointer-events-none"
+      />
+
       <!-- Mapa de Latinoamérica -->
       <div class="absolute right-0 top-0 bottom-0 w-1/2 md:w-2/5 lg:w-1/3 pointer-events-none flex items-center justify-end opacity-30 md:opacity-100">
         <img
@@ -56,14 +88,14 @@ const homePosts = allPosts
         />
       </div>
 
-      <div class="max-w-350 mx-auto px-6 relative z-10 flex items-center h-full py-12 md:py-0">
-        <div class="max-w-2xl">
-          <p class="font-sans text-h5 md:text-h4 font-medium leading-body">
+      <div class="max-w-350 ml-0 md:ml-24 lg:ml-32 px-6 relative z-10 flex items-center h-full py-12 md:py-0">
+        <div class="max-w-2xl text-left">
+          <p class="font-sans text-h5 md:text-h5 font-medium leading-body">
             Trabajamos en América Latina y el Caribe desarrollando herramientas y estrategias para fortalecer <span class="text-accent-green font-bold">la participación ciudadana</span>, <span class="text-accent-green font-bold">la transparencia</span> y <span class="text-accent-green font-bold">la incidencia pública</span>.
           </p>
           <a
             href="/nosotros"
-            class="inline-block mt-6 font-sans text-caption font-bold uppercase tracking-wider text-text-primary bg-neutral-white rounded-pill px-6 py-3 no-underline hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
+            class="inline-block mt-6 font-sans text-xl font-bold uppercase tracking-wider text-text-primary bg-neutral-white rounded-pill px-6 py-3 no-underline hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
           >
             NOSOTROS
           </a>
@@ -165,7 +197,7 @@ const homePosts = allPosts
 
     <!-- Newsletter -->
     <div class="mt-2 md:mt-6">
-      <Newsletter />
+      <Newsletter decorated />
     </div>
   </main>
 
