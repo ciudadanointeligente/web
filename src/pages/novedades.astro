@@ -75,7 +75,7 @@ const items: Item[] = [
 
   <main>
     <PageHero
-      title="Noticias y Publicaciones"
+      title="Novedades"
       description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Conoce nuestras investigaciones, manuales, columnas y boletines</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> que analizan y proponen caminos para una democracia más participativa, justa y sostenible.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
@@ -111,11 +111,11 @@ const items: Item[] = [
           {items.map((item) =>
             item.tipo === 'Publicación' ? (
               <article
-                class="news-card relative flex flex-col w-full h-[520px] md:h-[580px] max-w-[394px] mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
+                class="news-card relative flex flex-col w-full h-130 md:h-145 max-w-98.5 mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
                 data-tipo={item.tipo}
                 data-tematica={item.tematica || ''}
               >
-                <figure class="pt-4 px-4 flex-shrink-0">
+                <figure class="pt-4 px-4 shrink-0">
                   {item.image ? (
                     <img
                       src={item.image}

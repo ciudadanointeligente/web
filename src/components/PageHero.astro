@@ -8,8 +8,8 @@ interface Props {
 const { title, description = '', breadcrumb = [] } = Astro.props;
 ---
 
-<section class="bg-primary text-text-inverse relative overflow-hidden">
-  <div class="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
+<section class="bg-primary text-text-inverse relative overflow-hidden md:min-h-80">
+  <div class="max-w-[1400px] mx-auto px-6 py-12 md:py-16 h-full flex flex-col justify-center">
     <!-- Breadcrumb -->
     {
       breadcrumb.length > 0 && (
@@ -41,7 +41,7 @@ const { title, description = '', breadcrumb = [] } = Astro.props;
       </h1>
       {
         description && (
-          <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-xl md:pt-4 text-text-inverse">
+          <p class="font-sans text-body md:text-h6 font-medium leading-body max-w-xl md:pt-4 text-text-inverse line-clamp-3">
             <Fragment set:html={description} />
           </p>
         )
