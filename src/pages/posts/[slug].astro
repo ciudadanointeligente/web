@@ -4,6 +4,7 @@ import { getCollection, getEntry, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
 
 const { slug } = Astro.params;
 if (!slug) throw new Error('Slug not found');
@@ -32,7 +33,7 @@ export async function getStaticPaths() {
   <Navbar />
 
   <main class="relative py-16 md:py-24">
-    <article class="max-w-[900px] mx-auto px-6 py-8 md:py-12 relative bg-bg-default rounded-lg shadow-sm">
+    <article class="max-w-225 mx-auto px-6 py-8 md:py-12 relative bg-bg-default rounded-lg shadow-sm">
       <!-- Breadcrumb -->
       <nav class="font-sans text-sm text-text-primary mb-6" aria-label="Breadcrumb">
         <ol class="list-none p-0 inline-flex flex-wrap items-center gap-1 uppercase bg-sky-300 px-2 py-1">
@@ -92,6 +93,9 @@ export async function getStaticPaths() {
       </div>
     </article>
   </main>
+
+    <!-- Newsletter -->
+    <Newsletter decorated />
 
   <Footer />
 </Layout>
