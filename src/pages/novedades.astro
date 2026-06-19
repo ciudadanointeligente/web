@@ -19,56 +19,41 @@ const tematicas = [
   'Educación y Garantías democráticas',
 ];
 
-type Item = {
-  id: string;
-  title: string;
-  subtitle?: string;
-  image?: string;
-  date?: Date;
-  category?: string;
-  tipo: 'Noticia' | 'Publicación';
-  tematica?: string;
-  href: string;
-  external: boolean;
-  downloadUrl?: string;
-};
-
-const items: Item[] = [
-  ...posts.map((post) => ({
+const noticias = posts
+  .map((post) => ({
     id: post.id.replace(/\.mdoc$/, ''),
     title: post.data.title,
     subtitle: post.data.subtitle,
     image: post.data.imagepost,
     date: post.data.date,
-    category: post.data.category,
     tipo: post.data.tipo,
     tematica: post.data.tematica,
     href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
     external: false,
-  })),
-  ...publicaciones.map((pub) => ({
-    id: pub.id.replace(/\.yaml$/, ''),
-    title: pub.data.nombre,
-    subtitle: pub.data.descripcion,
-    image: pub.data.imagen,
-    date: undefined,
-    category: 'Publicación',
-    tipo: pub.data.tipo,
-    tematica: pub.data.tematica,
-    href: pub.data.link,
-    external: true,
-    downloadUrl: pub.data.descarga,
-  })),
-].sort((a, b) => {
-  if (!a.date && !b.date) return 0;
-  if (!a.date) return 1;
-  if (!b.date) return -1;
-  return b.date.getTime() - a.date.getTime();
-});
+  }))
+  .sort((a, b) => {
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return b.date.getTime() - a.date.getTime();
+  });
+
+const publicacionesItems = publicaciones.map((pub) => ({
+  id: pub.id.replace(/\.yaml$/, ''),
+  title: pub.data.nombre,
+  subtitle: pub.data.descripcion,
+  image: pub.data.imagen,
+  date: undefined,
+  tipo: pub.data.tipo,
+  tematica: pub.data.tematica,
+  href: pub.data.link,
+  external: true,
+  downloadUrl: pub.data.descarga,
+}));
 ---
 
 <Layout
-  title="Noticias y Publicaciones | Ciudadanía Inteligente"
+  title="Novedades | Ciudadanía Inteligente"
   description="Conoce nuestras investigaciones, manuales, columnas y boletines."
 >
   <Navbar />
@@ -79,25 +64,20 @@ const items: Item[] = [
       description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Conoce nuestras investigaciones, manuales, columnas y boletines</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> que analizan y proponen caminos para una democracia más participativa, justa y sostenible.</span>`}
       breadcrumb={[
         { label: 'Inicio', href: '/' },
-        { label: 'Noticias y Publicaciones' },
+        { label: 'Novedades' },
       ]}
     />
 
-    <!-- News Grid -->
+    <!-- Noticias Section -->
     <section id="news-section" class="relative py-16 md:py-20">
       <div class="max-w-300 mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
-          Noticias y Publicaciones
+          Noticias
         </h2>
 
         <!-- Filters -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
           <span class="text-text-primary text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
-          <select data-filter="tipo" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
-            <option value="">Tipo</option>
-            <option value="Noticia">Noticias</option>
-            <option value="Publicación">Publicaciones</option>
-          </select>
           <select data-filter="tematica" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Temática</option>
             {tematicas.map((tematica) => (
@@ -108,142 +88,152 @@ const items: Item[] = [
 
         <!-- News Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-          {items.map((item) =>
-            item.tipo === 'Publicación' ? (
-              <article
-                class="news-card relative flex flex-col w-full h-130 md:h-145 max-w-98.5 mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
-                data-tipo={item.tipo}
-                data-tematica={item.tematica || ''}
-              >
-                <figure class="pt-4 px-4 shrink-0">
-                  {item.image ? (
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      class="rounded-sm max-h-64 w-auto object-contain"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div class="w-full h-64 bg-bg-gray flex items-center justify-center rounded-sm">
-                      <span class="text-text-body/40 text-sm">Imagen</span>
-                    </div>
-                  )}
-                </figure>
-                <div class="flex flex-col items-center text-center mt-4 mx-6 mb-2 grow">
-                  <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
-                    {item.title}
-                  </p>
+          {noticias.map((item) => (
+            <article
+              class="news-card bg-bg-gray rounded-lg overflow-hidden flex flex-col"
+              data-tematica={item.tematica || ''}
+            >
+              <a href={item.href} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
+                )}
+              </a>
+              <div class="p-5 flex flex-col grow">
+                <div class="mb-5">
+                  <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
+                    {item.tipo}
+                  </span>
                 </div>
-                <a
-                  href={item.downloadUrl || item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 font-['Work_Sans'] text-sm md:text-body text-accent-magenta border border-accent-magenta rounded-md shadow-sm transition-colors duration-fast hover:bg-primary hover:text-text-inverse hover:border-primary"
-                  aria-label="Descargar publicación"
-                >
-                  <span>DESCARGAR PDF</span>
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-                  </svg>
+                <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
+                  {item.title}
+                </h3>
+                <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
+                  Leer artículo
                 </a>
-              </article>
-            ) : (
-              <article
-                class="news-card bg-bg-gray rounded-lg overflow-hidden flex flex-col"
-                data-tipo={item.tipo}
-                data-tematica={item.tematica || ''}
-              >
-                <a href={item.href} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
-                  {item.image ? (
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
-                  )}
-                </a>
-                <div class="p-5 flex flex-col grow">
-                  <div class="mb-5">
-                    <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
-                      {item.tipo}
-                    </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Publicaciones Section -->
+    <section id="publicaciones-section" class="relative py-16 md:py-20">
+      <div class="max-w-300 mx-auto px-6 relative">
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
+          Publicaciones
+        </h2>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
+          <span class="text-text-primary text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
+          <select data-filter="tematica" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
+            <option value="">Temática</option>
+            {tematicas.map((tematica) => (
+              <option value={tematica}>{tematica}</option>
+            ))}
+          </select>
+        </div>
+
+        <!-- Publicaciones Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {publicacionesItems.map((item) => (
+            <article
+              class="pub-card relative flex flex-col w-full h-130 md:h-145 max-w-98.5 mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
+              data-tematica={item.tematica || ''}
+            >
+              <figure class="pt-4 px-4 shrink-0">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="rounded-sm max-h-64 w-auto object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-64 bg-bg-gray flex items-center justify-center rounded-sm">
+                    <span class="text-text-body/40 text-sm">Imagen</span>
                   </div>
-                  <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
-                    {item.title}
-                  </h3>
-                  <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
-                    Leer artículo
-                  </a>
-                </div>
-              </article>
-            )
-          )}
+                )}
+              </figure>
+              <div class="flex flex-col items-center text-center mt-4 mx-6 mb-2 grow">
+                <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
+                  {item.title}
+                </p>
+              </div>
+              <a
+                href={item.downloadUrl || item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 font-['Work_Sans'] text-sm md:text-body text-accent-magenta border border-accent-magenta rounded-md shadow-sm transition-colors duration-fast hover:bg-primary hover:text-text-inverse hover:border-primary"
+                aria-label="Descargar publicación"
+              >
+                <span>DESCARGAR PDF</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                </svg>
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>
 
     <script is:inline>
-      function initNewsFilters() {
-        const section = document.getElementById('news-section');
-        if (!section) return;
+      function initFilters() {
+        const newsSection = document.getElementById('news-section');
+        const pubSection = document.getElementById('publicaciones-section');
 
-        const tipoSelect = section.querySelector('select[data-filter=tipo]');
-        const tematicaSelect = section.querySelector('select[data-filter=tematica]');
-        const cards = section.querySelectorAll('[data-tipo]');
+        function setupSection(section, selector) {
+          if (!section) return;
+          const tematicaSelect = section.querySelector('select[data-filter=tematica]');
+          const cards = section.querySelectorAll(selector);
 
-        if (!tipoSelect || !tematicaSelect) return;
+          if (!tematicaSelect) return;
 
-        function updateMiddleColumn() {
-          const visibleCards = Array.from(cards).filter((card) => card.style.display !== 'none');
-          visibleCards.forEach((card, index) => {
-            card.classList.toggle('middle-column', index % 3 === 1);
-          });
-        }
+          function filterItems() {
+            const tematica = tematicaSelect.value;
 
-        function filterNews() {
-          const tipo = tipoSelect.value;
-          const tematica = tematicaSelect.value;
+            cards.forEach((card) => {
+              const cardTematica = card.dataset.tematica;
+              const matchTematica = !tematica || cardTematica === tematica;
+              const shouldShow = matchTematica;
 
-          cards.forEach((card) => {
-            const cardTipo = card.dataset.tipo;
-            const cardTematica = card.dataset.tematica;
-
-            const matchTipo = !tipo || cardTipo === tipo;
-            const matchTematica = !tematica || cardTematica === tematica;
-            const shouldShow = matchTipo && matchTematica;
-
-            if (shouldShow) {
-              if (card.style.display === 'none') {
-                card.style.display = '';
+              if (shouldShow) {
+                if (card.style.display === 'none') {
+                  card.style.display = '';
+                  card.classList.add('filter-hidden');
+                  void card.offsetWidth;
+                  card.classList.remove('filter-hidden');
+                }
+              } else {
+                card.style.display = 'none';
                 card.classList.add('filter-hidden');
-                void card.offsetWidth;
-                card.classList.remove('filter-hidden');
               }
-            } else {
-              card.style.display = 'none';
-              card.classList.add('filter-hidden');
-            }
-          });
+            });
+          }
 
-          updateMiddleColumn();
+          tematicaSelect.addEventListener('change', filterItems);
         }
 
-        tipoSelect.addEventListener('change', filterNews);
-        tematicaSelect.addEventListener('change', filterNews);
-
-        updateMiddleColumn();
+        setupSection(newsSection, '[data-tematica]');
+        setupSection(pubSection, '[data-tematica]');
       }
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initNewsFilters);
+        document.addEventListener('DOMContentLoaded', initFilters);
       } else {
-        initNewsFilters();
+        initFilters();
       }
 
-      document.addEventListener('astro:page-load', initNewsFilters);
+      document.addEventListener('astro:page-load', initFilters);
     </script>
 
     <!-- Newsletter -->
@@ -254,11 +244,11 @@ const items: Item[] = [
 </Layout>
 
 <style is:global>
-  #news-section .news-card {
+  .news-card, .pub-card {
     transition: opacity 250ms ease, transform 250ms ease;
   }
 
-  #news-section .news-card.filter-hidden {
+  .news-card.filter-hidden, .pub-card.filter-hidden {
     opacity: 0;
     transform: translateY(12px);
   }
