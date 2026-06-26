@@ -10,13 +10,17 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: netlify({ imageService: "cloudinary" }),
+  output: "static",
+  adapter: netlify(),
 
   vite: {
     plugins: [tailwindcss()],
   },
 
-  integrations: [react(), markdoc(), keystatic()],
+  integrations: [
+    react(),
+    markdoc(),
+    ...(process.env.SKIP_KEYSTATIC ? [] : [keystatic()]),
+  ],
 });
 

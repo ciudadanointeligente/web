@@ -15,16 +15,15 @@ const opcionesTipo = [
   { label: 'Publicación', value: 'Publicación' },
 ] as const;
 
-const opcionesTematicaOpcional = [
-  { label: '— Ninguna —', value: '' },
-  ...opcionesTematica,
-] as const;
+const useCloud = import.meta.env.PROD;
 
 export default config({
   storage: {
-    kind: 'github',
-    repo: { owner: 'ciudadanointeligente', name: 'web' },
+    kind: useCloud ? 'cloud' : 'local',
   },
+  cloud: useCloud
+    ? { project: 'fciweb/fciweb', branch: 'master' }
+    : undefined,
   collections: {
     posts: collection({
       label: 'Noticias',
@@ -67,8 +66,7 @@ export default config({
         }),
         tematica: fields.select({
           label: 'Temática',
-          options: opcionesTematicaOpcional,
-          defaultValue: '',
+          options: opcionesTematica,
         }),
       },
     }),
@@ -206,8 +204,7 @@ export default config({
         }),
         tematica: fields.select({
           label: 'Temática',
-          options: opcionesTematicaOpcional,
-          defaultValue: '',
+          options: opcionesTematica,
         }),
       },
     }),

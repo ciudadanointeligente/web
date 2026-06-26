@@ -22,7 +22,7 @@ const posts = defineCollection({
     author: z.string().optional(),
     showOnHome: z.boolean().default(false),
     tipo: z.enum(["Noticia", "Publicación"]).default("Noticia"),
-    tematica: z.enum([...categoriasProyecto, ""]).optional(),
+    tematica: z.enum(categoriasProyecto).optional(),
   }),
 });
 
@@ -84,7 +84,7 @@ const publicaciones = defineCollection({
     descarga: z.string().optional(),
     showOnHome: z.boolean().default(false),
     tipo: z.enum(["Noticia", "Publicación"]).default("Publicación"),
-    tematica: z.enum([...categoriasProyecto, ""]).optional(),
+    tematica: z.enum(categoriasProyecto).optional(),
   }),
 });
 
