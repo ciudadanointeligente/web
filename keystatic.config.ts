@@ -15,9 +15,15 @@ const opcionesTipo = [
   { label: 'Publicación', value: 'Publicación' },
 ] as const;
 
+const opcionesTematicaOpcional = [
+  { label: '— Ninguna —', value: '' },
+  ...opcionesTematica,
+] as const;
+
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'github',
+    repo: { owner: 'ciudadanointeligente', name: 'web' },
   },
   collections: {
     posts: collection({
@@ -61,7 +67,8 @@ export default config({
         }),
         tematica: fields.select({
           label: 'Temática',
-          options: opcionesTematica,
+          options: opcionesTematicaOpcional,
+          defaultValue: '',
         }),
       },
     }),
@@ -199,7 +206,8 @@ export default config({
         }),
         tematica: fields.select({
           label: 'Temática',
-          options: opcionesTematica,
+          options: opcionesTematicaOpcional,
+          defaultValue: '',
         }),
       },
     }),
