@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "bash scripts/keystatic-fix.sh"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.0.1",
