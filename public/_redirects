@@ -1,0 +1,2 @@
+/keystatic/*  /.netlify/functions/ssr 200
+/api/keystatic/*  /.netlify/functions/ssr 200
