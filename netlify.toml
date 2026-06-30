@@ -1,5 +1,5 @@
 [build]
-  command = "SKIP_KEYSTATIC=true npm run build"
+  command = "npm run build"
   publish = "dist"
 
 [[headers]]
