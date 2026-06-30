@@ -5,3 +5,5 @@ allowBuilds:
 onlyBuiltDependencies:
   - esbuild
   - sharp
+overrides:
+  vite: ^7.3.2
