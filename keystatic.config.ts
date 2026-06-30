@@ -67,6 +67,7 @@ export default config({
         tematica: fields.select({
           label: 'Temática',
           options: opcionesTematica,
+          defaultValue: 'Democracia ambiental',
         }),
       },
     }),
@@ -205,6 +206,7 @@ export default config({
         tematica: fields.select({
           label: 'Temática',
           options: opcionesTematica,
+          defaultValue: 'Democracia ambiental',
         }),
       },
     }),
