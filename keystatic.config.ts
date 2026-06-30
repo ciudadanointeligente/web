@@ -22,7 +22,7 @@ export default config({
     kind: useCloud ? 'cloud' : 'local',
   },
   cloud: useCloud
-    ? { project: 'fciweb/fciweb', branch: 'master' }
+    ? { project: 'fciweb/webf' }
     : undefined,
   collections: {
     posts: collection({
