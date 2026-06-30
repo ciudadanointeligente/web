@@ -1,8 +1,11 @@
 nombre: Ayuda Defensores
 order: 2
 imagen: /images/proyectos/ayudadefensoras/imagen.png
-descripcion: |
-  Para personas que defienden el ambiente y enfrentan riesgos en la región.
+descripcion: >
+  Plataforma regional de apoyo para personas defensoras ambientales en América
+  Latina y el Caribe, que reúne información sobre mecanismos de protección,
+  herramientas de autoprotección y redes de acompañamiento para enfrentar
+  riesgos, y amenazas vinculadas a la defensa del ambiente.
 link: https://ayudadefensores.org
 status: Actual
 alcance: Regional

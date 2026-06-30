@@ -10,8 +10,14 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://ciudadaniai.org",
   output: "static",
   adapter: netlify(),
+  trailingSlash: "ignore",
+
+  build: {
+    format: "directory",
+  },
 
   vite: {
     plugins: [tailwindcss()],
