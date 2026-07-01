@@ -2,13 +2,14 @@ nombre: DemocraciaKit
 order: 4
 imagen: /images/proyectos/democracia-kit/imagen.png
 descripcion: >-
-  Toolkit para aplicar la metodología de Abre a equipos de trabajo. Herramienta
-  online interactiva.
+  Facilita el acceso a experiencias exitosas de innovación democrática local
+  mediante una herramienta interactiva orientada a fortalecer proyectos
+  participativos y colaborativos.
 link: https://democraciakit.abrealcaldias.org/
 status: Actual
 alcance: Regional
 home: false
 categorias:
-  - Participación ciudadana
   - Gobiernos locales
   - Innovación y tecnología cívica
+  - Educación y Garantías democráticas

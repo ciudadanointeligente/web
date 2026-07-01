@@ -1,9 +1,10 @@
-nombre: Colectiva
+nombre: Red Colectiva
 order: 1
 imagen: /images/proyectos/colectiva/imagen.png
 descripcion: >-
-  Encuentro para una democracia más participativa y sostenible en América Latina
-  y El Caribe
+  Articula organizaciones, activistas y personas expertas de América Latina y el
+  Caribe para compartir aprendizajes, fortalecer redes y construir respuestas
+  colectivas frente a los desafíos democráticos de la región.
 link: https://colectiva.ciudadaniai.org/
 status: Actual
 alcance: Regional
@@ -11,4 +12,4 @@ home: true
 categorias:
   - Participación ciudadana
   - Articulación e incidencia
-  - Innovación y tecnología cívica
+  - Educación y Garantías democráticas

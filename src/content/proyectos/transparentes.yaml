@@ -1,7 +1,11 @@
 nombre: Transparentes
 order: 3
 imagen: /images/proyectos/transparentes/imagen.png
-descripcion: Seguimiento de las iniciativas legislativas que inciden en la democracia.
+descripcion: >-
+  Fortalece la transparencia, la participación ciudadana y la rendición de
+  cuentas a través de una red de organizaciones, procesos de formación,
+  investigaciones y una plataforma de seguimiento legislativo. Iniciativa
+  impulsada junto a Chile Transparente.
 link: https://transparentes.cl
 status: Actual
 alcance: Local
@@ -9,3 +13,4 @@ home: true
 categorias:
   - Participación ciudadana
   - Transparencia y rendición de cuentas
+  - Articulación e incidencia

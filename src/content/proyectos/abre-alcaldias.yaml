@@ -1,0 +1,14 @@
+nombre: Abre Alcaldías
+order: 6
+imagen: /images/proyectos/abre-alcaldias/imagen.png
+descripcion: >-
+  Promueve gobiernos locales más abiertos, participativos e innovadores,
+  fortaleciendo herramientas de transparencia y participación ciudadana.
+link: https://abrealcaldias.org/
+status: Actual
+alcance: Regional
+home: false
+categorias:
+  - Participación ciudadana
+  - Gobiernos locales
+  - Innovación y tecnología cívica
