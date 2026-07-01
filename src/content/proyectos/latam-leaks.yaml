@@ -1,0 +1,15 @@
+nombre: LatamLeaks
+order: 10
+imagen: /images/proyectos/latam-leaks/imagen.png
+descripcion: >-
+  Desarrolló una plataforma regional segura y anónima para denunciar casos de
+  corrupción, violaciones a derechos humanos y otros abusos junto a FIBGAR y
+  PODER.
+link: https://www.latamleaks.lat
+status: Pasado
+alcance: Regional
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica
+  - Articulación e incidencia

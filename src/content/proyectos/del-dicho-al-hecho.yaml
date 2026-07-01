@@ -1,0 +1,13 @@
+nombre: Del Dicho al Hecho
+order: 7
+imagen: /images/proyectos/del-dicho-al-hecho/imagen.png
+descripcion: >-
+  Analiza el cumplimiento de las promesas presidenciales en Chile desde 2012,
+  monitoreando su avance y traducción en políticas públicas y proyectos de ley.
+link: https://deldichoalhecho.cl/
+status: Actual
+alcance: Local
+home: false
+categorias:
+  - Innovación y tecnología cívica
+  - Transparencia y rendición de cuentas

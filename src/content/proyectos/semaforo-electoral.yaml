@@ -1,0 +1,13 @@
+nombre: Semáforo Electoral
+order: 11
+imagen: /images/proyectos/semaforo-electoral/imagen.png
+descripcion: >-
+  Traduce la legislación electoral chilena en información simple y accesible
+  para fortalecer la fiscalización ciudadana de campañas y procesos electorales.
+link: https://semaforoelectoral.cl/
+status: Actual
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica
