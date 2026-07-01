@@ -26,8 +26,9 @@ const estatusList = ['Actual', 'Pasado'];
   title="Proyectos | Ciudadanía Inteligente"
   description="Impulsamos proyectos que abren caminos para una democracia más justa y participativa."
 >
-  <Navbar />
-
+  <div class="bg-primary">
+    <Navbar />
+  </div>
   <main>
     <PageHero
       title="Proyectos"
@@ -51,19 +52,19 @@ const estatusList = ['Actual', 'Pasado'];
           <select data-filter="tema" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Temática</option>
             {categorias.map((categoria) => (
-              <option value={categoria}>{categoria}</option>
+            <option value={categoria}>{categoria}</option>
             ))}
           </select>
           <select data-filter="region" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Región</option>
             {regiones.map((region) => (
-              <option value={region}>{region}</option>
+            <option value={region}>{region}</option>
             ))}
           </select>
           <select data-filter="estatus" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
             <option value="">Estatus</option>
             {estatusList.map((estatus) => (
-              <option value={estatus}>{estatus}</option>
+            <option value={estatus}>{estatus}</option>
             ))}
           </select>
         </div>
@@ -71,74 +72,74 @@ const estatusList = ['Actual', 'Pasado'];
         <!-- Projects -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
           {proyectos.map((proyecto) => (
-            <ProjectModal
-              nombre={proyecto.data.nombre}
-              descripcion={proyecto.data.descripcion}
-              imagen={proyecto.data.imagen}
-              link={proyecto.data.link}
-              categorias={proyecto.data.categorias}
-              alcance={proyecto.data.alcance}
-              status={proyecto.data.status}
-              order={proyecto.data.order}
-            />
+          <ProjectModal
+            nombre={proyecto.data.nombre}
+            descripcion={proyecto.data.descripcion}
+            imagen={proyecto.data.imagen}
+            link={proyecto.data.link}
+            categorias={proyecto.data.categorias}
+            alcance={proyecto.data.alcance}
+            status={proyecto.data.status}
+            order={proyecto.data.order}
+          />
           ))}
         </div>
       </div>
     </section>
 
     <script is:inline>
-      function initProjectFilters() {
-        const section = document.getElementById('projects-section');
-        if (!section) return;
+    function initProjectFilters() {
+      const section = document.getElementById('projects-section');
+      if (!section) return;
 
-        const temaSelect = section.querySelector('select[data-filter=tema]');
-        const regionSelect = section.querySelector('select[data-filter=region]');
-        const estatusSelect = section.querySelector('select[data-filter=estatus]');
-        const cards = section.querySelectorAll('[data-project-card]');
+      const temaSelect = section.querySelector('select[data-filter=tema]');
+      const regionSelect = section.querySelector('select[data-filter=region]');
+      const estatusSelect = section.querySelector('select[data-filter=estatus]');
+      const cards = section.querySelectorAll('[data-project-card]');
 
-        if (!temaSelect || !regionSelect || !estatusSelect) return;
+      if (!temaSelect || !regionSelect || !estatusSelect) return;
 
-        function filterProjects() {
-          const tema = temaSelect.value;
-          const region = regionSelect.value;
-          const estatus = estatusSelect.value;
+      function filterProjects() {
+        const tema = temaSelect.value;
+        const region = regionSelect.value;
+        const estatus = estatusSelect.value;
 
-          cards.forEach((card) => {
-            const categorias = JSON.parse(card.dataset.categorias || '[]');
-            const cardRegion = card.dataset.alcance;
-            const cardStatus = card.dataset.status;
+        cards.forEach((card) => {
+          const categorias = JSON.parse(card.dataset.categorias || '[]');
+          const cardRegion = card.dataset.alcance;
+          const cardStatus = card.dataset.status;
 
-            const matchTema = !tema || categorias.includes(tema);
-            const matchRegion = !region || cardRegion === region;
-            const matchEstatus = !estatus || cardStatus === estatus;
-            const shouldShow = matchTema && matchRegion && matchEstatus;
+          const matchTema = !tema || categorias.includes(tema);
+          const matchRegion = !region || cardRegion === region;
+          const matchEstatus = !estatus || cardStatus === estatus;
+          const shouldShow = matchTema && matchRegion && matchEstatus;
 
-            if (shouldShow) {
-              if (card.style.display === 'none') {
-                card.style.display = '';
-                card.classList.add('filter-hidden');
-                void card.offsetWidth;
-                card.classList.remove('filter-hidden');
-              }
-            } else {
-              card.style.display = 'none';
+          if (shouldShow) {
+            if (card.style.display === 'none') {
+              card.style.display = '';
               card.classList.add('filter-hidden');
+              void card.offsetWidth;
+              card.classList.remove('filter-hidden');
             }
-          });
-        }
-
-        temaSelect.addEventListener('change', filterProjects);
-        regionSelect.addEventListener('change', filterProjects);
-        estatusSelect.addEventListener('change', filterProjects);
+          } else {
+            card.style.display = 'none';
+            card.classList.add('filter-hidden');
+          }
+        });
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initProjectFilters);
-      } else {
-        initProjectFilters();
-      }
+      temaSelect.addEventListener('change', filterProjects);
+      regionSelect.addEventListener('change', filterProjects);
+      estatusSelect.addEventListener('change', filterProjects);
+    }
 
-      document.addEventListener('astro:page-load', initProjectFilters);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initProjectFilters);
+    } else {
+      initProjectFilters();
+    }
+
+    document.addEventListener('astro:page-load', initProjectFilters);
     </script>
 
     <!-- Newsletter -->
@@ -149,12 +150,12 @@ const estatusList = ['Actual', 'Pasado'];
 </Layout>
 
 <style is:global>
-  #projects-section [data-project-card] {
-    transition: opacity 250ms ease, transform 250ms ease;
-  }
+#projects-section [data-project-card] {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
 
-  #projects-section [data-project-card].filter-hidden {
-    opacity: 0;
-    transform: translateY(12px);
-  }
+#projects-section [data-project-card].filter-hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
 </style>

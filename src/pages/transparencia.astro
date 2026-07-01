@@ -18,8 +18,9 @@ const documentos = (await getCollection('documentos')).sort(
   title="Transparencia | Ciudadanía Inteligente"
   description="Creemos que la transparencia fortalece la democracia. Ponemos a disposición información clara sobre cómo nos financiamos y qué resultados logramos."
 >
-  <Navbar />
-
+  <div class="bg-primary">
+    <Navbar />
+  </div>
   <main>
     <PageHero
       title="Transparencia"
@@ -63,22 +64,22 @@ const documentos = (await getCollection('documentos')).sort(
             </h3>
             <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
               {memorias.map((memoria) => {
-                const href = memoria.data.link || memoria.data.descarga || '#';
-                return (
-                  <li class="flex items-start gap-2">
-                    <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-text-primary underline hover:text-accent-magenta transition-colors"
-                    >
-                      {memoria.data.nombre}
-                    </a>
-                  </li>
-                );
+              const href = memoria.data.link || memoria.data.descarga || '#';
+              return (
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-primary underline hover:text-accent-magenta transition-colors"
+                >
+                  {memoria.data.nombre}
+                </a>
+              </li>
+              );
               })}
             </ul>
           </div>
@@ -88,22 +89,22 @@ const documentos = (await getCollection('documentos')).sort(
             </h3>
             <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
               {documentos.map((documento) => {
-                const href = documento.data.link || documento.data.descarga || '#';
-                return (
-                  <li class="flex items-start gap-2">
-                    <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-text-primary underline hover:text-accent-magenta transition-colors"
-                    >
-                      {documento.data.nombre}
-                    </a>
-                  </li>
-                );
+              const href = documento.data.link || documento.data.descarga || '#';
+              return (
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-primary underline hover:text-accent-magenta transition-colors"
+                >
+                  {documento.data.nombre}
+                </a>
+              </li>
+              );
               })}
             </ul>
           </div>
@@ -120,27 +121,27 @@ const documentos = (await getCollection('documentos')).sort(
 
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-x-10 gap-y-10 items-center">
           {[
-            { name: 'Unión Europea', file: 'logo-ue.webp' },
-            { name: 'Packard Foundation', file: 'logo-packard.webp' },
-            { name: 'Friedrich Ebert Stiftung', file: 'logo-fes.webp' },
-            { name: 'UNDEF', file: 'logo-undef.webp' },
-            { name: 'OXFAM', file: 'logo-oxfam.webp' },
-            { name: 'Luminate', file: 'logo-luminate.webp' },
-            { name: 'Open Society Foundations', file: 'logo-open-society.webp' },
-            { name: 'IDRC CRDI', file: 'logo-idrc.webp' },
-            { name: 'NED', file: 'logo-ned.webp' },
-            { name: 'Avina', file: 'logo-avina.webp' },
-            { name: 'AECID', file: 'logo-aecid.webp' },
-            { name: 'Karibu Foundation', file: 'logo-karibu.webp' },
+          { name: 'Unión Europea', file: 'logo-ue.webp' },
+          { name: 'Packard Foundation', file: 'logo-packard.webp' },
+          { name: 'Friedrich Ebert Stiftung', file: 'logo-fes.webp' },
+          { name: 'UNDEF', file: 'logo-undef.webp' },
+          { name: 'OXFAM', file: 'logo-oxfam.webp' },
+          { name: 'Luminate', file: 'logo-luminate.webp' },
+          { name: 'Open Society Foundations', file: 'logo-open-society.webp' },
+          { name: 'IDRC CRDI', file: 'logo-idrc.webp' },
+          { name: 'NED', file: 'logo-ned.webp' },
+          { name: 'Avina', file: 'logo-avina.webp' },
+          { name: 'AECID', file: 'logo-aecid.webp' },
+          { name: 'Karibu Foundation', file: 'logo-karibu.webp' },
           ].map((org) => (
-            <div class="flex items-center justify-center h-16 px-2" title={org.name}>
-              <img
-                src={`/img/${org.file}`}
-                alt={org.name}
-                loading="lazy"
-                class="max-h-12 w-auto max-w-full object-contain"
-              />
-            </div>
+          <div class="flex items-center justify-center h-16 px-2" title={org.name}>
+            <img
+              src={`/img/${org.file}`}
+              alt={org.name}
+              loading="lazy"
+              class="max-h-12 w-auto max-w-full object-contain"
+            />
+          </div>
           ))}
         </div>
       </div>
