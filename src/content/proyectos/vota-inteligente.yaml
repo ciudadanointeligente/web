@@ -1,0 +1,15 @@
+nombre: Vota Inteligente
+order: 15
+imagen: /images/proyectos/vota-inteligente/imagen.png
+descripcion: >-
+  Conectó ciudadanía y candidaturas mediante una plataforma que permitió
+  proponer ideas, conocer posiciones políticas y fortalecer decisiones
+  informadas.
+link: https://votainteligente.cl/
+status: Pasado
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Participación ciudadana
+  - Innovación y tecnología cívica
