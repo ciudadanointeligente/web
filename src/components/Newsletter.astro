@@ -12,7 +12,7 @@ const { decorated = false } = Astro.props;
       <>
         <!-- Trama de código con fade hacia la derecha -->
         <div
-          class="absolute left-0 top-0 h-full w-[220px] md:w-[300px] opacity-40 pointer-events-none overflow-hidden"
+          class="absolute left-0 top-0 h-full w-55 md:w-75 opacity-40 pointer-events-none overflow-hidden"
           style="-webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%); mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 100%);"
         >
           <img
@@ -24,7 +24,7 @@ const { decorated = false } = Astro.props;
         </div>
 
         <!-- Notebook -->
-        <div class="absolute left-0 bottom-0 w-[280px] md:w-[380px] pointer-events-none hidden md:block z-10">
+        <div class="absolute left-0 bottom-0 w-70 md:w-95 pointer-events-none hidden md:block z-10">
           <img
             src="/img/notebook.png"
             alt=""
@@ -36,26 +36,22 @@ const { decorated = false } = Astro.props;
     )
   }
 
-  <div class="max-w-[1400px] mx-auto px-6 py-8 md:py-12 relative z-20">
+  <div class="max-w-350 mx-auto px-6 py-8 md:py-12 relative z-20">
     <div
       class:list={[
         'mx-auto text-center',
         { 'max-w-xl': !decorated },
-        { 'max-w-xl md:max-w-2xl md:ml-[320px] lg:ml-[400px] md:text-left': decorated },
+        { 'max-w-xl md:max-w-2xl md:ml-80 lg:ml-100 md:text-left': decorated },
       ]}
     >
       <h2 class="font-sans font-bold text-h4 md:text-h3 leading-headings mb-6">
         Súmate a nuestro Newsletter
       </h2>
-      <form class="flex flex-col sm:flex-row gap-3" action="#" method="POST">
-        <input
-          type="email"
-          placeholder="Escribe tu correo aquí"
-          required
-          class="flex-1 font-sans text-body font-regular text-text-body bg-neutral-white rounded-pill px-5 py-3 placeholder:text-neutral-dark/50 focus:outline-none focus:ring-2 focus:ring-accent-magenta transition-all duration-fast"
+      <form class="flex flex-col sm:flex-row gap-3" action="//ciudadanointeligente.us5.list-manage.com/subscribe/post?u=73951bb4ca8d05cfc6a608807&id=b77280e172" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
+        <input type="email" placeholder="Escribe tu correo aquí" required="" value="" name="EMAIL" id="mce-EMAIL" aria-required="true" class="flex-1 font-sans text-body font-regular text-text-body bg-neutral-white rounded-pill px-5 py-3 placeholder:text-neutral-dark/50 focus:outline-none focus:ring-2 focus:ring-accent-magenta transition-all duration-fast"
         />
         <button
-          type="submit"
+          type="submit" value="Subscribirme" name="subscribe" id="mc-embedded-subscribe"
           class="font-sans text-body font-bold text-text-primary bg-neutral-white rounded-pill px-6 py-3 border-none cursor-pointer hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
         >
           SUSCRÍBETE
@@ -64,3 +60,4 @@ const { decorated = false } = Astro.props;
     </div>
   </div>
 </section>
+
