@@ -1,0 +1,13 @@
+nombre: LabCívico
+order: 12
+imagen: /images/proyectos/lab-civico/imagen.png
+descripcion: >-
+  Desarrolla metodologías participativas para construir agendas y planes de
+  acción colaborativos junto a organizaciones y comunidades.
+link: https://labcivico.org/
+status: Actual
+alcance: Regional
+home: false
+categorias:
+  - Participación ciudadana
+  - Articulación e incidencia
