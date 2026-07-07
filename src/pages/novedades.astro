@@ -38,18 +38,21 @@ const noticias = posts
   return b.date.getTime() - a.date.getTime();
 });
 
-const publicacionesItems = publicaciones.map((pub) => ({
-  id: pub.id.replace(/\.yaml$/, ''),
-  title: pub.data.nombre,
-  subtitle: pub.data.descripcion,
-  image: pub.data.imagen,
-  date: undefined,
-  tipo: pub.data.tipo,
-  tematica: pub.data.tematica,
-  href: pub.data.link,
-  external: true,
-  downloadUrl: pub.data.descarga,
-}));
+const publicacionesItems = publicaciones
+  .map((pub) => ({
+    id: pub.id.replace(/\.yaml$/, ''),
+    title: pub.data.nombre,
+    subtitle: pub.data.descripcion,
+    image: pub.data.imagen,
+    date: undefined,
+    tipo: pub.data.tipo,
+    tematica: pub.data.tematica,
+    order: pub.data.order,
+    href: pub.data.link,
+    external: true,
+    downloadUrl: pub.data.descarga,
+  }))
+  .sort((a, b) => a.order - b.order);
 ---
 
 <Layout
@@ -92,7 +95,7 @@ const publicacionesItems = publicaciones.map((pub) => ({
           {noticias.map((item) => (
           <article
             class="news-card bg-bg-gray rounded-lg overflow-hidden flex flex-col"
-            data-tematica={item.tematica || ''}
+            data-tematica={item.tematica?.join(',') || ''}
           >
             <a href={item.href} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
               {item.image ? (
@@ -112,9 +115,18 @@ const publicacionesItems = publicaciones.map((pub) => ({
                   {item.tipo}
                 </span>
               </div>
-              <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
+              <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-3 grow">
                 {item.title}
               </h3>
+              {item.tematica && item.tematica.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {item.tematica.map((t) => (
+                <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-2.5 py-0.5">
+                  {t}
+                </span>
+                ))}
+              </div>
+              )}
               <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
                 Leer artículo
               </a>
@@ -148,7 +160,7 @@ const publicacionesItems = publicaciones.map((pub) => ({
           {publicacionesItems.map((item) => (
           <article
             class="pub-card relative flex flex-col w-full h-130 md:h-145 max-w-98.5 mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden"
-            data-tematica={item.tematica || ''}
+            data-tematica={item.tematica.join(',')}
           >
             <figure class="pt-4 px-4 shrink-0">
               {item.image ? (
@@ -168,6 +180,15 @@ const publicacionesItems = publicaciones.map((pub) => ({
               <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
                 {item.title}
               </p>
+              {item.tematica.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 mt-3">
+                {item.tematica.map((t) => (
+                <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-2.5 py-0.5">
+                  {t}
+                </span>
+                ))}
+              </div>
+              )}
             </div>
             <a
               href={item.downloadUrl || item.href}
@@ -203,8 +224,8 @@ const publicacionesItems = publicaciones.map((pub) => ({
           const tematica = tematicaSelect.value;
 
           cards.forEach((card) => {
-            const cardTematica = card.dataset.tematica;
-            const matchTematica = !tematica || cardTematica === tematica;
+            const cardTematicas = (card.dataset.tematica || '').split(',');
+            const matchTematica = !tematica || cardTematicas.includes(tematica);
             const shouldShow = matchTematica;
 
             if (shouldShow) {

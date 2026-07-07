@@ -64,10 +64,10 @@ export default config({
           options: opcionesTipo,
           defaultValue: 'Noticia',
         }),
-        tematica: fields.select({
-          label: 'Temática',
+        tematica: fields.multiselect({
+          label: 'Temáticas',
+          description: 'Seleccionar una o más temáticas.',
           options: opcionesTematica,
-          defaultValue: 'Democracia ambiental',
         }),
       },
     }),
@@ -194,6 +194,10 @@ export default config({
           directory: 'public/pdfs/publicaciones',
           publicPath: '/pdfs/publicaciones/',
         }),
+        order: fields.number({
+          label: 'Orden',
+          validation: { isRequired: true },
+        }),
         showOnHome: fields.checkbox({
           label: 'Mostrar en Home',
           description: 'Marcar para mostrar esta publicación en la sección de publicaciones del home.',
@@ -203,10 +207,10 @@ export default config({
           options: opcionesTipo,
           defaultValue: 'Publicación',
         }),
-        tematica: fields.select({
-          label: 'Temática',
+        tematica: fields.multiselect({
+          label: 'Temáticas',
+          description: 'Seleccionar una o más temáticas.',
           options: opcionesTematica,
-          defaultValue: 'Democracia ambiental',
         }),
       },
     }),

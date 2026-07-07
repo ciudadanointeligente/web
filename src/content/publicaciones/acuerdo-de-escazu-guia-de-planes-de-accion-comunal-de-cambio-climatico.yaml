@@ -4,6 +4,9 @@ imagen: >-
   /images/publicaciones/acuerdo-de-escazu-guia-de-planes-de-accion-comunal-de-cambio-climatico/imagen.png
 link: >-
   https://gitlab.com/ciudadaniai/ciudadaniai/-/raw/master/assets/attachments/GuiaparalacreaciondePlanesdeAccionComunal.pdf
+order: 3
 showOnHome: true
 tipo: Publicación
-tematica: Democracia ambiental
+tematica:
+  - Democracia ambiental
+  - Participación ciudadana

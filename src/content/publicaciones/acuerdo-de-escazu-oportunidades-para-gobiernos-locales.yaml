@@ -4,6 +4,9 @@ imagen: >-
   /images/publicaciones/acuerdo-de-escazu-oportunidades-para-gobiernos-locales/imagen.png
 link: >-
   https://gitlab.com/ciudadaniai/ciudadaniai/-/raw/master/assets/attachments/OportunidadesparaGobiernosLocales.pdf
+order: 4
 showOnHome: true
 tipo: Publicación
-tematica: Gobiernos locales
+tematica:
+  - Gobiernos locales
+  - Democracia ambiental
