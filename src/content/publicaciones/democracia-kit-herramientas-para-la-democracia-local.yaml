@@ -1,0 +1,14 @@
+nombre: 'DemocraciaKit: Herramientas para la democracia local'
+descripcion: >-
+  Un kit de herramientas que inspira la innovación pública y la participación
+  ciudadana en América Latina. Reúne recomendaciones y reflexiones para
+  fortalecer la voz de la ciudadanía en los territorios y comunidades.
+imagen: >-
+  /images/publicaciones/democracia-kit-herramientas-para-la-democracia-local/imagen.png
+link: https://gitlab.com/ciudadaniai/2022/-/raw/main/democracia-kit.pdf
+order: 10
+showOnHome: false
+tipo: Publicación
+tematica:
+  - Educación y Garantías democráticas
+  - Gobiernos locales
