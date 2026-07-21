@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import PageHero from '../components/PageHero.astro';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+function parseCSV(text: string): string[][] {
+  const rows: string[][] = [];
+  let currentRow: string[] = [];
+  let currentField = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const nextChar = text[i + 1];
+
+    if (inQuotes) {
+      if (char === '"' && nextChar === '"') {
+        currentField += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        currentField += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === ',') {
+        currentRow.push(currentField);
+        currentField = '';
+      } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
+        if (char === '\r') i++;
+        currentRow.push(currentField);
+        rows.push(currentRow);
+        currentRow = [];
+        currentField = '';
+      } else if (char === '\r') {
+        currentRow.push(currentField);
+        rows.push(currentRow);
+        currentRow = [];
+        currentField = '';
+      } else {
+        currentField += char;
+      }
+    }
+  }
+
+  if (currentField !== '' || currentRow.length > 0) {
+    currentRow.push(currentField);
+    rows.push(currentRow);
+  }
+
+  return rows.filter((row) => row.some((field) => field.trim() !== ''));
+}
+
+function cleanText(text: string): string {
+  if (!text) return '';
+  return text.replace(/\s+/g, ' ').trim();
+}
+
+function formatCurrency(value: string): string {
+  const cleaned = value.replace(/,/g, '').replace(/\s/g, '');
+  const num = parseInt(cleaned, 10);
+  if (isNaN(num)) return value;
+  return `$${num.toLocaleString('en-US')}`;
+}
+
+function renderInfo(text: string): string {
+  if (!text) return '';
+  let cleaned = cleanText(text);
+
+  // Balanced bold markers: **text**
+  cleaned = cleaned.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  // Unbalanced opening marker at start: **text
+  if (cleaned.startsWith('**')) {
+    cleaned = `<strong>${cleaned.slice(2)}</strong>`;
+  }
+
+  return cleaned;
+}
+
+const csvPath = join(process.cwd(), 'public', 'transparencia-financiamiento.csv');
+const csvText = readFileSync(csvPath, 'utf-8');
+const rows = parseCSV(csvText);
+
+const dataRows = rows.slice(1);
+
+let currentEntity = '';
+const tableRows = dataRows
+  .map((row) => {
+    const rawEntity = row[1]?.trim();
+    if (rawEntity) currentEntity = rawEntity;
+
+    return {
+      entity: cleanText(currentEntity),
+      year: cleanText(row[2]),
+      amount: formatCurrency(row[3] ?? ''),
+      status: cleanText(row[4]),
+      info: renderInfo(row[5] ?? ''),
+    };
+  })
+  .filter((row) => row.entity || row.year || row.amount);
+---
+
+<Layout
+  title="Financiamiento | Ciudadanía Inteligente"
+  description="Conoce los detalles de cómo se financia Ciudadanía Inteligente: entidades financiadoras, años, montos y estados de los proyectos."
+>
+  <div class="bg-primary">
+    <Navbar />
+  </div>
+  <main>
+    <PageHero
+      title="Financiamiento"
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">Transparencia en nuestro financiamiento.</span> <span class="text-[#96f67d] text-2xl font-medium font-['Work_Sans']">Detalle de las entidades, años, montos y estados de los proyectos que hacen posible nuestro trabajo.</span>`}
+      breadcrumb={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Transparencia', href: '/transparencia' },
+        { label: 'Financiamiento' },
+      ]}
+    />
+
+    <section class="relative py-10 md:py-20" aria-labelledby="financiamiento-heading">
+      <div class="max-w-300 mx-auto px-6 relative">
+        <div class="mb-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <div>
+            <h2 id="financiamiento-heading" class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide mb-2">
+              Tabla de financiamiento
+            </h2>
+            <p class="font-sans text-xl text-text-body">
+              Entidades financiadoras, montos recibidos y estado actual de cada aporte.
+            </p>
+          </div>
+          <a
+            href="/transparencia-financiamiento.csv"
+            download
+            class="inline-flex items-center gap-2 font-sans font-bold text-body text-text-primary underline hover:text-accent-magenta transition-colors"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            Descargar CSV
+          </a>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg border border-primary/20 shadow-md">
+          <table class="w-full border-collapse text-left">
+            <caption class="sr-only">
+              Tabla de financiamiento de Ciudadanía Inteligente
+            </caption>
+            <thead class="bg-primary text-text-inverse">
+              <tr>
+                <th scope="col" class="font-sans font-bold text-small uppercase tracking-wide px-4 py-3 border-b border-primary/30">
+                  Entidad financiadora
+                </th>
+                <th scope="col" class="font-sans font-bold text-small uppercase tracking-wide px-4 py-3 border-b border-primary/30 whitespace-nowrap">
+                  Año(s)
+                </th>
+                <th scope="col" class="font-sans font-bold text-small uppercase tracking-wide px-4 py-3 border-b border-primary/30 whitespace-nowrap">
+                  Montos (USD)
+                </th>
+                <th scope="col" class="font-sans font-bold text-small uppercase tracking-wide px-4 py-3 border-b border-primary/30">
+                  Estado
+                </th>
+                <th scope="col" class="font-sans font-bold text-small uppercase tracking-wide px-4 py-3 border-b border-primary/30">
+                  Información relevante
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-primary/10">
+              {tableRows.map((row) => (
+                <tr class="bg-bg-default hover:bg-secondary/10 transition-colors">
+                  <td class="font-sans text-body text-text-primary px-4 py-3 align-top">
+                    {row.entity}
+                  </td>
+                  <td class="font-sans text-body text-text-body px-4 py-3 align-top whitespace-nowrap">
+                    {row.year}
+                  </td>
+                  <td class="font-sans text-body text-text-body px-4 py-3 align-top whitespace-nowrap text-right">
+                    {row.amount}
+                  </td>
+                  <td class="font-sans text-body text-text-body px-4 py-3 align-top">
+                    {row.status}
+                  </td>
+                  <td class="font-sans text-body text-text-body px-4 py-3 align-top">
+                    <Fragment set:html={row.info} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <Newsletter decorated />
+  </main>
+
+  <Footer />
+</Layout>

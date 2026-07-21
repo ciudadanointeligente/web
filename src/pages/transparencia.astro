@@ -51,7 +51,7 @@ const documentos = (await getCollection('documentos')).sort(
     <section class="relative py-10 md:py-20">
       <div class="max-w-250 mx-auto px-6 relative">
         <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-2">
-          Reportes Anuales
+          Reportes y Documentos
         </h2>
         <p class="font-sans text-xl text-text-body text-center mb-6 md:mb-10">
           Accede a nuestras memorias y otros documentos importantes de nuestra gestión.
@@ -109,6 +109,27 @@ const documentos = (await getCollection('documentos')).sort(
             </ul>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Financing CTA -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-250 mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide mb-4">
+          Financiamiento detallado
+        </h2>
+        <p class="font-sans text-xl text-text-body mb-8">
+          Revisa el detalle completo de las entidades financiadoras, años, montos y estados de cada aporte.
+        </p>
+        <a
+          href="/financiamiento"
+          class="inline-flex items-center gap-2 font-sans font-bold text-body bg-primary text-text-inverse px-6 py-3 rounded-md shadow-sm hover:bg-accent-magenta transition-colors duration-fast"
+        >
+          Ver tabla de financiamiento
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </section>
 
