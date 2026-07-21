@@ -1,0 +1,9 @@
+nombre: Libro Abre Alcaldías
+imagen: /images/publicaciones/libro-abre-alcaldias/imagen.png
+link: https://gitlab.com/ciudadaniai/2022/-/raw/main/libro-abre-digital.pdf
+order: 4
+showOnHome: false
+tipo: Publicación
+tematica:
+  - Articulación e incidencia
+  - Gobiernos locales
