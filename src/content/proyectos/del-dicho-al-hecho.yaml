@@ -7,7 +7,7 @@ descripcion: >-
 link: https://deldichoalhecho.cl/
 status: Actual
 alcance: Local
-home: false
+home: true
 categorias:
   - Innovación y tecnología cívica
   - Transparencia y rendición de cuentas
