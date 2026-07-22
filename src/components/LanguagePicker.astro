@@ -1,0 +1,41 @@
+---
+import { languages, defaultLang, showDefaultLang } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+
+function getBasePath(path: string) {
+  const parts = path.split('/').filter(Boolean);
+  if (parts[0] && parts[0] in languages) {
+    parts.shift();
+  }
+  return '/' + parts.join('/');
+}
+
+function getHref(lang: keyof typeof languages) {
+  const basePath = getBasePath(currentPath);
+  if (!showDefaultLang && lang === defaultLang) {
+    return basePath || '/';
+  }
+  return `/${lang}${basePath || ''}`;
+}
+---
+
+<div class="flex items-center gap-2 font-sans text-caption font-medium">
+  {Object.keys(languages).map((lang) => {
+    const isActive = lang === currentLang;
+    return (
+      <a
+        href={getHref(lang as keyof typeof languages)}
+        class={`
+          px-2 py-0.5 cursor-pointer transition-opacity duration-fast
+          ${isActive ? 'font-bold' : 'font-normal hover:opacity-80'}
+        `}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {lang.toUpperCase()}
+      </a>
+    );
+  })}
+</div>

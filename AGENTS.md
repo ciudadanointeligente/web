@@ -3,7 +3,7 @@
 ## Resumen del proyecto
 
 Sitio multi-página estático con Astro v6 para una organización sin fines de lucro.
-Stack: Astro 6.4 + Tailwind CSS v4 + Alpine.js 3 + React 19 + Markdoc + Keystatic. Netlify. Español.
+Stack: Astro 6.4 + Tailwind CSS v4 + Alpine.js 3 + React 19 + Markdoc + Keystatic. Netlify. Español e inglés.
 Sin tests, linter, typechecker ni CI.
 
 ## Comandos
@@ -30,17 +30,25 @@ src/
     PersonCard.astro
     ProjectModal.astro
     Newsletter.astro
+    LanguagePicker.astro      # Selector de idioma funcional
+  i18n/                      # Internacionalización
+    ui.ts                      # Diccionario de strings y configuración de idiomas
+    utils.ts                   # Helpers: getLangFromUrl, useTranslations, useTranslatedPath
   styles/global.css          # Tokens Tailwind v4 (@theme) + estilos base
   scripts/alpine-init.js     # Inicialización de Alpine.js
   content.config.ts          # Colecciones de contenido
   content/
-    posts/*.mdoc             # Blog posts (Markdoc)
-    people/*.yaml            # Directorio
-    people2/*.yaml           # Equipo ejecutivo
-    proyectos/*.yaml         # Proyectos
-    publicaciones/*.yaml     # Publicaciones
-    documentos/*.yaml        # Documentos de transparencia
-    memorias/*.yaml          # Memorias anuales
+    posts/*.mdoc             # Blog posts (Markdoc, solo español)
+    people/*.yaml            # Directorio (español)
+    people-en/*.yaml         # Board (inglés)
+    people2/*.yaml           # Equipo ejecutivo (español)
+    people2-en/*.yaml        # Executive team (inglés)
+    proyectos/*.yaml         # Proyectos (español)
+    proyectos-en/*.yaml      # Projects (inglés)
+    publicaciones/*.yaml     # Publicaciones (español)
+    publicaciones-en/*.yaml  # Publications (inglés)
+    documentos/*.yaml        # Documentos de transparencia (español)
+    memorias/*.yaml          # Memorias anuales (español)
 public/
   img/                       # Imágenes activas del sitio
   images/
@@ -62,17 +70,23 @@ public/
 
 Definidas en `src/content.config.ts` con `defineCollection` + `glob`:
 
-| Colección | Ruta | Formato |
-| :-------- | :--- | :------ |
-| `posts` | `src/content/posts/` | `.mdoc` |
-| `people` | `src/content/people/` | `.yaml` |
-| `people2` | `src/content/people2/` | `.yaml` |
-| `proyectos` | `src/content/proyectos/` | `.yaml` |
-| `publicaciones` | `src/content/publicaciones/` | `.yaml` |
-| `documentos` | `src/content/documentos/` | `.yaml` |
-| `memorias` | `src/content/memorias/` | `.yaml` |
+| Colección | Ruta | Formato | Idioma |
+| :-------- | :--- | :------ | :----- |
+| `posts` | `src/content/posts/` | `.mdoc` | Español |
+| `people` | `src/content/people/` | `.yaml` | Español |
+| `peopleEn` | `src/content/people-en/` | `.yaml` | Inglés |
+| `people2` | `src/content/people2/` | `.yaml` | Español |
+| `people2En` | `src/content/people2-en/` | `.yaml` | Inglés |
+| `proyectos` | `src/content/proyectos/` | `.yaml` | Español |
+| `proyectosEn` | `src/content/proyectos-en/` | `.yaml` | Inglés |
+| `publicaciones` | `src/content/publicaciones/` | `.yaml` | Español |
+| `publicacionesEn` | `src/content/publicaciones-en/` | `.yaml` | Inglés |
+| `documentos` | `src/content/documentos/` | `.yaml` | Español |
+| `memorias` | `src/content/memorias/` | `.yaml` | Español |
 
 ## Rutas
+
+### Español (default, sin prefijo)
 
 | Ruta | Página |
 | :--- | :----- |
@@ -82,13 +96,27 @@ Definidas en `src/content.config.ts` con `defineCollection` + `glob`:
 | `/novedades` | Novedades + Publicaciones |
 | `/contacto` | Contacto |
 | `/transparencia` | Transparencia |
+| `/financiamiento` | Financiamiento |
 | `/posts/[slug]` | Detalle de post |
+
+### Inglés (`/en/`)
+
+| Ruta | Página |
+| :--- | :----- |
+| `/en/` | Home |
+| `/en/nosotros` | About |
+| `/en/proyectos` | Projects |
+| `/en/novedades` | News |
+| `/en/contacto` | Contact |
+| `/en/transparencia` | Transparency |
+| `/en/financiamiento` | Funding |
+| `/en/posts/[slug]` | Post detail |
 
 ## Notas importantes
 
 - `npm run build` es la única verificación del proyecto.
 - Keystatic se salta en producción con `SKIP_KEYSTATIC=true`.
-- El language switcher (ES/EN/PT) del navbar no tiene lógica de routing.
+- El language switcher del navbar (ES/EN) es funcional y enlaza a la misma página en cada idioma.
 - Los posts usan formato Markdoc (`.mdoc`), no Markdown común.
 - Assets referenciados con rutas absolutas: `/img/...`, `/images/...`, `/pdfs/...`.
 - Falta `public/og-image.jpg`; `Layout.astro` la referencia por defecto.

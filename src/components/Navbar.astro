@@ -1,14 +1,21 @@
 ---
+import LanguagePicker from './LanguagePicker.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
 const leftNavItems = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Novedades', href: '/novedades' },
+  { label: t('nav.home'), href: translatePath('/') },
+  { label: t('nav.about'), href: translatePath('/nosotros') },
+  { label: t('nav.news'), href: translatePath('/novedades') },
 ];
 
 const rightNavItems = [
-  { label: 'Proyectos', href: '/proyectos' },
-  { label: 'Contacto', href: '/contacto' },
-  { label: 'Transparencia', href: '/transparencia' },
+  { label: t('nav.projects'), href: translatePath('/proyectos') },
+  { label: t('nav.contact'), href: translatePath('/contacto') },
+  { label: t('nav.transparency'), href: translatePath('/transparencia') },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -21,11 +28,7 @@ const currentPath = Astro.url.pathname;
       <span class="font-sans text-xs md:text-body leading-tight md:leading-7 font-normal tracking-wide">
         En América Latina y el Caribe
       </span>
-      <div class="flex items-center gap-2 font-sans text-caption font-medium">
-        <button class="bg-transparent text-text-inverse px-2 py-0.5 border-none cursor-pointer font-bold">ES</button>
-        <button class="bg-transparent text-text-inverse px-2 py-0.5 border-none cursor-pointer hover:opacity-80 font-normal">EN</button>
-        <button class="bg-transparent text-text-inverse px-2 py-0.5 border-none cursor-pointer hover:opacity-80 font-normal">PT</button>
-      </div>
+      <LanguagePicker />
     </div>
   </div>
 
@@ -59,7 +62,7 @@ const currentPath = Astro.url.pathname;
       </ul>
 
       <!-- Logo centrado -->
-      <a href="/" class="no-underline shrink-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 inline-block" aria-label="Ciudadanía Inteligente - Inicio">
+      <a href={translatePath('/')} class="no-underline shrink-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 inline-block" aria-label={`Ciudadanía Inteligente - ${t('nav.home')}`}>
         <img
           src="/img/logo-ciudadania.svg"
           alt="Ciudadanía Inteligente"

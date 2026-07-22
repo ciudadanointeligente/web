@@ -1,13 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import Newsletter from '../components/Newsletter.astro';
-import PageHero from '../components/PageHero.astro';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import PageHero from '../../components/PageHero.astro';
 import { getCollection } from 'astro:content';
+import { useTranslations, useTranslatedPath } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const translatePath = useTranslatedPath('en');
 
 const posts = await getCollection('posts');
-const publicaciones = await getCollection('publicaciones');
+const publicaciones = await getCollection('publicacionesEn');
 
 const tematicas = [
   'Democracia ambiental',
@@ -28,7 +32,7 @@ const noticias = posts
   date: post.data.date,
   tipo: post.data.tipo,
   tematica: post.data.tematica,
-  href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
+  href: `/en/posts/${post.id.replace(/\.mdoc$/, '')}`,
   external: false,
 }))
 .sort((a, b) => {
@@ -56,19 +60,19 @@ const publicacionesItems = publicaciones
 ---
 
 <Layout
-  title="Novedades | Ciudadanía Inteligente"
-  description="Conoce nuestras investigaciones, manuales, columnas y boletines."
+  title="News | Ciudadanía Inteligente"
+  description="Discover our research, manuals, columns, and newsletters."
 >
   <div class="bg-primary">
     <Navbar />
   </div>
   <main>
     <PageHero
-      title="Novedades"
-      description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Conoce nuestras investigaciones, manuales, columnas y boletines</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> que analizan y proponen caminos para una democracia más participativa, justa y sostenible.</span>`}
+      title="News"
+      description={`<span class="font-['Work_Sans'] text-white text-2xl font-bold">Discover our research, manuals, columns, and newsletters</span><span class="font-['Work_Sans'] text-lime-300 text-2xl font-medium"> that analyze and propose paths towards a more participatory, fair, and sustainable democracy.</span>`}
       breadcrumb={[
-        { label: 'Inicio', href: '/' },
-        { label: 'Novedades' },
+        { label: t('common.breadcrumb.home'), href: translatePath('/') },
+        { label: 'News' },
       ]}
     />
 
@@ -112,14 +116,14 @@ const publicacionesItems = publicaciones
     >
       <div class="max-w-300 mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
-          Noticias
+          News
         </h2>
 
         <!-- Filters -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
-          <span class="text-text-primary text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
+          <span class="text-text-primary text-xl font-bold font-['Work_Sans']">{t('common.filterBy')}</span>
           <select x-model="filtro" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
-            <option value="">Temática</option>
+            <option value="">{t('common.topic')}</option>
             {tematicas.map((tematica) => (
             <option value={tematica}>{tematica}</option>
             ))}
@@ -150,7 +154,7 @@ const publicacionesItems = publicaciones
                 loading="lazy"
               />
               ) : (
-              <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Imagen</span>
+              <span class="absolute inset-0 flex items-center justify-center text-text-inverse/30 text-sm">Image</span>
               )}
             </a>
             <div class="p-5 flex flex-col grow">
@@ -172,7 +176,7 @@ const publicacionesItems = publicaciones
               </div>
               )}
               <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
-                Leer artículo
+                {t('common.readMore')}
               </a>
             </div>
           </article>
@@ -193,7 +197,7 @@ const publicacionesItems = publicaciones
             x-transition:leave-end="opacity-0"
             class="inline-flex items-center gap-2 font-sans font-bold text-body bg-primary text-text-inverse px-6 py-3 rounded-md shadow-sm hover:bg-accent-magenta transition-colors duration-fast cursor-pointer"
           >
-            Ver más
+            {t('common.loadMore')}
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -242,14 +246,14 @@ const publicacionesItems = publicaciones
     >
       <div class="max-w-300 mx-auto px-6 relative">
         <h2 class="font-sans font-extrabold text-h2 text-text-primary uppercase tracking-wide text-center mb-2 md:mb-8">
-          Publicaciones
+          Publications
         </h2>
 
         <!-- Filters -->
         <div class="flex flex-wrap items-center justify-center gap-4 mb-10 md:mb-16">
-          <span class="text-text-primary text-xl font-bold font-['Work_Sans']">Filtrar por:</span>
+          <span class="text-text-primary text-xl font-bold font-['Work_Sans']">{t('common.filterBy')}</span>
           <select x-model="filtro" class="font-sans text-body bg-lime-300 text-black border border-black/10 rounded-md px-4 py-2 cursor-pointer">
-            <option value="">Temática</option>
+            <option value="">{t('common.topic')}</option>
             {tematicas.map((tematica) => (
             <option value={tematica}>{tematica}</option>
             ))}
@@ -281,7 +285,7 @@ const publicacionesItems = publicaciones
               />
               ) : (
               <div class="w-full h-64 bg-bg-gray flex items-center justify-center rounded-sm">
-                <span class="text-text-body/40 text-sm">Imagen</span>
+                <span class="text-text-body/40 text-sm">Image</span>
               </div>
               )}
             </figure>
@@ -304,9 +308,9 @@ const publicacionesItems = publicaciones
               target="_blank"
               rel="noopener noreferrer"
               class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 font-['Work_Sans'] text-sm md:text-body text-accent-magenta border border-accent-magenta rounded-md shadow-sm transition-colors duration-fast hover:bg-primary hover:text-text-inverse hover:border-primary"
-              aria-label="Descargar publicación"
+              aria-label="Download publication"
             >
-              <span>DESCARGAR PDF</span>
+              <span>{t('common.downloadPDF')}</span>
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
               </svg>
@@ -329,7 +333,7 @@ const publicacionesItems = publicaciones
             x-transition:leave-end="opacity-0"
             class="inline-flex items-center gap-2 font-sans font-bold text-body bg-primary text-text-inverse px-6 py-3 rounded-md shadow-sm hover:bg-accent-magenta transition-colors duration-fast cursor-pointer"
           >
-            Ver más
+            {t('common.loadMore')}
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>

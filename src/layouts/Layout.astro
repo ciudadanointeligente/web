@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -14,11 +15,13 @@ const {
   ogImage = '/og-image.jpg',
 } = Astro.props;
 
+const lang = getLangFromUrl(Astro.url);
+const ogLocale = lang === 'en' ? 'en_US' : 'es_ES';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://ciudadaniai.org');
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,7 +39,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://ciudadan
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

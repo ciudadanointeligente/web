@@ -1,0 +1,14 @@
+nombre: Electoral Traffic Light
+order: 11
+imagen: /images/proyectos/semaforo-electoral/imagen.png
+descripcion: >-
+  Translates Chilean electoral legislation into simple and accessible
+  information to strengthen citizen oversight of campaigns and electoral
+  processes.
+link: https://semaforoelectoral.cl/
+status: Actual
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica

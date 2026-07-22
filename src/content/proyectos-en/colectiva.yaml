@@ -1,0 +1,15 @@
+nombre: Colectiva Network
+order: 1
+imagen: /images/proyectos/colectiva/imagen.png
+descripcion: >-
+  Articulates organizations, activists, and experts from Latin America and the
+  Caribbean to share learnings, strengthen networks, and build collective
+  responses to the region's democratic challenges.
+link: https://colectiva.ciudadaniai.org/
+status: Actual
+alcance: Regional
+home: true
+categorias:
+  - Participación ciudadana
+  - Articulación e incidencia
+  - Educación y Garantías democráticas

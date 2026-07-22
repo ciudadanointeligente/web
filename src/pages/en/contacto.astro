@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import PageHero from '../../components/PageHero.astro';
+import { useTranslations, useTranslatedPath } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const translatePath = useTranslatedPath('en');
+---
+
+<Layout
+  title="Contact | Ciudadanía Inteligente"
+  description="Do you want to join, collaborate, or write to us? Here are all the ways to get in touch with Ciudadanía Inteligente."
+>
+  <div class="bg-primary">
+    <Navbar />
+  </div>
+  <main>
+    <PageHero
+      title="Contact"
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">Do you want to join, collaborate, or write to us?</span> <span class="text-white text-2xl font-medium font-['Work_Sans']"></span><span class="text-[#96f67d] text-2xl font-medium font-['Work_Sans']">Here are all the ways to get in touch with Ciudadanía Inteligente.</span>`}
+      breadcrumb={[
+        { label: t('common.breadcrumb.home'), href: translatePath('/') },
+        { label: 'Contact' },
+      ]}
+    />
+
+    <!-- Contact CTA -->
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-200 mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-black text-[40px] text-text-primary uppercase tracking-tight mb-4">
+          Do you want to join, collaborate, or write to us?
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-[29.60px] mb-12">
+          Here are all the ways to get in touch with Ciudadanía Inteligente:
+        </p>
+      </div>
+    </section>
+
+    <!-- Volunteer -->
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-250 mx-auto px-6 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <a
+              href="#"
+              class="inline-block shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-center"
+            >
+              Volunteering and internships
+            </a>
+          </div>
+          <div>
+            <p class="font-['Work_Sans'] text-black text-xl font-normal leading-[29.60px] mb-4">
+              Be part of our team and contribute to democratic transformation from within.
+            </p>
+            <a
+              href="#"
+              class="inline-block font-sans text-[18.81px] font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
+            >
+              APPLY HERE
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Write Us -->
+    <section class="relative py-8 md:py-10">
+      <div class="max-w-200 mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-bold text-h3 text-accent-magenta mb-4">
+          Write to us
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-[29.60px] mb-2">
+          Do you have questions, proposals, or ideas to collaborate?
+        </p>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-[29.60px]">
+          Write to us at <a href="mailto:info@ciudadaniai.org" class="text-text-primary font-bold no-underline hover:text-accent-magenta transition-colors">info@ciudadaniai.org</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter decorated />
+  </main>
+
+  <Footer />
+</Layout>

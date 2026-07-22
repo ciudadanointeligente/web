@@ -1,0 +1,15 @@
+nombre: LatamLeaks
+order: 10
+imagen: /images/proyectos/latam-leaks/imagen.png
+descripcion: >-
+  Developed a regional secure and anonymous platform to report cases of
+  corruption, human rights violations, and other abuses together with FIBGAR
+  and PODER.
+link: https://www.latamleaks.lat
+status: Pasado
+alcance: Regional
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica
+  - Articulación e incidencia

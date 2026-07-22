@@ -1,0 +1,14 @@
+nombre: Vote Smart
+order: 15
+imagen: /images/proyectos/vota-inteligente/imagen.png
+descripcion: >-
+  Connected citizens and candidacies through a platform that allowed proposing
+  ideas, knowing political positions, and strengthening informed decisions.
+link: https://votainteligente.cl/
+status: Pasado
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Participación ciudadana
+  - Innovación y tecnología cívica

@@ -1,0 +1,13 @@
+nombre: From Words to Deeds
+order: 7
+imagen: /images/proyectos/del-dicho-al-hecho/imagen.png
+descripcion: >-
+  Analyzes the fulfillment of presidential promises in Chile since 2012,
+  monitoring their progress and translation into public policies and bills.
+link: https://deldichoalhecho.cl/
+status: Actual
+alcance: Local
+home: true
+categorias:
+  - Innovación y tecnología cívica
+  - Transparencia y rendición de cuentas

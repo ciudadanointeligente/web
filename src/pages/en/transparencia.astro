@@ -1,0 +1,180 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations, useTranslatedPath } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const translatePath = useTranslatedPath('en');
+
+const memorias = (await getCollection('memorias')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+);
+const documentos = (await getCollection('documentos')).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0),
+);
+---
+
+<Layout
+  title="Transparency | Ciudadanía Inteligente"
+  description="We believe that transparency strengthens democracy. We make clear information available about how we are funded and what results we achieve."
+>
+  <div class="bg-primary">
+    <Navbar />
+  </div>
+  <main>
+    <PageHero
+      title="Transparency"
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">We believe that transparency strengthens democracy.</span><span class="text-white text-2xl font-medium font-['Work_Sans']"></span> <span class="text-[#96f67d] text-2xl font-medium font-['Work_Sans']">That is why we make clear information available to everyone about how we are funded, who supports our work, and what results we achieve each year.</span>`}
+      breadcrumb={[
+        { label: t('common.breadcrumb.home'), href: translatePath('/') },
+        { label: 'Transparency' },
+      ]}
+    />
+
+    <!-- Financing -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-250 mx-auto px-6 relative">
+        <div class="flex flex-col md:flex-row gap-4 md:gap-16 items-start">
+          <span
+            class="inline-block shrink-0 font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-0 bg-accent-magenta px-4 py-2 text-center"
+          >
+            How are we funded?
+          </span>
+          <p class="flex-1 font-sans text-xl text-text-body leading-body">
+            We are funded mainly through project applications to international entities and cooperation agencies. We also generate change actions through alliances with public institutions and other civil society organizations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Annual Reports -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-250 mx-auto px-6 relative">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-2">
+          Reports and Documents
+        </h2>
+        <p class="font-sans text-xl text-text-body text-center mb-6 md:mb-10">
+          Access our annual reports and other important documents from our management.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
+              Annual Reports
+            </h3>
+            <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
+              {memorias.map((memoria) => {
+              const href = memoria.data.link || memoria.data.descarga || '#';
+              return (
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-primary underline hover:text-accent-magenta transition-colors"
+                >
+                  {memoria.data.nombre}
+                </a>
+              </li>
+              );
+              })}
+            </ul>
+          </div>
+          <div>
+            <h3 class="inline-block font-sans font-bold text-h6 md:text-h5 text-text-inverse uppercase tracking-wide mb-4 bg-accent-magenta px-4 py-2">
+              Protocols and Operation
+            </h3>
+            <ul class="list-none space-y-2 font-sans text-xl text-text-primary p-0 m-0">
+              {documentos.map((documento) => {
+              const href = documento.data.link || documento.data.descarga || '#';
+              return (
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 mt-0.5 shrink-0 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-primary underline hover:text-accent-magenta transition-colors"
+                >
+                  {documento.data.nombre}
+                </a>
+              </li>
+              );
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financing CTA -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-250 mx-auto px-6 relative text-center">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide mb-4">
+          Detailed Funding
+        </h2>
+        <p class="font-sans text-xl text-text-body mb-8">
+          Review the complete detail of funding entities, years, amounts, and status of each contribution.
+        </p>
+        <a
+          href={translatePath('/financiamiento')}
+          class="inline-flex items-center gap-2 font-sans font-bold text-body bg-primary text-text-inverse px-6 py-3 rounded-md shadow-sm hover:bg-accent-magenta transition-colors duration-fast"
+        >
+          View funding table
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Supporters -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-350 mx-auto px-6 relative">
+        <h2 class="font-sans font-black text-h2 md:text-h1 text-text-primary uppercase tracking-wide text-center mb-6 md:mb-10">
+          Who supports our work
+        </h2>
+
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-x-10 gap-y-10 items-center">
+          {[
+          { name: 'Unión Europea', file: 'logo-ue.webp' },
+          { name: 'Packard Foundation', file: 'logo-packard.webp' },
+          { name: 'Friedrich Ebert Stiftung', file: 'logo-fes.webp' },
+          { name: 'UNDEF', file: 'logo-undef.webp' },
+          { name: 'OXFAM', file: 'logo-oxfam.webp' },
+          { name: 'Luminate', file: 'logo-luminate.webp' },
+          { name: 'Open Society Foundations', file: 'logo-open-society.webp' },
+          { name: 'IDRC CRDI', file: 'logo-idrc.webp' },
+          { name: 'NED', file: 'logo-ned.webp' },
+          { name: 'Avina', file: 'logo-avina.webp' },
+          { name: 'AECID', file: 'logo-aecid.webp' },
+          { name: 'Karibu Foundation', file: 'logo-karibu.webp' },
+          ].map((org) => (
+          <div class="flex items-center justify-center h-16 px-2" title={org.name}>
+            <img
+              src={`/img/${org.file}`}
+              alt={org.name}
+              loading="lazy"
+              class="max-h-12 w-auto max-w-full object-contain"
+            />
+          </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter decorated />
+  </main>
+
+  <Footer />
+</Layout>

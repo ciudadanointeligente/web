@@ -1,0 +1,13 @@
+nombre: CivicLab
+order: 12
+imagen: /images/proyectos/lab-civico/imagen.png
+descripcion: >-
+  Develops participatory methodologies to build collaborative agendas and
+  action plans with organizations and communities.
+link: https://labcivico.org/
+status: Actual
+alcance: Regional
+home: false
+categorias:
+  - Participación ciudadana
+  - Articulación e incidencia

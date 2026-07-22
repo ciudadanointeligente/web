@@ -1,0 +1,160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import PageHero from '../../components/PageHero.astro';
+import { getCollection } from 'astro:content';
+import PersonCard from '../../components/PersonCard.astro';
+import { useTranslations, useTranslatedPath } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const translatePath = useTranslatedPath('en');
+
+const people = (await getCollection('peopleEn')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const people2 = (await getCollection('people2En')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Layout
+  title="About | Ciudadanía Inteligente"
+  description="We are a Latin American non-profit organization. We drive concrete changes to strengthen democracy."
+>
+  <div class="bg-primary">
+  <Navbar />
+    </div>
+  <main>
+    <PageHero
+      title="About"
+      description={`<span class="text-white text-2xl font-bold font-['Work_Sans']">More than 15 years making democracy</span> <br/>
+      <span class="text-lime-300 text-2xl font-medium font-['Work_Sans']">a shared, fair, and transformative experience.</span>`}
+      breadcrumb={[
+        { label: t('common.breadcrumb.home'), href: translatePath('/') },
+        { label: 'About' },
+      ]}
+    />
+
+    <!-- About Text -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-200 mx-auto px-6 relative text-center">
+        <p class="font-sans text-xl text-neutral-700 leading-body">
+          We are a Latin American non-profit organization. We drive concrete changes: <span class="text-fuchsia-600 font-bold">we build citizenship, support local governments, develop digital tools, build diverse alliances, and research threats to democracy</span> to propose solutions that decentralize power and activate participation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-250 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
+          Our
+        </p>
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-6 md:mb-10">
+          Values
+        </h2>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          {['Collaboration', 'Transparency', 'Participation', 'Information', 'Environmental Democracy', 'Regional focus', 'Innovation'].map((value) => (
+            <span class="font-['Work_Sans'] text-blue-600 text-xl md:text-2xl font-medium bg-accent-green h-auto min-h-14 flex items-center justify-center text-center px-4 py-2">
+              {value}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-300 mx-auto px-6 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div class="p-2 md:p-4">
+            <div class="mb-2 md:mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-xl md:text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 text-center">Our Mission</h3>
+            </div>
+            <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
+              We work to transform politics through collective action, accessible information, territorial work, and collaboration with diverse actors.
+            </p>
+          </div>
+          <div class="p-2 md:p-4">
+            <div class="mb-2 md:mb-4">
+              <h3 class="font-['Work_Sans'] text-white text-xl md:text-2xl font-bold bg-fuchsia-600 inline-flex items-center justify-center px-6 py-2 text-center">Our Vision</h3>
+            </div>
+            <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7">
+              We work towards a region with informed and organized citizens, a strong civil society, open institutions, and politics that protect life in common and the sustainability of the planet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-325 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
+          Our
+        </p>
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
+          Board
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-10 md:mb-16">
+          Our board is made up of people with extensive experience in democracy, human rights, and civil society, who strategically guide our work.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          {people.map((person) => (
+            <PersonCard
+              name={person.data.name}
+              position={person.data.position}
+              photo={person.data.photo}
+              description={person.data.description}
+              email={person.data.email}
+              twitter={person.data.twitter}
+              linkedin={person.data.linkedin}
+              instagram={person.data.instagram}
+              github={person.data.github}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Team -->
+    <section class="relative py-10 md:py-20">
+      <div class="max-w-325 mx-auto px-6 relative">
+        <p class="font-['Work_Sans'] text-blue-600 text-2xl font-medium uppercase text-center mb-2">
+          Our
+        </p>
+        <h2 class="font-['Work_Sans'] text-blue-600 text-4xl font-black uppercase text-center mb-4">
+          Executive Team
+        </h2>
+        <p class="font-['Work_Sans'] text-black text-xl font-normal leading-7 text-center max-w-2xl mx-auto mb-10 md:mb-16">
+          A multidisciplinary team of professionals and activists committed to democratic transformation from the territory, research, and political advocacy.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+          {people2.map((person) => (
+            <PersonCard
+              name={person.data.name}
+              position={person.data.position}
+              photo={person.data.photo}
+              description={person.data.description}
+              email={person.data.email}
+              twitter={person.data.twitter}
+              linkedin={person.data.linkedin}
+              instagram={person.data.instagram}
+              github={person.data.github}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <Newsletter decorated />
+  </main>
+
+  <Footer />
+</Layout>

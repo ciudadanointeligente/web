@@ -102,6 +102,30 @@ export default config({
         github: fields.text({ label: "GitHub" }),
       },
     }),
+    peopleEn: collection({
+      label: "Board (English)",
+      slugField: "name",
+      path: "src/content/people-en/*",
+      schema: {
+        name: fields.slug({ name: { label: "Name" } }),
+        position: fields.text({ label: "Position" }),
+        order: fields.number({
+          label: "Order",
+          validation: { isRequired: true },
+        }),
+        photo: fields.image({
+          label: "Photo",
+          directory: "public/images/people",
+          publicPath: "/images/people/",
+        }),
+        description: fields.text({ label: "Description" }),
+        email: fields.text({ label: "Email" }),
+        twitter: fields.text({ label: "Twitter" }),
+        linkedin: fields.text({ label: "LinkedIn" }),
+        instagram: fields.text({ label: "Instagram" }),
+        github: fields.text({ label: "GitHub" }),
+      },
+    }),
     people2: collection({
       label: "Equipo",
       slugField: "name",
@@ -119,6 +143,30 @@ export default config({
           publicPath: "/images/people2/",
         }),
         description: fields.text({ label: "Descripción" }),
+        email: fields.text({ label: "Email" }),
+        twitter: fields.text({ label: "Twitter" }),
+        linkedin: fields.text({ label: "LinkedIn" }),
+        instagram: fields.text({ label: "Instagram" }),
+        github: fields.text({ label: "GitHub" }),
+      },
+    }),
+    people2En: collection({
+      label: "Team (English)",
+      slugField: "name",
+      path: "src/content/people2-en/*",
+      schema: {
+        name: fields.slug({ name: { label: "Name" } }),
+        position: fields.text({ label: "Position" }),
+        order: fields.number({
+          label: "Order",
+          validation: { isRequired: true },
+        }),
+        photo: fields.image({
+          label: "Photo",
+          directory: "public/images/people2",
+          publicPath: "/images/people2/",
+        }),
+        description: fields.text({ label: "Description" }),
         email: fields.text({ label: "Email" }),
         twitter: fields.text({ label: "Twitter" }),
         linkedin: fields.text({ label: "LinkedIn" }),
@@ -198,6 +246,78 @@ export default config({
         }),
       },
     }),
+    proyectosEn: collection({
+      label: "Projects (English)",
+      slugField: "nombre",
+      path: "src/content/proyectos-en/*",
+      schema: {
+        nombre: fields.slug({ name: { label: "Name" } }),
+        order: fields.number({
+          label: "Order",
+          validation: { isRequired: true },
+        }),
+        imagen: fields.image({
+          label: "Image",
+          directory: "public/images/proyectos",
+          publicPath: "/images/proyectos/",
+        }),
+        descripcion: fields.text({
+          label: "Description",
+          multiline: true,
+        }),
+        link: fields.url({ label: "Link" }),
+        link2: fields.url({ label: "Link 2" }),
+        status: fields.select({
+          label: "Status",
+          options: [
+            { label: "Current", value: "Actual" },
+            { label: "Past", value: "Pasado" },
+          ],
+          defaultValue: "Actual",
+        }),
+        alcance: fields.select({
+          label: "Scope",
+          options: [
+            { label: "Regional", value: "Regional" },
+            { label: "Local", value: "Local" },
+          ],
+          defaultValue: "Regional",
+        }),
+        home: fields.checkbox({
+          label: "Show on Home",
+          description:
+            "Check to show this project on the home page.",
+        }),
+        categorias: fields.multiselect({
+          label: "Categories",
+          description: "Project themes. Select at least one.",
+          options: [
+            { label: "Environmental Democracy", value: "Democracia ambiental" },
+            {
+              label: "Citizen Participation",
+              value: "Participación ciudadana",
+            },
+            {
+              label: "Articulation and Advocacy",
+              value: "Articulación e incidencia",
+            },
+            {
+              label: "Transparency and Accountability",
+              value: "Transparencia y rendición de cuentas",
+            },
+            { label: "Local Governments", value: "Gobiernos locales" },
+            {
+              label: "Innovation and Civic Technology",
+              value: "Innovación y tecnología cívica",
+            },
+            {
+              label: "Education and Democratic Guarantees",
+              value: "Educación y Garantías democráticas",
+            },
+          ],
+        }),
+      },
+    }),
 
     publicaciones: collection({
       label: "Publicaciones",
@@ -234,6 +354,48 @@ export default config({
         tematica: fields.multiselect({
           label: "Temáticas",
           description: "Seleccionar una o más temáticas.",
+          options: opcionesTematica,
+        }),
+      },
+    }),
+    publicacionesEn: collection({
+      label: "Publications (English)",
+      slugField: "nombre",
+      path: "src/content/publicaciones-en/*",
+      schema: {
+        nombre: fields.slug({ name: { label: "Title" } }),
+        descripcion: fields.text({ label: "Description" }),
+        imagen: fields.image({
+          label: "image",
+          directory: "public/images/publicaciones",
+          publicPath: "/images/publicaciones/",
+        }),
+        link: fields.url({ label: "Link" }),
+        descarga: fields.file({
+          label: "Document",
+          directory: "public/pdfs/publicaciones",
+          publicPath: "/pdfs/publicaciones/",
+        }),
+        order: fields.number({
+          label: "Order",
+          validation: { isRequired: true },
+        }),
+        showOnHome: fields.checkbox({
+          label: "Show on Home",
+          description:
+            "Check to show this publication on the home publications section.",
+        }),
+        tipo: fields.select({
+          label: "Type",
+          options: [
+            { label: "News", value: "Noticia" },
+            { label: "Publication", value: "Publicación" },
+          ],
+          defaultValue: "Publicación",
+        }),
+        tematica: fields.multiselect({
+          label: "Themes",
+          description: "Select one or more themes.",
           options: opcionesTematica,
         }),
       },

@@ -1,0 +1,15 @@
+nombre: DemocracyKit
+order: 4
+imagen: /images/proyectos/democracia-kit/imagen.png
+descripcion: >-
+  Facilitates access to successful experiences of local democratic innovation
+  through an interactive tool designed to strengthen participatory and
+  collaborative projects.
+link: https://democraciakit.abrealcaldias.org/
+status: Actual
+alcance: Regional
+home: false
+categorias:
+  - Gobiernos locales
+  - Innovación y tecnología cívica
+  - Educación y Garantías democráticas

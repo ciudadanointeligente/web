@@ -1,9 +1,13 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 interface Props {
   decorated?: boolean;
 }
 
 const { decorated = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="bg-primary text-text-inverse relative overflow-hidden mt-24 md:mt-32">
@@ -45,16 +49,16 @@ const { decorated = false } = Astro.props;
       ]}
     >
       <h2 class="font-sans font-bold text-h4 md:text-h3 leading-headings mb-6">
-        Súmate a nuestro Newsletter
+        {t('newsletter.title')}
       </h2>
       <form class="flex flex-col sm:flex-row gap-3" action="//ciudadanointeligente.us5.list-manage.com/subscribe/post?u=73951bb4ca8d05cfc6a608807&id=b77280e172" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
-        <input type="email" placeholder="Escribe tu correo aquí" required="" value="" name="EMAIL" id="mce-EMAIL" aria-required="true" class="flex-1 font-sans text-body font-regular text-text-body bg-neutral-white rounded-pill px-5 py-3 placeholder:text-neutral-dark/50 focus:outline-none focus:ring-2 focus:ring-accent-magenta transition-all duration-fast"
+        <input type="email" placeholder={t('newsletter.placeholder')} required="" value="" name="EMAIL" id="mce-EMAIL" aria-required="true" class="flex-1 font-sans text-body font-regular text-text-body bg-neutral-white rounded-pill px-5 py-3 placeholder:text-neutral-dark/50 focus:outline-none focus:ring-2 focus:ring-accent-magenta transition-all duration-fast"
         />
         <button
-          type="submit" value="Subscribirme" name="subscribe" id="mc-embedded-subscribe"
+          type="submit" value={t('newsletter.button')} name="subscribe" id="mc-embedded-subscribe"
           class="font-sans text-body font-bold text-text-primary bg-neutral-white rounded-pill px-6 py-3 border-none cursor-pointer hover:bg-accent-magenta hover:text-text-inverse transition-all duration-fast"
         >
-          SUSCRÍBETE
+          {t('newsletter.button')}
         </button>
       </form>
     </div>
