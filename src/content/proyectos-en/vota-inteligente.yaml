@@ -1,9 +1,10 @@
-nombre: Vote Smart
+nombre: Smart Vote
 order: 15
 imagen: /images/proyectos/vota-inteligente/imagen.png
 descripcion: >-
-  Connected citizens and candidacies through a platform that allowed proposing
-  ideas, knowing political positions, and strengthening informed decisions.
+  Platform connecting citizens and candidates: propose ideas, share them, and
+  clearly understand each candidate’s positions, empowering communities in
+  decision-making.
 link: https://votainteligente.cl/
 status: Pasado
 alcance: Local

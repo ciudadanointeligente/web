@@ -2,9 +2,9 @@ nombre: Electoral Traffic Light
 order: 11
 imagen: /images/proyectos/semaforo-electoral/imagen.png
 descripcion: >-
-  Translates Chilean electoral legislation into simple and accessible
-  information to strengthen citizen oversight of campaigns and electoral
-  processes.
+  Platform translating Chile’s electoral law into simple, accessible
+  information. Encourages citizens to monitor campaigns and demand compliance
+  with regulations.
 link: https://semaforoelectoral.cl/
 status: Actual
 alcance: Local

@@ -1,0 +1,14 @@
+nombre: Anti-Corruption Observatory
+order: 19
+imagen: /images/proyectos/anti-corruption-observatory/imagen.png
+descripcion: >-
+  Initiative by Espacio Público and Ciudadanía Inteligente tracking proposals by
+  the Presidential Advisory Council to achieve higher probity and transparency
+  in Chile.
+link: https://observatorioanticorrupcion.cl/
+status: Pasado
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica
