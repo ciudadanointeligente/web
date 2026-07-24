@@ -1,0 +1,14 @@
+nombre: Observatorio Anticorrupción
+order: 19
+imagen: /images/proyectos/observatorio-anticorrupcion/imagen.png
+descripcion: >-
+  Monitoreó el avance de las propuestas del Consejo Asesor Presidencial contra
+  la corrupción junto a Espacio Público, promoviendo mayor transparencia y
+  probidad pública.
+link: https://observatorioanticorrupcion.cl/
+status: Pasado
+alcance: Local
+home: false
+categorias:
+  - Transparencia y rendición de cuentas
+  - Innovación y tecnología cívica
