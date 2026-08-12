@@ -1,6 +1,6 @@
-nombre: CILA
-order: 15
-imagen: /images/proyectos/cila/imagen.png
+nombre: CILA Global
+order: 22
+imagen: /images/proyectos/cila-global/imagen.png
 descripcion: >-
   International Consortium of Localities in Action (CILA) connects Global South
   organizations to face democratic challenges. Promotes diverse participation,
@@ -11,6 +11,4 @@ status: Pasado
 alcance: Regional
 home: false
 categorias:
-  - Articulación e incidencia
-  - Participación ciudadana
-  - Innovación y tecnología cívica
+  - Educación y Garantías democráticas

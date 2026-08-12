@@ -1,0 +1,10 @@
+nombre: Colectiva Mexico 2019 Event
+descripcion: Colectiva Mexico 2019 Event
+imagen: /images/publicaciones/evento-colectiva-mexico-2019/imagen.webp
+link: https://gitlab.com/ciudadaniai/2022/-/raw/main/colectiva-relatoria-final.pdf
+order: 13
+showOnHome: false
+tipo: Publicación
+tematica:
+  - Articulación e incidencia
+  - Gobiernos locales
