@@ -1,0 +1,14 @@
+nombre: Escuela de Activismo Digital
+order: 20
+imagen: /images/proyectos/escuela-de-activismo-digital/imagen.png
+descripcion: >-
+  La Escuela de Activismo Digital es una instancia de transferencia de
+  herramientas para el fortalecimiento de las acciones de activismo digital de
+  activistas de América Latina y el Caribe. 
+link: https://ciudadaniai.org
+status: Pasado
+alcance: Regional
+home: false
+categorias:
+  - Participación ciudadana
+  - Innovación y tecnología cívica
