@@ -12,10 +12,32 @@ const homeProjects = allProjects
   .slice(0, 3);
 
 const allPosts = await getCollection('posts');
+const allPublications = await getCollection('publicaciones');
+
 const homePosts = allPosts
   .filter((post) => post.data.showOnHome)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const homePublications = allPublications
+  .filter((pub) => pub.data.showOnHome)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const homeNews = [
+  ...homePublications.map((pub) => ({
+    title: pub.data.nombre,
+    image: pub.data.imagen,
+    badge: pub.data.tipo || 'Publicación',
+    href: pub.data.descarga || pub.data.link,
+    external: true,
+  })),
+  ...homePosts.map((post) => ({
+    title: post.data.title,
+    image: post.data.imagepost,
+    badge: post.data.category || 'Actualidad',
+    href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
+    external: false,
+  })),
+].slice(0, 3);
 ---
 
 <Layout
@@ -153,13 +175,18 @@ const homePosts = allPosts
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {homePosts.map((post) => (
+          {homeNews.map((item) => (
             <article class="bg-bg-gray rounded-lg overflow-hidden flex flex-col">
-              <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="block aspect-4/3 bg-neutral-dark relative overflow-hidden">
-                {post.data.imagepost ? (
+              <a
+                href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                class="block aspect-4/3 bg-neutral-dark relative overflow-hidden"
+              >
+                {item.image ? (
                   <img
-                    src={post.data.imagepost}
-                    alt={post.data.title}
+                    src={item.image}
+                    alt={item.title}
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -170,13 +197,18 @@ const homePosts = allPosts
               <div class="p-5 flex flex-col grow">
                 <div class="mb-5">
                   <span class="inline font-sans text-sm font-medium uppercase tracking-wider text-text-primary bg-sky-300 px-2 py-0.5">
-                    {post.data.category || 'Actualidad'}
+                    {item.badge}
                   </span>
                 </div>
               <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-5 grow">
-                  {post.data.title}
+                  {item.title}
                 </h3>
-                <a href={`/posts/${post.id.replace(/\.mdoc$/, '')}`} class="font-sans text-base font-bold  text-fuchsia-600 underline uppercase">
+                <a
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  class="font-sans text-base font-bold  text-fuchsia-600 underline uppercase"
+                >
                   Leer artículo
                 </a>
               </div>
