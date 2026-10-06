@@ -1,6 +1,6 @@
 # Sitio Web — Ciudadanía Inteligente (FCI)
 
-> Proyecto Astro + Tailwind CSS v4 + Alpine.js con Sistema de Diseño integrado extraído desde Figma.
+> Proyecto Astro + Tailwind CSS v4 + Alpine.js con Sistema de Diseño integrado.
 
 ---
 
