@@ -15,7 +15,7 @@ const homeProjects = allProjects
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 3);
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('postsEn');
 const allPublications = await getCollection('publicacionesEn');
 
 const homePosts = allPosts

@@ -80,6 +80,11 @@ const posts = defineCollection({
   schema: postSchema,
 });
 
+const postsEn = defineCollection({
+  loader: glob({ pattern: "**/*.mdoc", base: "./src/content/posts-en" }),
+  schema: postSchema,
+});
+
 const people = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/people" }),
   schema: peopleSchema,
@@ -132,6 +137,7 @@ const memorias = defineCollection({
 
 export const collections = {
   posts,
+  postsEn,
   people,
   people2,
   peopleEn,

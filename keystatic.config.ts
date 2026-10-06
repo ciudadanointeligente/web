@@ -78,6 +78,55 @@ export default config({
         }),
       },
     }),
+    postsEn: collection({
+      label: "News (English)",
+      columns: ["title", "date"],
+      slugField: "title",
+      path: "src/content/posts-en/*",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        subtitle: fields.text({ label: "Subtitle" }),
+        category: fields.text({ label: "Categories" }),
+        author: fields.text({ label: "Author(s)" }),
+        imagepost: fields.image({
+          label: "Main image",
+          directory: "public/images/posts",
+          publicPath: "/images/posts/",
+        }),
+        date: fields.date({
+          label: "Publication date",
+          validation: { isRequired: true },
+        }),
+        content: fields.markdoc({
+          label: "Content",
+          options: {
+            image: {
+              directory: "public/images/posts",
+              publicPath: "../../public/images/posts/",
+            },
+          },
+        }),
+        showOnHome: fields.checkbox({
+          label: "Show on Home",
+          description:
+            "Check to show this news item on the home page carousel.",
+        }),
+        tipo: fields.select({
+          label: "Type",
+          options: [
+            { label: "News", value: "Noticia" },
+            { label: "Publication", value: "Publicación" },
+          ],
+          defaultValue: "Noticia",
+        }),
+        tematica: fields.multiselect({
+          label: "Themes",
+          description: "Select one or more themes.",
+          options: opcionesTematica,
+        }),
+      },
+    }),
     people: collection({
       label: "Directorio",
       slugField: "name",

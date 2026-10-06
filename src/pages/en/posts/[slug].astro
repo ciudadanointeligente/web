@@ -15,9 +15,9 @@ if (!slug) throw new Error('Slug not found');
 
 let post;
 try {
-  post = await getEntry('posts', slug);
+  post = await getEntry('postsEn', slug);
 } catch {
-  const posts = await getCollection('posts');
+  const posts = await getCollection('postsEn');
   post = posts.find((p) => p.id === slug || p.id === `${slug}.mdoc`);
 }
 
@@ -26,7 +26,7 @@ if (!post) throw new Error(`No post found for slug: ${slug}`);
 const { Content } = await render(post);
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
+  const posts = await getCollection('postsEn');
   return posts.map((post) => ({
     params: { slug: post.id.replace(/\.mdoc$/, '') },
   }));
