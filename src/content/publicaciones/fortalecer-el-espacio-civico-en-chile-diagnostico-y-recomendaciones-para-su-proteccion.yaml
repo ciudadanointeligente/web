@@ -11,7 +11,7 @@ link: >-
 descarga: >-
   /pdfs/publicaciones/fortalecer-el-espacio-civico-en-chile-diagnostico-y-recomendaciones-para-su-proteccion/descarga.pdf
 order: -1
-showOnHome: true
+showOnHome: false
 tipo: Publicación
 tematica:
   - Articulación e incidencia
