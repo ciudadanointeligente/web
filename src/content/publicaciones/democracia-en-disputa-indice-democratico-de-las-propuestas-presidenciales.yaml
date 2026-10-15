@@ -5,7 +5,7 @@ imagen: >-
 link: >-
   https://gitlab.com/ciudadaniai/ciudadaniai/-/raw/master/assets/attachments/analisisprogramas.pdf
 order: 2
-showOnHome: false
+showOnHome: true
 tipo: Publicación
 tematica:
   - Educación y Garantías democráticas

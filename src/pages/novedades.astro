@@ -159,19 +159,19 @@ const publicacionesItems = publicaciones
                   {item.tipo}
                 </span>
               </div>
-              <h3 class="font-sans font-bold text-[20px] text-text-primary leading-tight uppercase mb-3 grow">
+              <h3 class="font-sans font-normal text-[20px] text-text-primary leading-tight mb-3 grow">
                 {item.title}
               </h3>
               {item.tematica && item.tematica.length > 0 && (
               <div class="flex flex-wrap gap-1.5 mb-4">
                 {item.tematica.map((t) => (
-                <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-2.5 py-0.5">
+                <span class="inline-block font-sans text-caption font-medium uppercase tracking-wide text-primary bg-primary/10 rounded-pill px-2.5 py-0.5">
                   {t}
                 </span>
                 ))}
               </div>
               )}
-              <a href={item.href} class="font-sans text-base font-bold text-fuchsia-600 underline uppercase">
+              <a href={item.href} class="font-sans text-base font-normal text-fuchsia-600 underline">
                 Leer artículo
               </a>
             </div>

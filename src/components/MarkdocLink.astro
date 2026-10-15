@@ -1,0 +1,46 @@
+---
+/**
+ * Renderer de enlaces para Markdoc.
+ *
+ * Los enlaces que apuntan fuera del sitio (http/https con un host distinto al del
+ * proyecto) se abren en una pestaña/ventana nueva con `target="_blank"` y
+ * `rel="noopener noreferrer"`. Los enlaces internos (rutas relativas, anclas,
+ * mailto:, tel:) se mantienen en la misma pestaña.
+ */
+interface Props {
+  href?: string;
+  title?: string;
+}
+
+const { href = '', title } = Astro.props;
+
+const siteHost = (Astro.site ?? Astro.url).host.replace(/^www\./, '');
+
+function isExternalLink(link: string): boolean {
+  if (!link) return false;
+  if (/^(mailto:|tel:|sms:)/i.test(link)) return false;
+  if (link.startsWith('#')) return false;
+
+  const hasProtocol = /^https?:\/\//i.test(link);
+  const isProtocolRelative = link.startsWith('//');
+  if (!hasProtocol && !isProtocolRelative) return false;
+
+  try {
+    const url = new URL(hasProtocol ? link : `https:${link}`);
+    return url.host.replace(/^www\./, '') !== siteHost;
+  } catch {
+    return false;
+  }
+}
+
+const external = isExternalLink(href);
+---
+
+<a
+  href={href}
+  title={title}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+</a>

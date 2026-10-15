@@ -16,28 +16,29 @@ const allPublications = await getCollection('publicaciones');
 
 const homePosts = allPosts
   .filter((post) => post.data.showOnHome)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
 const homePublications = allPublications
   .filter((pub) => pub.data.showOnHome)
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
 
-const homeNews = [
-  ...homePublications.map((pub) => ({
-    title: pub.data.nombre,
-    image: pub.data.imagen,
-    badge: pub.data.tipo || 'Publicación',
-    href: pub.data.descarga || pub.data.link,
-    external: true,
-  })),
-  ...homePosts.map((post) => ({
-    title: post.data.title,
-    image: post.data.imagepost,
-    badge: post.data.category || 'Actualidad',
-    href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
-    external: false,
-  })),
-].slice(0, 3);
+const homeNews = homePosts.map((post) => ({
+  title: post.data.title,
+  image: post.data.imagepost,
+  badge: post.data.category || 'Actualidad',
+  href: `/posts/${post.id.replace(/\.mdoc$/, '')}`,
+  external: false,
+}));
+
+const homePublicationsItems = homePublications.map((pub) => ({
+  title: pub.data.nombre,
+  image: pub.data.imagen,
+  tematica: pub.data.tematica,
+  href: pub.data.descarga || pub.data.link,
+  external: true,
+}));
 ---
 
 <Layout
@@ -222,6 +223,74 @@ const homeNews = [
             class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
           >
             VER TODAS LAS NOVEDADES
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publicaciones Section -->
+    <section class="relative pt-8 md:pt-24 pb-16 md:pb-24">
+      <div class="max-w-350 mx-auto px-6 relative">
+        <p class="font-sans font-medium text-body text-text-primary uppercase tracking-wide text-center mb-2">
+          Explora nuestras
+        </p>
+        <h2 class="font-sans font-extrabold text-h2 text-text-primary leading-headings uppercase tracking-wide text-center mb-10">
+          Publicaciones
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {homePublicationsItems.map((item) => (
+            <article class="relative flex flex-col w-full h-130 md:h-145 max-w-98.5 mx-auto items-center rounded-md bg-bg-default shadow-card overflow-hidden">
+              <figure class="pt-4 px-4 shrink-0">
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="rounded-sm border border-gray-300 max-h-64 w-auto object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-64 bg-bg-gray flex items-center justify-center rounded-sm">
+                    <span class="text-text-body/40 text-sm">Imagen</span>
+                  </div>
+                )}
+              </figure>
+              <div class="flex flex-col items-center text-center mt-4 mx-6 mb-2 grow">
+                <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
+                  {item.title}
+                </p>
+                {item.tematica.length > 0 && (
+                  <div class="text-center flex flex-wrap gap-1.5 mt-3">
+                    {item.tematica.map((t) => (
+                      <span class="inline-block font-sans text-caption font-semibold uppercase tracking-wide text-primary bg-primary/10 rounded-md px-2.5 py-0.5">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="absolute bottom-4 left-4 right-4 flex items-center justify-between p-3 font-['Work_Sans'] text-sm md:text-body text-accent-magenta border border-accent-magenta rounded-md shadow-sm transition-colors duration-fast hover:bg-primary hover:text-text-inverse hover:border-primary"
+                aria-label="Descargar publicación"
+              >
+                <span>DESCARGAR PDF</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div class="text-center mt-10">
+          <a
+            href="/novedades#publicaciones-section"
+            class="inline-block font-sans text-caption font-bold uppercase tracking-wider text-text-inverse bg-primary rounded-pill px-8 py-3 no-underline hover:bg-accent-magenta transition-all duration-fast"
+          >
+            VER TODAS LAS PUBLICACIONES
           </a>
         </div>
       </div>
