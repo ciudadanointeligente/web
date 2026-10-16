@@ -165,7 +165,7 @@ const publicacionesItems = publicaciones
               {item.tematica && item.tematica.length > 0 && (
               <div class="text-left flex flex-wrap gap-1.5 mb-4 content-baseline">
                 {item.tematica.map((t) => (
-                <span class="inline-block font-sans text-caption font-medium uppercase tracking-wide text-primary/60 bg-primary/10 rounded-pill px-2.5 py-0.5">
+                <span class="inline-block font-sans text-caption font-medium uppercase tracking-wide text-primary/60 bg-primary/10 rounded-md px-2.5 py-0.5">
                   {t}
                 </span>
                 ))}
@@ -285,14 +285,14 @@ const publicacionesItems = publicaciones
               </div>
               )}
             </figure>
-            <div class="flex flex-col items-center text-center mt-4 mx-6 mb-2 grow">
+            <div class="flex flex-col items-center text-center mt-4 mx-6 pb-20 grow">
               <p class="font-['Work_Sans'] text-lg text-text-primary leading-tight">
                 {item.title}
               </p>
               {item.tematica.length > 0 && (
-              <div class="text-left flex flex-wrap gap-1.5 content-baseline">
+              <div class="text-left flex flex-wrap gap-1.5 mt-auto content-baseline">
                 {item.tematica.map((t) => (
-                <span class="inline-block font-sans text-caption font-normal uppercase tracking-wide text-primary/60 bg-primary/10 rounded-md px-2.5 py-0.5">
+                <span class="inline-block font-sans text-caption font-medium uppercase tracking-wide text-primary/60 bg-primary/10 rounded-md px-2.5 py-0.5">
                   {t}
                 </span>
                 ))}
